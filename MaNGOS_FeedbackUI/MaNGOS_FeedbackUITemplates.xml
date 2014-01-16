@@ -882,7 +882,7 @@
 	</Size>
 	<Layers>
 		<Layer level="BACKGROUND">
-			<Texture name="$parentLeftDisabled" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-ActiveTab">
+			<Texture name="$parentLeftDisabled" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-ActiveTab">
 				<Size>
 					<AbsDimension x="20" y="32"/>
 				</Size>
@@ -895,7 +895,7 @@
 				</Anchors>
 				<TexCoords left="0" right="0.15625" top="0" bottom="1.0"/>
 			</Texture>
-			<Texture name="$parentMiddleDisabled" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-ActiveTab">
+			<Texture name="$parentMiddleDisabled" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-ActiveTab">
 				<Size>
 					<AbsDimension x="88" y="32"/>
 				</Size>
@@ -904,7 +904,7 @@
 				</Anchors>
 				<TexCoords left="0.15625" right="0.84375" top="0" bottom="1.0"/>
 			</Texture>
-			<Texture name="$parentRightDisabled" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-ActiveTab">
+			<Texture name="$parentRightDisabled" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-ActiveTab">
 				<Size>
 					<AbsDimension x="20" y="32"/>
 				</Size>
@@ -913,7 +913,7 @@
 				</Anchors>
 				<TexCoords left="0.84375" right="1.0" top="0" bottom="1.0"/>
 			</Texture>
-			<Texture name="$parentLeft" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-InActiveTab">
+			<Texture name="$parentLeft" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-InActiveTab">
 				<Size>
 					<AbsDimension x="20" y="31"/>
 				</Size>
@@ -922,7 +922,7 @@
 				</Anchors>
 				<TexCoords left="0" right="0.15625" top="0" bottom="1.0"/>
 			</Texture>
-			<Texture name="$parentMiddle" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-InActiveTab">
+			<Texture name="$parentMiddle" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-InActiveTab">
 				<Size>
 					<AbsDimension x="88" y="31"/>
 				</Size>
@@ -931,7 +931,7 @@
 				</Anchors>
 				<TexCoords left="0.15625" right="0.84375" top="0" bottom="1.0"/>
 			</Texture>
-			<Texture name="$parentRight" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-InActiveTab">
+			<Texture name="$parentRight" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-InActiveTab">
 				<Size>
 					<AbsDimension x="20" y="31"/>
 				</Size>
@@ -1536,13 +1536,13 @@
             end
         </OnClick>
 	</Scripts>
-	<NormalTexture file="Interface\AddOns\Blizzard_FeedbackUI\SurveyFrameAlert">
+	<NormalTexture file="Interface\AddOns\MaNGOS_FeedbackUI\SurveyFrameAlert">
 		<Size>
 			<AbsDimension x="34" y="42"/>
 		</Size>
 		<TexCoords left="0" right="0.53125" top="0" bottom="0.6875"/>
 	</NormalTexture>
-	<HighlightTexture file="Interface\AddOns\Blizzard_FeedbackUI\SurveyFrameAlert" alphaMode="ADD">
+	<HighlightTexture file="Interface\AddOns\MaNGOS_FeedbackUI\SurveyFrameAlert" alphaMode="ADD">
 		<Size>
 			<AbsDimension x="23" y="42"/>
 		</Size>

@@ -7,7 +7,7 @@
 ## SavedVariablesPerCharacter: g_FeedbackUI_feedbackVars, g_FeedbackUI_surveysTable
 
 Localization.lua
-Blizzard_FeedbackUITemplates.xml
-Blizzard_FeedbackUI.xml
-Blizzard_FeedbackUIPanels.lua
+MaNGOS_FeedbackUITemplates.xml
+MaNGOS_FeedbackUI.xml
+MaNGOS_FeedbackUIPanels.lua
 

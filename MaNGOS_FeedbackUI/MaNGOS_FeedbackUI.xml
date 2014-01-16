@@ -1,7 +1,7 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 
-<Script file="Blizzard_FeedbackUIStrings.lua"/>
-<Script file="Blizzard_FeedbackUI.lua"/>
+<Script file="MaNGOS_FeedbackUIStrings.lua"/>
+<Script file="MaNGOS_FeedbackUI.lua"/>
 
 <Button name="FeedbackUIButton" parent="Minimap" frameStrata="MEDIUM">
 	<Size>
@@ -32,9 +32,9 @@
 			</Texture>
 		</Layer>
 	</Layers>
-	<NormalTexture file="Interface\Addons\Blizzard_FeedbackUI\Blizzard-Icon-Up.blp"/>
-	<PushedTexture file="Interface\Addons\Blizzard_FeedbackUI\Blizzard-Icon-Pushed.blp"/>
-	<HighlightTexture file="Interface\Addons\Blizzard_FeedbackUI\Blizzard-Icon-Highlight.blp" alphaMode="ADD"/>
+	<NormalTexture file="Interface\Addons\MaNGOS_FeedbackUI\Blizzard-Icon-Up.blp"/>
+	<PushedTexture file="Interface\Addons\MaNGOS_FeedbackUI\Blizzard-Icon-Pushed.blp"/>
+	<HighlightTexture file="Interface\Addons\MaNGOS_FeedbackUI\Blizzard-Icon-Highlight.blp" alphaMode="ADD"/>
 	<Scripts>
 		<OnLoad>
 			this.tooltipText = MicroButtonTooltipText(TEXT(BUG_BUTTON), "TOGGLEBUG");

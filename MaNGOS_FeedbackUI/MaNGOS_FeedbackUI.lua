@@ -69,7 +69,7 @@ function FeedbackUI_OnLoad ()
 end
 
 function FeedbackUI_OnEvent ()
-    if ( event == "ADDON_LOADED" and arg1 == "Blizzard_FeedbackUI" ) then 
+    if ( event == "ADDON_LOADED" and arg1 == "MaNGOS_FeedbackUI" ) then 
         for _, frame in pairs(feedbackFrames) do
             if frame.panels then
                 for _, panel in pairs(frame.panels) do
