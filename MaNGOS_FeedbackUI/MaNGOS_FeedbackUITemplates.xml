@@ -1,16 +1,16 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 <Frame name="FeedbackUITemplate" hidden="false" virtual="true">
 	<Size>
-		<AbsDimension x="385" y="465"/>
+		<AbsDimension x="385" y="525"/>
 	</Size>
 	<Anchors>
-		<Anchor point="CENTER" relativeto="$parent" relativepoint="CENTER">
+		<Anchor point="RIGHT" relativeto="$parent" relativepoint="RIGHT">
 			<Offset>
 				<AbsDimension x="-10"/>
 			</Offset>
 		</Anchor>
 	</Anchors>
-	<Backdrop bgFile="Interface\TutorialFrame\TutorialFrameBackground" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" title="true" frameStrata="BACKGROUND">
+	<Backdrop bgFile="Interface\TutorialFrame\TutorialFrameBackground" edgeFile="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-Border" title="true" frameStrata="BACKGROUND">
 		<BackgroundInsets>
 			<AbsInset left="11" right="12" top="12" bottom="11"/>
 		</BackgroundInsets>
@@ -30,7 +30,10 @@
 		<OnHide>
 			for entry, name in next, UISpecialFrames do if (name == this:GetName()) then tremove(UISpecialFrames, entry) end end
 			this.button:SetButtonState("NORMAL",0);
+            
 			PlaySound("igCharacterInfoClose");
+            FeedbackUI_Hide();
+            FeedbackUI_SetupWelcome();
 		</OnHide>
 		<OnMouseDown>
 			this:StartMoving();
@@ -79,12 +82,12 @@
 		</Frame>
 		<Button name="$parentBtnClose" visible="true">
 			<Size>
-				<AbsDimension x="30" y="30"/>
+				<AbsDimension x="32" y="32"/>
 			</Size>
 			<Anchors>
 				<Anchor point="TOPRIGHT" relativeto="$parent" relativepoint="TOPRIGHT">
 					<Offset>
-						<AbsDimension x="-3" y="-4"/>
+						<AbsDimension x="-1" y="-2"/>
 					</Offset>
 				</Anchor>
 			</Anchors>
@@ -420,7 +423,7 @@
 						</Anchor>
 					</Anchors>
 					<ScrollChild>
-						<EditBox name="$parentBox" multiline="true" hidden="false" letters="3000" autoFocus="false">
+						<EditBox name="$parentBox" multiline="true" hidden="false" letters="2000" autoFocus="false">
 							<Size>
 								<AbsDimension x="307" y="71"/>
 							</Size>
@@ -449,6 +452,7 @@
 								</OnEscapePressed>
 								<OnShow>
 									this:SetFocus();
+                                    this:HighlightText(0);
 								</OnShow>
 							</Scripts>
 							<FontString inherits="ChatFontNormal"/>
@@ -545,9 +549,12 @@
 							this.panel = this.scroll:GetParent();
 							this.scroll.upbtn = this;
 						</OnLoad>
-						<OnClick>
-							this.panel.MoveScroll(this.panel, -1);
-						</OnClick>
+                        <OnMouseDown>
+                            this.panel.StartIncrementalScroll(this.panel, -1);
+                        </OnMouseDown>
+                        <OnMouseUp>
+                            this.panel.StopIncrementalScroll(this.panel)
+                        </OnMouseUp>
 					</Scripts>
 				</Button>
 				<Button name="$parentDownBtn" inherits="UIPanelScrollDownButtonTemplate" hidden="false">
@@ -562,9 +569,12 @@
 							this.panel = this.scroll:GetParent();
 							this.scroll.downbtn = this;
 						</OnLoad>
-						<OnClick>
-							this.panel.MoveScroll(this.panel, 1);				
-						</OnClick>
+                        <OnMouseDown>
+                            this.panel.StartIncrementalScroll(this.panel, 1)
+                        </OnMouseDown>
+                        <OnMouseUp>
+                            this.panel.StopIncrementalScroll(this.panel);
+                        </OnMouseUp>
 					</Scripts>
 				</Button>
 				<Frame name="$parentControls" hidden="false">
@@ -776,22 +786,22 @@
 	</Scripts>
 	<Layers>
 		<Layer level="OVERLAY">
-            <FontString name="$parentRightText" inherits="GameFontNormal" justifyH="LEFT" justifyV="MIDDLE" text="" multiline="false" nonspacewrap="false">
+            <FontString name="$parentRightText" inherits="GameFontNormal" justifyH="LEFT" justifyV="TOP" text="" hidden="true" multiline="false" nonspacewrap="false">
                 <Size>
-                    <AbsDimension x="125" y="10"/>
+                    <AbsDimension x="1" y="10"/>
                 </Size>
 				<Anchors>
-					<Anchor point="RIGHT" relativeto="$parent" relativepoint="RIGHT">
+					<Anchor point="TOPRIGHT" relativeto="$parent" relativepoint="TOPRIGHT">
                         <Offset>
-                            <AbsDimension x="0" y="2"/>
+                            <AbsDimension x="0" y="0"/>
                         </Offset>
                     </Anchor>
 				</Anchors>
 			</FontString>
-			<FontString name="$parentText" inherits="GameFontNormal" justifyH="LEFT" justifyV="MIDDLE" text="" multiline="true" nonspacewrap="true">                                
+			<FontString name="$parentText" inherits="GameFontNormal" justifyH="LEFT" justifyV="TOP" text="" multiline="false" nonspacewrap="false">                                
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT"/>
-					<Anchor point="BOTTOMRIGHT" relativeto="$parentRightText" relativepoint="BOTTOMLEFT"/>
+					<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT"/>
 				</Anchors>
 			</FontString>
 		</Layer>
@@ -882,7 +892,7 @@
 	</Size>
 	<Layers>
 		<Layer level="BACKGROUND">
-			<Texture name="$parentLeftDisabled" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-ActiveTab">
+			<Texture name="$parentLeftDisabled" file="">
 				<Size>
 					<AbsDimension x="20" y="32"/>
 				</Size>
@@ -895,7 +905,7 @@
 				</Anchors>
 				<TexCoords left="0" right="0.15625" top="0" bottom="1.0"/>
 			</Texture>
-			<Texture name="$parentMiddleDisabled" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-ActiveTab">
+			<Texture name="$parentMiddleDisabled" file="">
 				<Size>
 					<AbsDimension x="88" y="32"/>
 				</Size>
@@ -904,7 +914,7 @@
 				</Anchors>
 				<TexCoords left="0.15625" right="0.84375" top="0" bottom="1.0"/>
 			</Texture>
-			<Texture name="$parentRightDisabled" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-ActiveTab">
+			<Texture name="$parentRightDisabled" file="">
 				<Size>
 					<AbsDimension x="20" y="32"/>
 				</Size>
@@ -913,7 +923,7 @@
 				</Anchors>
 				<TexCoords left="0.84375" right="1.0" top="0" bottom="1.0"/>
 			</Texture>
-			<Texture name="$parentLeft" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-InActiveTab">
+			<Texture name="$parentLeft" file="">
 				<Size>
 					<AbsDimension x="20" y="31"/>
 				</Size>
@@ -922,7 +932,7 @@
 				</Anchors>
 				<TexCoords left="0" right="0.15625" top="0" bottom="1.0"/>
 			</Texture>
-			<Texture name="$parentMiddle" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-InActiveTab">
+			<Texture name="$parentMiddle" file="">
 				<Size>
 					<AbsDimension x="88" y="31"/>
 				</Size>
@@ -931,7 +941,7 @@
 				</Anchors>
 				<TexCoords left="0.15625" right="0.84375" top="0" bottom="1.0"/>
 			</Texture>
-			<Texture name="$parentRight" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-InActiveTab">
+			<Texture name="$parentRight" file="">
 				<Size>
 					<AbsDimension x="20" y="31"/>
 				</Size>
@@ -1116,68 +1126,6 @@
 		</Layer>
 	</Layers>
 	<Frames>
-		<CheckButton name="$parentAlerts" inherits="OptionsCheckButtonTemplate" checked="true" text="Show Alerts">
-			<Size>
-				<AbsDimension x="22" y="22"/>
-			</Size>
-			
-			<Anchors>
-				<Anchor point="TOPLEFT" relativeTo="$parent">
-					<Offset>
-						<AbsDimension x="2" y="-3"/>
-					</Offset>
-				</Anchor>
-			</Anchors>
-			<Scripts>
-				<OnLoad>
-					this.text = getglobal(this:GetName().."Text");
-					this.text:SetText(" "..FEEDBACKUILBLSURVEYALERTSCHECK_TEXT);
-                    this.panel = this:GetParent();
-                    this.panel.alertCheck = this;
-				</OnLoad>
-                <OnClick>
-                    if ( this:GetChecked() ) then
-                        g_FeedbackUI_feedbackVars["alerts"] = true;
-                    else
-                        g_FeedbackUI_feedbackVars["alerts"] = false;
-                    end
-                    this.panel.UpdateAlertButtons(this.panel);
-                </OnClick>
-			</Scripts>
-		</CheckButton>
-		<Button name="$parentDdlCategory" inherits="FeedbackDropDownMenuTemplate" id="1">
-			<Size>
-				<AbsDimension x="125" y="32"/>
-			</Size>
-			<Anchors>
-				<Anchor point="TOPRIGHT" relativeTo="$parent" relativepoint="TOPRIGHT">
-					<Offset>
-						<AbsDimension x="0" y="0"/>
-					</Offset>
-				</Anchor>
-			</Anchors>
-			<Scripts>
-				<OnLoad>
-					this.panel = this:GetParent();
-					this.panel.ddlCategory = this;
-				</OnLoad>
-			</Scripts>
-		</Button>
-		<Button name="$parentDdlStatus" inherits="FeedbackDropDownMenuTemplate" id="1">
-			<Anchors>
-				<Anchor point="RIGHT" relativeTo="$parentDdlCategory" relativepoint="LEFT">
-					<Offset>
-						<AbsDimension x="10" y="0"/>
-					</Offset>
-				</Anchor>
-			</Anchors>
-			<Scripts>
-				<OnLoad>
-					this.panel = this:GetParent();
-					this.panel.ddlStatus = this;
-				</OnLoad>
-			</Scripts>
-		</Button>
 		<Frame name="$parentBorder">
 			<Anchors>
 				<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
@@ -1209,10 +1157,10 @@
 				<Anchor point="BOTTOMRIGHT" relativeto="$parentBorder" relativepoint="BOTTOMRIGHT"/>
 			</Anchors>
 			<Frames>
-				<Button name="$parentColumn2" inherits="FeedbackFrameColumnHeaderTemplate" text="FEEDBACKUI_SURVEYCOLUMNMODIFIED">
+				<Button name="$parentColumn2" inherits="FeedbackFrameColumnHeaderTemplate" hidden="true" text="FEEDBACKUI_SURVEYCOLUMNMODIFIED">
 					<!-- Since we want this Column (the far right one) to be the fixed width one in case of later resizing, it needs to come first, so that other columns can be sized and positioned relative to it. -->
 					<Size>
-						<AbsDimension x="115" y="29"/>
+						<AbsDimension x="1" y="29"/>
 					</Size>
 					<Anchors>
 						<Anchor point="TOPRIGHT" relativeto="$parent" relativepoint="TOPRIGHT">
@@ -1354,7 +1302,7 @@
             <Scripts>
                 <OnLoad>
                     this:GetParent().tooltip = this;
-                    this:SetOwner(this, "ANCHOR_NONE")
+                    this:SetOwner(UIParent, "ANCHOR_NONE")
                     <!--this:SetText("Test")-->
                     this:ClearLines()
                     this:Hide()
@@ -1450,7 +1398,7 @@
 				<OnLoad>
 					this:GetParent().reset = this;
 					this:SetText(FEEDBACKUIRESET_TEXT);
-					this:Disable();
+					this:Enable();
 				</OnLoad>
 				<OnClick>
 					PlaySound("GAMEGENERICBUTTONPRESS");
@@ -1506,7 +1454,7 @@
                 GameTooltip:AddDoubleLine(line.left, line.right);
             end
             GameTooltipTextLeft2:SetFontObject("GameTooltipHeaderText");
-            GameTooltipTextLeft2:SetText(FEEDBACKUI_BLUE .. GameTooltipTextLeft2:GetText())
+            GameTooltipTextLeft2:SetText(FEEDBACKUI_BLUE .. ( GameTooltipTextLeft2:GetText() or "" ) )
             
             if ( SHOW_NEWBIE_TIPS == "1" ) then
                 GameTooltip:AddLine(FEEDBACKUI_SURVEYNEWBIETEXT, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
@@ -1519,8 +1467,12 @@
 		<OnClick>    
             UIDropDownMenu_SetSelectedValue(this.alert.panel.ddlCategory, "All")
             UIDropDownMenu_SetSelectedValue(this.alert.panel.ddlStatus, "Available")
+            this.alert.panel.LoadStatus(this.alert.panel.ddlStatus);
+            this.alert.panel.LoadCategory(this.alert.panel.ddlCategory);
+            this.alert.panel.Expand(this.alert.panel, g_FeedbackUI_surveysTable["Alerts"][this.index].type)
+            this.alert.panel.table = {};
             this.alert.panel.PopulateTable(this.alert.panel)
-            this.alert.panel.ScrollToAlert(this.alert.panel, this.index)
+            this.alert.panel.ScrollToSurvey(this.alert.panel, g_FeedbackUI_surveysTable["Alerts"][this.index])
             if ( this:IsVisible() ) then
                 GameTooltip:SetOwner(this, "ANCHOR_LEFT");
                 for _, line in ipairs(this.lines) do
@@ -1583,4 +1535,152 @@
 		</Anchors>
 	</HighlightTexture>
 </Button>
+
+<Frame name="FeedbackPortalFrame" hidden="false" virtual="true">
+    <Layers>
+        <Layer level="BORDER">
+            <Texture name="$parentTopLeft" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-Frame">
+                <Size>
+                    <AbsDimension x="51" y="64"/>
+                </Size>
+                <TexCoords left="0" right=".1" top="0" bottom=".25"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT"/>
+                </Anchors>
+            </Texture>
+            <Texture name="$parentTopRight" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-Frame">
+                <Size>
+                    <AbsDimension x="51" y="64"/>
+                </Size>
+                <TexCoords left=".52" right=".62" top="0" bottom=".25"/>
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeto="$parent" relativepoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="4" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Texture>
+            <Texture name="$parentTopMiddle" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-Frame">
+                <TexCoords left="0.1" right="0.52" top="0" bottom=".25"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeto="$parentTopLeft" relativepoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeto="$parentTopRight" relativepoint="BOTTOMLEFT"/>
+                </Anchors>
+            </Texture>
+            <Texture name="$parentBottomLeft" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-Frame">
+                <Size>
+                    <AbsDimension x="51" y="64"/>
+                </Size>
+                <TexCoords left="0" right=".1" top=".45" bottom=".75"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeto="$parentTopLeft" relativepoint="BOTTOMLEFT"/>
+                </Anchors>
+            </Texture>
+            <Texture name="$parentBottomRight" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-Frame">
+                <Size>
+                    <AbsDimension x="51" y="64"/>
+                </Size>
+                <TexCoords left=".52" right=".62" top=".45" bottom=".75"/>
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeto="$parentTopRight" relativepoint="BOTTOMRIGHT"/>
+                </Anchors>
+            </Texture>
+            <Texture name="$parentBottomMiddle" file="Interface\AddOns\MaNGOS_FeedbackUI\UI-Feedback-Frame">
+                <TexCoords left="0.1" right="0.52" top=".45" bottom=".75"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeto="$parentBottomLeft" relativepoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeto="$parentBottomRight" relativepoint="BOTTOMLEFT"/>
+                </Anchors>
+            </Texture>                            
+        </Layer>
+        <Layer level="ARTWORK">
+            <Texture name="$parentTint" file="Interface\Buttons\UI-Listbox-Highlight2" alphaMode="ADD">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeto="$parentTopLeft" relativepoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="48" y="-10"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT" relativeto="$parentTopRight" relativepoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-14" y="-35"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Texture>
+        </Layer>
+        <Layer level="OVERLAY">
+            <FontString name="$parentLabel" inherits="GameFontNormalLarge" text="Placeholder Text">
+                <Anchors>
+                    <Anchor point="LEFT" relativeto="$parentTint" relativepoint="LEFT">
+                        <Offset>
+                            <AbsDimension x="16" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </FontString>
+            <FontString name="$parentDescription" inherits="GameFontHighlight" justifyh="LEFT" justifyv="TOP" text="This is a line of placeholder text; it represents a theoretical description." multiline="true">
+                <Size>
+                    <AbsDimension x="340"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="16" y="-50"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-16" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </FontString>
+            <Texture name="$parentIcon" file="Interface\Icons\INV_BannerPVP_01">
+                <Size>
+                    <AbsDimension x="38" y="38"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="5" y="-3"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Texture>
+        </Layer>        
+    </Layers>
+    <Frames>
+        <Button name="$parentBtn" inherits="UIPanelButtonTemplate2">
+            <Size>
+                <AbsDimension x="144" y="20"/>
+            </Size>
+            <Anchors>
+                <Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+                    <Offset>
+                        <AbsDimension x="-12" y="36"/>
+                    </Offset>
+                </Anchor>
+            </Anchors>
+    		<Scripts>
+    			<OnMouseDown>
+                if ( this:IsEnabled() ~= 0 ) then
+                    getglobal(this:GetName().."Left"):SetTexture("Interface\\Buttons\\UI-Panel-Button-Down");
+                    getglobal(this:GetName().."Middle"):SetTexture("Interface\\Buttons\\UI-Panel-Button-Down");
+                    getglobal(this:GetName().."Right"):SetTexture("Interface\\Buttons\\UI-Panel-Button-Down");
+                end
+    			</OnMouseDown>
+    			<OnMouseUp>
+                if ( this:IsEnabled() ~= 0 ) then
+                    getglobal(this:GetName().."Left"):SetTexture("Interface\\Buttons\\UI-Panel-Button-Up");
+                    getglobal(this:GetName().."Middle"):SetTexture("Interface\\Buttons\\UI-Panel-Button-Up");
+                    getglobal(this:GetName().."Right"):SetTexture("Interface\\Buttons\\UI-Panel-Button-Up");
+                end
+    			</OnMouseUp>
+    		</Scripts>            
+        </Button>
+    </Frames>
+</Frame>
+
 </Ui>

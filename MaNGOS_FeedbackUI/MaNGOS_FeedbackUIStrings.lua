@@ -2,12 +2,20 @@
 FEEDBACKUI_WHITE = "|cFFFFFFFF"
 FEEDBACKUI_GREEN = "|cFF11EE11"
 FEEDBACKUI_BLUE = "|cFF5A9FFF"
+FEEDBACKUI_BLUE_COLOR = { r=.351, g=.621, b=1, a=1 }
+
+
+FEEDBACKUI_SURVEYCOLOR = { r=0, g=0, b=.33, a=.6 };
+FEEDBACKUI_BUGCOLOR = { r=.33, g=0, b=0, a=.6 };
+FEEDBACKUI_SUGGESTIONCOLOR = { r=0, g=.33, b=0, a=.6};
+FEEDBACKUI_DISABLEDCOLOR = { r=0, g=0, b=0, a=1 };
 
 FEEDBACKUI_NONINSTANCEZONES = {}
 
 for i = 1, 3 do
 	for _, val in next, { GetMapZones(i) } do
-		table.insert(FEEDBACKUI_NONINSTANCEZONES, val)
+		-- table.insert(FEEDBACKUI_NONINSTANCEZONES, val)
+        FEEDBACKUI_NONINSTANCEZONES[val] = true;
 	end
 end
 
@@ -53,7 +61,7 @@ BUG_BUTTON="Soumettre retour"
 NEWBIE_TOOLTIP_BUG="Nous envoie un retour sur un bug ou une suggestion afin de nous aider à améliorer World of Warcraft"
 FEEDBACKUIBACK_TEXT = "Retour"
 FEEDBACKUIRESET_TEXT = "Réinitialiser"
-FEEDBACKUISUBMIT_TEXT = "Soumettre !"
+FEEDBACKUISUBMIT_TEXT = "Soumettre"
 FEEDBACKUISTART_TEXT = "Début"
 
 --Tables and strings for navigation.
@@ -135,6 +143,8 @@ FEEDBACKUI_STRSILVERMOON = "- Cela se produit à Lune-d'argent."
 FEEDBACKUI_STRSILVERPINE = "- Cela se produit dans la forêt des Pins argentés."
 FEEDBACKUI_STRSTORMWIND = "- Cela se produit à Hurlevent."
 FEEDBACKUI_STRSTRANGLETHORN = "- Cela se produit dans la vallée de Strangleronce."
+FEEDBACKUI_STRSWAMPOFSORROWS = "- Cela se produit au marais des Chagrins"
+
 FEEDBACKUI_STRTIRISFAL = "- Cela se produit dans les clairières de Tirisfal."
 FEEDBACKUI_STRUNDERCITY = "- Cela se produit à Fossoyeuse."
 FEEDBACKUI_STRWPLAGUELANDS = "- Cela se produit dans les Maleterres de l'ouest."
@@ -172,6 +182,7 @@ FEEDBACKUI_EVERYWHERE = "Partout en jeu"
 FEEDBACKUI_EKINGDOMS = "Royaumes de l'Est"
 FEEDBACKUI_KALIMDOR = "Kalimdor"
 FEEDBACKUI_OUTLANDS = "Outreterre"
+FEEDBACKUI_AZEROTH = "Azeroth"
 
 FEEDBACKUI_BLADESEDGE = "Outreterre - Les Tranchantes"
 FEEDBACKUI_HELLFIRE = "Outreterre - Péninsule des Flammes infernales"
@@ -208,6 +219,7 @@ FEEDBACKUI_SILVERMOON = "Royaumes de l'est - Lune-d'argent"
 FEEDBACKUI_SILVERPINE = "Royaumes de l'est - Forêt des Pins argentés"
 FEEDBACKUI_STORMWIND = "Royaumes de l'est - Hurlevent"
 FEEDBACKUI_STRANGLETHORN = "Royaumes de l'est - Vallée de Strangleronce"
+FEEDBACKUI_SWAMPOFSORROWS = "Royaumes de l'est - Marais des Chagrins"
 FEEDBACKUI_TIRISFAL = "Royaumes de l'est - Clairières de Tirisfal"
 FEEDBACKUI_UNDERCITY = "Royaumes de l'est - Fossoyeuse"
 FEEDBACKUI_WPLAGUELANDS = "Royaumes de l'est - Maleterres de l'ouest"
@@ -241,7 +253,7 @@ FEEDBACKUI_WARSONG = "Kalimdor - Goulet des Chanteguerres"
 FEEDBACKUI_WINTERSPRING = "Kalimdor - Berceau-de-l'hiver"								
 								
 FEEDBACKUI_WHENTABLEHEADER = FEEDBACKUI_WHITE .. "Quand" .. FEEDBACKUI_WHITE
-FEEDBACKUI_TYPETABLESUBTEXT = "Quelle est la fréquence du problème ?"
+FEEDBACKUI_WHENTABLESUBTEXT = "Quelle est la fréquence du problème ?"
 
 FEEDBACKUI_STRREPRODUCABLE = "Cela se produit tout le temps."
 FEEDBACKUI_STRSOMETIMES = "Cela se produit de temps en temps."
@@ -258,24 +270,24 @@ FEEDBACKUI_TYPETABLEHEADER = FEEDBACKUI_WHITE .. "Type" .. FEEDBACKUI_WHITE
 FEEDBACKUI_TYPETABLESUBTEXT = "De quel type est ce problème ?"
 
 FEEDBACKUI_STRUIOTHER = "C'est un problème d'interface utilisateur."
-FEEDBACKUI_STRUIITEMS = "- C'est un problème d'IU objet."
+FEEDBACKUI_STRUIITEMS = "- C'est un problème d'UI de l'objet"
 FEEDBACKUI_STRUISPAWNS = "- C'est un problème d'IU créature."
 FEEDBACKUI_STRUIQUESTS = "- C'est un problème d'IU quête."
-FEEDBACKUI_STRUISPELLS = "- C'est un problème d'IU sort ou talent."
+FEEDBACKUI_STRUISPELLS = "- C'est un problème d'IU d'un sort ou talent."
 FEEDBACKUI_STRUITRADESKILLS = "- C'est un problème d'IU artisanat."
 
 FEEDBACKUI_STRGRAPHICOTHER = "C'est un problème graphique."
-FEEDBACKUI_STRGRAPHICITEMS = "- C'est un problème graphique objet."
+FEEDBACKUI_STRGRAPHICITEMS = "- C'est un problème graphique d'un objet."
 FEEDBACKUI_STRGRAPHICSPAWNS = "- C'est un problème graphique créature."
-FEEDBACKUI_STRGRAPHICSPELLS = "- C'est un problème graphique sort ou talent."
-FEEDBACKUI_STRGRAPHICENVIRONMENT = "- C'est un problème graphique environnement."
+FEEDBACKUI_STRGRAPHICSPELLS = "- C'est un problème graphique d'un sort ou talent."
+FEEDBACKUI_STRGRAPHICENVIRONMENT = "- C'est un problème graphique d'environnement."
 
 FEEDBACKUI_STRFUNCOTHER = "C'est un problème fonctionnel."
-FEEDBACKUI_STRFUNCITEMS = "- C'est un problème fonctionnel objet."
-FEEDBACKUI_STRFUNCSPAWNS = "- C'est un problème fonctionnel créature."
-FEEDBACKUI_STRFUNCQUESTS = "- C'est un problème fonctionnel quête."
-FEEDBACKUI_STRFUNCSPELLS = "- C'est un problème fonctionnel sort ou talent."
-FEEDBACKUI_STRFUNCTRADESKILLS = "- C'est un problème fonctionnel artisanat."
+FEEDBACKUI_STRFUNCITEMS = "- C'est un problème fonctionnel d'objet."
+FEEDBACKUI_STRFUNCSPAWNS = "- C'est un problème fonctionnel d'une créature."
+FEEDBACKUI_STRFUNCQUESTS = "- C'est un problème fonctionnel de quête."
+FEEDBACKUI_STRFUNCSPELLS = "- C'est un problème fonctionnel de sort ou talent."
+FEEDBACKUI_STRFUNCTRADESKILLS = "- C'est un problème fonctionnel d'artisanat."
 
 FEEDBACKUI_STRCRASHOTHER = "C'est un problème de stabilité."
 FEEDBACKUI_STRCRASHBUG = "- Il fait un planter WoW."
@@ -314,7 +326,7 @@ FEEDBACKUILBLFRMDIFFICULTY_TEXT = "Difficulté : "
 FEEDBACKUILBLFRMREWARD_TEXT = "Récompense : "
 FEEDBACKUILBLFRMFUN_TEXT = "Amusement : "
 FEEDBACKUISURVEYTYPE_QUEST = "Quête"
-FEEDBACKUISURVEYTYPE_INSTANCE = "Instance"
+FEEDBACKUISURVEYTYPE_AREA = "Instance"
 	
 FEEDBACKUISKIP_TEXT = "Passer"
 FEEDBACKUILBLSURVEYALERTSCHECK_TEXT = "Voir alertes"
@@ -325,7 +337,7 @@ FEEDBACKUI_SURVEYCOLUMNNAME = "Nom"
 FEEDBACKUI_SURVEYCOLUMNMODIFIED = "Essayée"
 	
 FEEDBACKUI_ALLHEADERTEXT = "Tout"
-FEEDBACKUI_INSTANCEHEADERTEXT = "Instances"
+FEEDBACKUI_AREAHEADERTEXT = "Instances"
 FEEDBACKUI_QUESTHEADERTEXT = "Quêtes"
 	
 FEEDBACKUI_STATUSALLTEXT = "Toutes"
@@ -334,7 +346,7 @@ FEEDBACKUI_STATUSSKIPPEDTEXT = "Passées"
 FEEDBACKUI_STATUSCOMPLETEDTEXT = "Terminées"
 	
 FEEDBACKUI_SURVEYTOOLTIPQUESTHEADER = "Nom de la quête :"
-FEEDBACKUI_SURVEYTOOLTIPINSTANCEHEADER = "Nom de l'instance :"
+FEEDBACKUI_SURVEYTOOLTIPAREAHEADER = "Nom de l'instance :"
 FEEDBACKUI_SURVEYTOOLTIPEXPERIENCEDHEADER = "Il y a :"
 FEEDBACKUI_SURVEYTOOLTIPQUESTOBJECTIVESHEADER = "Objectifs de la quête :"
 	
@@ -363,8 +375,8 @@ FEEDBACKUI_CLARITY4 = "Parfaitement clairs"
 	
 FEEDBACKUI_QUESTSDIFFICULTYTABLEHEADER = "Difficulté"
 FEEDBACKUI_QUESTSDIFFICULTYTABLESUBTEXT = "La quête était-elle difficile ?"
-FEEDBACKUI_INSTANCESDIFFICULTYTABLEHEADER = "Difficulté"
-FEEDBACKUI_INSTANCESDIFFICULTYTABLESUBTEXT = "Les épreuves de l'instance étaient-elles dures ?"
+FEEDBACKUI_AREASDIFFICULTYTABLEHEADER = "Difficulté"
+FEEDBACKUI_AREASDIFFICULTYTABLESUBTEXT = "Les épreuves de l'instance étaient-elles dures ?"
 	
 FEEDBACKUI_STRDIFFICULTY1 = "Facile"
 FEEDBACKUI_STRDIFFICULTY2 = "Faisable"
@@ -378,8 +390,8 @@ FEEDBACKUI_DIFFICULTY4 = "Difficile"
 	
 FEEDBACKUI_QUESTSREWARDTABLEHEADER = "Récompense"
 FEEDBACKUI_QUESTSREWARDTABLESUBTEXT = "Comment trouvez-vous la récompense de quête ?"
-FEEDBACKUI_INSTANCESREWARDTABLEHEADER = "Récompense"
-FEEDBACKUI_INSTANCESREWARDTABLESUBTEXT = "Que pensez-vous des récompenses de l'instance ?"
+FEEDBACKUI_AREASREWARDTABLEHEADER = "Récompense"
+FEEDBACKUI_AREASREWARDTABLESUBTEXT = "Que pensez-vous des récompenses de l'instance ?"
 	
 FEEDBACKUI_STRREWARD1 = "Nulle"
 FEEDBACKUI_STRREWARD2 = "Insatisfaisante"
@@ -393,8 +405,8 @@ FEEDBACKUI_REWARD4 = "Excellentes"
 	
 FEEDBACKUI_QUESTSFUNTABLEHEADER = "Amusement"
 FEEDBACKUI_QUESTSFUNTABLESUBTEXT = "La quête était-elle amusante ?"
-FEEDBACKUI_INSTANCESFUNTABLEHEADER = "Amusement"
-FEEDBACKUI_INSTANCESFUNTABLESUBTEXT = "L'instance était-elle amusante ?"
+FEEDBACKUI_AREASFUNTABLEHEADER = "Amusement"
+FEEDBACKUI_AREASFUNTABLESUBTEXT = "L'instance était-elle amusante ?"
 	
 FEEDBACKUI_STRFUN1 = "Pas amusante du tout"
 FEEDBACKUI_STRFUN2 = "Pas très amusante"
@@ -408,7 +420,7 @@ FEEDBACKUI_FUN4 = "Très amusante"
 	
 FEEDBACKUISURVEYFRMINPUTBOX_TEXT = "<Indiquez ici tout autre remarque que vous souhaitez nous communiquer>"
 FEEDBACKUI_SURVEYINPUTHEADER = "Merci d'indiquer vos remarques"
-FEEDBACKUIRESUBMIT_TEXT = "Reposter !"
+FEEDBACKUIRESUBMIT_TEXT = "Reposter"
 	
 FEEDBACKUI_WELCOMETABLEBUGHEADER = "Signaler un bug"
 FEEDBACKUI_WELCOMETABLEBUGSUBTEXT = "Signaler les bugs nous aide à corriger le jeu"
@@ -418,75 +430,232 @@ FEEDBACKUI_BUGINPUTHEADER = "Comment reproduire ce bug ?"
 FEEDBACKUI_SUGGESTINPUTHEADER = "Veuillez décrire votre suggestion"
 
 FEEDBACKUI_SURVEYNEWBIETEXT = "Cliquez ici pour completer le questionnaire relatif à une instance ou une quête que vous avez récement terminée." 
+FEEDBACKUI_POIMASK = "%w+%s%-%s(.+)"
 
-FEEDBACKUI_AREATABLE = {[1] = { ["index"] = FEEDBACKUI_STREVERYWHERE, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EVERYWHERE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[2] = { ["index"] = FEEDBACKUI_STROUTLANDS, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_OUTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[10] = { ["index"] = FEEDBACKUI_STRBLADESEDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLADESEDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[3] = { ["index"] = FEEDBACKUI_STRHELLFIRE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HELLFIRE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[4] = { ["index"] = FEEDBACKUI_STRNAGRAND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_NAGRAND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[7] = { ["index"] = FEEDBACKUI_STRNETHERSTORM, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_NETHERSTORM" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[6] = { ["index"] = FEEDBACKUI_STRSHADOWMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SHADOWMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[8] = { ["index"] = FEEDBACKUI_STRSHATTRATH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SHATTRATH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[9] = { ["index"] = FEEDBACKUI_STRTERROKAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TERROKAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[5] = { ["index"] = FEEDBACKUI_STRTWISTINGNETHER, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TWISTINGNETHER" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[11] = { ["index"] = FEEDBACKUI_STRZANGARMARSH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ZANGARMARSH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[12] = { ["index"] = FEEDBACKUI_STREKINGDOMS, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EKINGDOMS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[13] = { ["index"] = FEEDBACKUI_STRALTERACMOUNTAINS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ALTERACMOUNTAINS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[14] = { ["index"] = FEEDBACKUI_STRALTERACVALLEY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ALTERACVALLEY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[15] = { ["index"] = FEEDBACKUI_STRARATHIBASIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ARATHIBASIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[16] = { ["index"] = FEEDBACKUI_STRARATHIHIGHLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ARATHIHIGHLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[40] = { ["index"] = FEEDBACKUI_STRBADLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BADLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[36] = { ["index"] = FEEDBACKUI_STRBLACKROCKMOUNTAIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLACKROCKMOUNTAIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[39] = { ["index"] = FEEDBACKUI_STRBLASTEDLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLASTEDLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[36] = { ["index"] = FEEDBACKUI_STRBURNINGSTEPPES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BURNINGSTEPPES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[19] = { ["index"] = FEEDBACKUI_STRDEADWINDPASS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DEADWINDPASS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[20] = { ["index"] = FEEDBACKUI_STRDUNMOROGH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUNMOROGH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[33] = { ["index"] = FEEDBACKUI_STRDUSKWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUSKWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[29] = { ["index"] = FEEDBACKUI_STREPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[21] = { ["index"] = FEEDBACKUI_STRELWYNN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ELWYNN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[18] = { ["index"] = FEEDBACKUI_STREVERSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EVERSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[38] = { ["index"] = FEEDBACKUI_STRGHOSTLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_GHOSTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[24] = { ["index"] = FEEDBACKUI_STRHILLSBRAD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HILLSBRAD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[25] = { ["index"] = FEEDBACKUI_STRHINTERLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HINTERLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[22] = { ["index"] = FEEDBACKUI_STRIRONFORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_IRONFORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[27] = { ["index"] = FEEDBACKUI_STRLOCHMODAN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_LOCHMODAN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[17] = { ["index"] = FEEDBACKUI_STRREDRIDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_REDRIDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[42] = { ["index"] = FEEDBACKUI_STRSEARINGGORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SEARINGGORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[28] = { ["index"] = FEEDBACKUI_STRSILVERMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILVERMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[34] = { ["index"] = FEEDBACKUI_STRSILVERPINE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILVERPINE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[26] = { ["index"] = FEEDBACKUI_STRSTORMWIND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STORMWIND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[37] = { ["index"] = FEEDBACKUI_STRSTRANGLETHORN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STRANGLETHORN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[41] = { ["index"] = FEEDBACKUI_STRTIRISFAL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TIRISFAL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[23] = { ["index"] = FEEDBACKUI_STRUNDERCITY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_UNDERCITY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[30] = { ["index"] = FEEDBACKUI_STRWPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[31] = { ["index"] = FEEDBACKUI_STRWESTFALL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WESTFALL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[32] = { ["index"] = FEEDBACKUI_STRWETLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WETLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[43] = { ["index"] = FEEDBACKUI_STRKALIMDOR, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_KALIMDOR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[59] = { ["index"] = FEEDBACKUI_STRASHENVALE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ASHENVALE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[45] = { ["index"] = FEEDBACKUI_STRAZSHARA, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_AZSHARA" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[47] = { ["index"] = FEEDBACKUI_STRAZUREMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_AZUREMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[66] = { ["index"] = FEEDBACKUI_STRBARRENS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BARRENS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[48] = { ["index"] = FEEDBACKUI_STRBLOODMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLOODMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[64] = { ["index"] = FEEDBACKUI_STRDARKSHORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DARKSHORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[50] = { ["index"] = FEEDBACKUI_STRDARNASSUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DARNASSUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[51] = { ["index"] = FEEDBACKUI_STRDESOLACE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DESOLACE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[52] = { ["index"] = FEEDBACKUI_STRDUROTAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUROTAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[44] = { ["index"] = FEEDBACKUI_STRDUSTWALLOW, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUSTWALLOW" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[53] = { ["index"] = FEEDBACKUI_STREXODAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EXODAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[55] = { ["index"] = FEEDBACKUI_STRFELWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_FELWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[54] = { ["index"] = FEEDBACKUI_STRFERALAS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_FERALAS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[61] = { ["index"] = FEEDBACKUI_STRMOONGLADE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_MOONGLADE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[57] = { ["index"] = FEEDBACKUI_STRMULGORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_MULGORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[58] = { ["index"] = FEEDBACKUI_STRORGRIMMAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ORGRIMMAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[63] = { ["index"] = FEEDBACKUI_STRSILITHUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILITHUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[62] = { ["index"] = FEEDBACKUI_STRSTONETALON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STONETALON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[65] = { ["index"] = FEEDBACKUI_STRTANARIS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TANARIS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[67] = { ["index"] = FEEDBACKUI_STRTELDRASSIL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TELDRASSIL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[60] = { ["index"] = FEEDBACKUI_STRTHUNDERBLUFF, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_THUNDERBLUFF" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[56] = { ["index"] = FEEDBACKUI_STRTHOUSANDNEEDLES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_THOUSANDNEEDLES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[68] = { ["index"] = FEEDBACKUI_STRUNGORO, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_UNGORO" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[49] = { ["index"] = FEEDBACKUI_STRWARSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WARSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[46] = { ["index"] = FEEDBACKUI_STRWINTERSPRING, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WINTERSPRING" }, ["link"] = "FEEDBACKUI_WHOTABLE" } }
+
+FEEDBACKUI_LEVELPREFIX = "Niveau"
+FEEDBACKUI_HILLSBRAD = "Royaumes de l'est - Contreforts de Hautebrande";
+FEEDBACKUISURVEYTYPE_AREA = "Zone"
+FEEDBACKUISURVEYTYPE_ITEM = "Objet"
+FEEDBACKUISURVEYTYPE_MOB = "Monstre"
+FEEDBACKUI_AREAHEADERTEXT = "Zones"
+FEEDBACKUI_QUESTHEADERTEXT = "Quêtes"
+FEEDBACKUI_ITEMHEADERTEXT = "Objets"
+FEEDBACKUI_MOBHEADERTEXT = "Monstres"
+FEEDBACKUI_SURVEYTOOLTIPAREAHEADER = "Nom de zone:"
+FEEDBACKUI_AREASDIFFICULTYTABLEHEADER = "Difficulté"
+FEEDBACKUI_AREASDIFFICULTYTABLESUBTEXT = "Quelle était la difficulté des rencontres de la zone ?"
+FEEDBACKUI_AREASREWARDTABLEHEADER = "Récompense"
+FEEDBACKUI_AREASREWARDTABLESUBTEXT = "Comment évaluez-vous les récompenses de la zone ?"
+FEEDBACKUI_AREASFUNTABLEHEADER = "Plaisir"
+FEEDBACKUI_AREASFUNTABLESUBTEXT = "Avez-vous eu plaisir à jouer dans cette zone ?"
+FEEDBACKUI_SURVEYINPUTSUBTEXT = "Cliquez ici pour avoir des exemples de retour"
+FEEDBACKUI_SURVEYNEWBIETEXT = "Cliquez ici pour remplir un sondage sur cette expérience."
+FEEDBACKUI_WELCOMETABLESURVEYHEADER = "Veuillez choisir un sondage"
+
+FEEDBACKUI_SPECIFICWELCOME = "Merci de nous fournir un retour sur World of Warcraft. Vous avez choisi de donner un retour sur :\n\n\n\n\nPour continuer, veuillez choisir l’une des options suivantes :";
+FEEDBACKUI_GENERALWELCOME = "Merci de nous fournir un retour sur World of Warcraft. Tous les commentaires reçus servent à améliorer la qualité de World of Warcraft.\n\nPour continuer, veuillez choisir l’une des options suivantes :";
+
+FEEDBACKUI_STARTBUG = "Signaler un bug"
+FEEDBACKUI_STARTSURVEY = "Commencer un sondage"
+FEEDBACKUI_STARTSUGGESTION = "Faire une suggestion"
+
+FEEDBACKUI_WELCOMEBUGHEADER = "Bug"
+FEEDBACKUI_WELCOMESUGGESTHEADER = "Suggestion"
+FEEDBACKUI_WELCOMESURVEYHEADER = "Sondage"
+
+FEEDBACKUI_WELCOMEBUGTEXT = "Un bug nous informe d'une erreur constatée dans le jeu." 
+FEEDBACKUI_WELCOMESUGGESTTEXT = "Une suggestion nous indique de quelle façon vous aimeriez que le jeu soit amélioré."
+FEEDBACKUI_WELCOMESURVEYTEXT = "Un sondage vous permet de nous envoyer un retour sur une partie du jeu."
+FEEDBACKUI_WELCOMESURVEYDISABLED = "Aucun sondage disponible à ce sujet pour le moment."
+
+FEEDBACKUI_MODIFIERKEY = "Raccourcis:"
+FEEDBACKUI_MOUSE1 = "Clic gauche"
+FEEDBACKUI_MOUSE2 = "Clic droit"
+
+FEEDBACKUI_LALT = "Alt gauche"
+FEEDBACKUI_RALT = "Alt droit"
+FEEDBACKUI_LCTRL = "Ctrl gauche"
+FEEDBACKUI_RCTRL = "Ctrl droit"
+FEEDBACKUI_LSHIFT = "Maj gauche"
+FEEDBACKUI_RSHIFT = "Maj droit"
+
+FEEDBACKUI_TOOLTIP_MESSAGE = "<%s+%s pour un retour>";
+FEEDBACKUI_MAP_MESSAGE = "%s+%s gauche sur la carte pour un retour";
+FEEDBACKUI_ITEMTARGETS = { "Armure", "Consommable", "Conteneur", "Projectile", "Carquois", "Arme", "Recette", "Gemme" };
+FEEDBACKUI_MISCTYPE = "Divers";
+FEEDBACKUISHOWCUES_TEXT = "Voir les bulles d'aide";
+
+FEEDBACKUI_CATEGORYLABEL = "Type :"
+FEEDBACKUI_STATUSLABEL = "Statut :"
+
+NEWBIE_TOOLTIP_BUG="Aidez-nous à améliorer World of Warcraft en nous signalant un bug, en faisant une suggestion ou en répondant à un sondage.\n\n" .. FEEDBACKUI_BLUE .. "Clic gauche pour commencer.\nClic droit pour afficher les options.";
+FEEDBACKUILBLAPPEARANCE_TEXT = "Apparence :"
+FEEDBACKUILBLUTILITY_TEXT = "Utilité :"
+
+FEEDBACKUI_MOBSDIFFICULTYTABLEHEADER = "Difficulté"                                      
+FEEDBACKUI_MOBSDIFFICULTYTABLESUBTEXT = "Ce monstre était-il difficile à tuer ?"
+FEEDBACKUI_MOBSREWARDTABLEHEADER = "Récompense"
+FEEDBACKUI_MOBSREWARDTABLESUBTEXT = "Comment jugez-vous les récompenses données par le monstre ?"
+FEEDBACKUI_MOBSFUNTABLEHEADER = "Plaisir"
+FEEDBACKUI_MOBSFUNTABLESUBTEXT = "La rencontre avec ce monstre était-elle plaisante ?"
+FEEDBACKUI_MOBSAPPEARANCETABLEHEADER = "Apparence"
+FEEDBACKUI_MOBSAPPEARANCETABLESUBTEXT = "Comment jugez-vous l'apparence de ce monstre ?"
+
+FEEDBACKUI_ITEMSDIFFICULTYTABLEHEADER = "Difficulté"
+FEEDBACKUI_ITEMSDIFFICULTYTABLESUBTEXT = "Cet objet était-il difficile à obtenir ?"
+FEEDBACKUI_ITEMSUTILITYHEADER = "Utilité"
+FEEDBACKUI_ITEMSUTILITYSUBTEXT = "Cet objet est-il utile, en général ?"
+FEEDBACKUI_ITEMSAPPEARANCETABLEHEADER = "Apparence"
+FEEDBACKUI_ITEMSAPPEARANCETABLESUBTEXT = "Comment jugez-vous l'apparence de cet objet ?"
+
+FEEDBACKUI_STRUTILITY1 = "Complètement inutile"
+FEEDBACKUI_STRUTILITY2 = "Plutôt inutile"
+FEEDBACKUI_STRUTILITY3 = "Utile"
+FEEDBACKUI_STRUTILITY4 = "Très utile"
+
+FEEDBACKUI_UTILITY1 = "Complètement inutile"
+FEEDBACKUI_UTILITY2 = "Plutôt inutile"
+FEEDBACKUI_UTILITY3 = "Utile"
+FEEDBACKUI_UTILITY4 = "Très utile"
+
+FEEDBACKUI_STRAPPEARANCE1 = "Mauvais(e)"
+FEEDBACKUI_STRAPPEARANCE2 = "Médiocre"
+FEEDBACKUI_STRAPPEARANCE3 = "Bon(ne)"
+FEEDBACKUI_STRAPPEARANCE4 = "Remarquable"
+
+FEEDBACKUI_APPEARANCE1 = "Mauvais(e)"
+FEEDBACKUI_APPEARANCE2 = "Médiocre"
+FEEDBACKUI_APPEARANCE3 = "Bon(ne)"
+FEEDBACKUI_APPEARANCE4 = "Remarquable"
+
+FEEDBACKUI_POIUNDERCITY = "Fossoyeuse";
+FEEDBACKUI_POISILVERMOON = "Lune-d'argent";
+FEEDBACKUI_POIIRONFORGE = "Forgefer";
+FEEDBACKUI_POISTORMWIND = "Hurlevent";
+FEEDBACKUI_POISEPULCHER = "Le Sépulcre";
+FEEDBACKUI_POITARRENMILL = "Moulin-de-Tarren";
+FEEDBACKUI_POISOUTHSHORE = "Austrivage";
+FEEDBACKUI_POIAERIEPEAK = "Nid-de-l'aigle";
+FEEDBACKUI_POIREVANTUSK = "Village des Vengebroches";
+FEEDBACKUI_POIHAMMERFALL = "Trépas-d'Orgrim";
+FEEDBACKUI_POIMENETHIL = "Port de Menethil";
+FEEDBACKUI_POITHELSAMAR = "Thelsamar";
+FEEDBACKUI_POIKARGATH = "Kargath";
+FEEDBACKUI_POILAKESHIRE = "Comté-du-lac";
+FEEDBACKUI_POISENTINELHILL = "Colline des sentinelles";
+FEEDBACKUI_POIDARKSHIRE = "Sombre-comté";
+FEEDBACKUI_POISTONARD = "Pierrêche";
+FEEDBACKUI_POIGROMGOL = "Campement Grom'gol";
+
+
+FEEDBACKUI_POIDARNASSUS = "Darnassus";
+FEEDBACKUI_POIEXODAR = "L'Exodar";
+FEEDBACKUI_POIORGRIMMAR = "Orgrimmar";
+FEEDBACKUI_POITHUNDERB = "Les Pitons du tonnerre";
+FEEDBACKUI_POIAUBERDINE = "Auberdine";
+FEEDBACKUI_POIEVERLOOK = "Long-guet";
+FEEDBACKUI_POISTONETALON = "Pic des Serres-rocheuses";
+FEEDBACKUI_POIASTRANAAR = "Astranaar";
+FEEDBACKUI_POISPLINTERTREE = "Poste de Bois-brisé";
+FEEDBACKUI_POISUNROCK = "Retraite de Roche-soleil";
+FEEDBACKUI_POINIJELS = "Combe de Nijel";
+FEEDBACKUI_POISHADOWPREY = "Proie-de-l'ombre";
+FEEDBACKUI_POIFEATHERMOON = "Bastion de Pennelune";
+FEEDBACKUI_POIMOJACHE = "Camp Mojache";
+FEEDBACKUI_POITHALANAAR = "Thalanaar";
+FEEDBACKUI_POICENARIONHOLD = "Fort cénarien";
+FEEDBACKUI_POIGADGET = "Gadgetzan";
+FEEDBACKUI_POIFREEWIND = "Poste de Librevent";
+FEEDBACKUI_POITAURAJO = "Camp Taurajo";
+FEEDBACKUI_POICROSSROADS = "La Croisée";
+FEEDBACKUI_POIRATCHET = "Cabestan";
+FEEDBACKUI_POITHERAMORE = "Île de Theramore";
+
+FEEDBACKUI_SURVEYTOOLTIPMOBHEADER = "Nom du monstre :"
+FEEDBACKUI_SURVEYTOOLTIPMOBZONEHEADER = "Se trouve à :"
+
+FEEDBACKUI_BLACKTEMPLE = "Temple noir"
+FEEDBACKUI_ZULAMAN = "Zul'Aman"
+FEEDBACKUI_SUNWELLPLATEAU = "Plateau du Puits de soleil"
+FEEDBACKUI_MAGISTERSTERRACE = "Terrasse des Magistères"
+
+FEEDBACKUI_VOICECHATTOOLTIP = FEEDBACKUI_WHITE .. "Discussion Vocale intégrée";
+FEEDBACKUI_VOICECHAT = "Discussion vocale";
+FEEDBACKUI_STRVOICECHAT = "C'est un problème de discussion vocale.";
+FEEDBACKUI_STRUSBHEADSET = "J'utilise un casque USB.";
+FEEDBACKUI_STRANALOGHEADSET = "J'utilise un casque Analogique.";
+FEEDBACKUI_HEADSETTYPE = "Quelle sorte de casque multimedia utilisez vous ?";
+
+FEEDBACKUI_AREATABLE = {[1] = { ["index"] = FEEDBACKUI_STREVERYWHERE, ["summary"] = { ["type"] = "where", ["value"] = 1, ["text"] = "FEEDBACKUI_EVERYWHERE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[2] = { ["index"] = FEEDBACKUI_STROUTLANDS, ["summary"] = { ["type"] = "where", ["value"] = 2, ["text"] = "FEEDBACKUI_OUTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[10] = { ["index"] = FEEDBACKUI_STRBLADESEDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 3, ["text"] = "FEEDBACKUI_BLADESEDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[3] = { ["index"] = FEEDBACKUI_STRHELLFIRE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 4, ["text"] = "FEEDBACKUI_HELLFIRE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[4] = { ["index"] = FEEDBACKUI_STRNAGRAND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 5, ["text"] = "FEEDBACKUI_NAGRAND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[7] = { ["index"] = FEEDBACKUI_STRNETHERSTORM, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 6, ["text"] = "FEEDBACKUI_NETHERSTORM" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[6] = { ["index"] = FEEDBACKUI_STRSHADOWMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 7, ["text"] = "FEEDBACKUI_SHADOWMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[8] = { ["index"] = FEEDBACKUI_STRSHATTRATH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 8, ["text"] = "FEEDBACKUI_SHATTRATH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[9] = { ["index"] = FEEDBACKUI_STRTERROKAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 9, ["text"] = "FEEDBACKUI_TERROKAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[5] = { ["index"] = FEEDBACKUI_STRTWISTINGNETHER, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 10, ["text"] = "FEEDBACKUI_TWISTINGNETHER" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[11] = { ["index"] = FEEDBACKUI_STRZANGARMARSH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 11, ["text"] = "FEEDBACKUI_ZANGARMARSH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[12] = { ["index"] = FEEDBACKUI_STREKINGDOMS, ["summary"] = { ["type"] = "where", ["value"] = 12, ["text"] = "FEEDBACKUI_EKINGDOMS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[13] = { ["index"] = FEEDBACKUI_STRALTERACMOUNTAINS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 13, ["text"] = "FEEDBACKUI_ALTERACMOUNTAINS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[14] = { ["index"] = FEEDBACKUI_STRALTERACVALLEY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 14, ["text"] = "FEEDBACKUI_ALTERACVALLEY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[15] = { ["index"] = FEEDBACKUI_STRARATHIBASIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 15, ["text"] = "FEEDBACKUI_ARATHIBASIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[16] = { ["index"] = FEEDBACKUI_STRARATHIHIGHLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 16, ["text"] = "FEEDBACKUI_ARATHIHIGHLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[41] = { ["index"] = FEEDBACKUI_STRBADLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 17, ["text"] = "FEEDBACKUI_BADLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[36] = { ["index"] = FEEDBACKUI_STRBLACKROCKMOUNTAIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 18, ["text"] = "FEEDBACKUI_BLACKROCKMOUNTAIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[40] = { ["index"] = FEEDBACKUI_STRBLASTEDLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 19, ["text"] = "FEEDBACKUI_BLASTEDLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[37] = { ["index"] = FEEDBACKUI_STRBURNINGSTEPPES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 20, ["text"] = "FEEDBACKUI_BURNINGSTEPPES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[19] = { ["index"] = FEEDBACKUI_STRDEADWINDPASS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 21, ["text"] = "FEEDBACKUI_DEADWINDPASS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[20] = { ["index"] = FEEDBACKUI_STRDUNMOROGH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 22, ["text"] = "FEEDBACKUI_DUNMOROGH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[34] = { ["index"] = FEEDBACKUI_STRDUSKWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 23, ["text"] = "FEEDBACKUI_DUSKWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[29] = { ["index"] = FEEDBACKUI_STREPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 24, ["text"] = "FEEDBACKUI_EPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[21] = { ["index"] = FEEDBACKUI_STRELWYNN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 25, ["text"] = "FEEDBACKUI_ELWYNN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[18] = { ["index"] = FEEDBACKUI_STREVERSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 26, ["text"] = "FEEDBACKUI_EVERSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[39] = { ["index"] = FEEDBACKUI_STRGHOSTLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 27, ["text"] = "FEEDBACKUI_GHOSTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[24] = { ["index"] = FEEDBACKUI_STRHILLSBRAD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 28, ["text"] = "FEEDBACKUI_HILLSBRAD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[25] = { ["index"] = FEEDBACKUI_STRHINTERLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 29, ["text"] = "FEEDBACKUI_HINTERLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[22] = { ["index"] = FEEDBACKUI_STRIRONFORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 30, ["text"] = "FEEDBACKUI_IRONFORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[27] = { ["index"] = FEEDBACKUI_STRLOCHMODAN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 31, ["text"] = "FEEDBACKUI_LOCHMODAN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[17] = { ["index"] = FEEDBACKUI_STRREDRIDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 32, ["text"] = "FEEDBACKUI_REDRIDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[43] = { ["index"] = FEEDBACKUI_STRSEARINGGORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 33, ["text"] = "FEEDBACKUI_SEARINGGORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[28] = { ["index"] = FEEDBACKUI_STRSILVERMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 34, ["text"] = "FEEDBACKUI_SILVERMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[35] = { ["index"] = FEEDBACKUI_STRSILVERPINE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 35, ["text"] = "FEEDBACKUI_SILVERPINE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[26] = { ["index"] = FEEDBACKUI_STRSTORMWIND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 36, ["text"] = "FEEDBACKUI_STORMWIND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[38] = { ["index"] = FEEDBACKUI_STRSTRANGLETHORN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 37, ["text"] = "FEEDBACKUI_STRANGLETHORN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[42] = { ["index"] = FEEDBACKUI_STRTIRISFAL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 39, ["text"] = "FEEDBACKUI_TIRISFAL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[23] = { ["index"] = FEEDBACKUI_STRUNDERCITY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 40, ["text"] = "FEEDBACKUI_UNDERCITY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[30] = { ["index"] = FEEDBACKUI_STRWPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 41, ["text"] = "FEEDBACKUI_WPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+                            [31] = { ["index"] = FEEDBACKUI_STRSWAMPOFSORROWS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 38, ["trcy"] = "FEEDBACKUI_SWAMPOFSORROWS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[32] = { ["index"] = FEEDBACKUI_STRWESTFALL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 42, ["text"] = "FEEDBACKUI_WESTFALL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[33] = { ["index"] = FEEDBACKUI_STRWETLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 43, ["text"] = "FEEDBACKUI_WETLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[44] = { ["index"] = FEEDBACKUI_STRKALIMDOR, ["summary"] = { ["type"] = "where", ["value"] = 44, ["text"] = "FEEDBACKUI_KALIMDOR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[60] = { ["index"] = FEEDBACKUI_STRASHENVALE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 45, ["text"] = "FEEDBACKUI_ASHENVALE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[46] = { ["index"] = FEEDBACKUI_STRAZSHARA, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 46, ["text"] = "FEEDBACKUI_AZSHARA" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[48] = { ["index"] = FEEDBACKUI_STRAZUREMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 47, ["text"] = "FEEDBACKUI_AZUREMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[67] = { ["index"] = FEEDBACKUI_STRBARRENS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 48, ["text"] = "FEEDBACKUI_BARRENS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[49] = { ["index"] = FEEDBACKUI_STRBLOODMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 49, ["text"] = "FEEDBACKUI_BLOODMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[65] = { ["index"] = FEEDBACKUI_STRDARKSHORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 50, ["text"] = "FEEDBACKUI_DARKSHORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[51] = { ["index"] = FEEDBACKUI_STRDARNASSUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 51, ["text"] = "FEEDBACKUI_DARNASSUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[52] = { ["index"] = FEEDBACKUI_STRDESOLACE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 52, ["text"] = "FEEDBACKUI_DESOLACE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[53] = { ["index"] = FEEDBACKUI_STRDUROTAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 53, ["text"] = "FEEDBACKUI_DUROTAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[45] = { ["index"] = FEEDBACKUI_STRDUSTWALLOW, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 54, ["text"] = "FEEDBACKUI_DUSTWALLOW" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[54] = { ["index"] = FEEDBACKUI_STREXODAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 55, ["text"] = "FEEDBACKUI_EXODAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[56] = { ["index"] = FEEDBACKUI_STRFELWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 56, ["text"] = "FEEDBACKUI_FELWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[55] = { ["index"] = FEEDBACKUI_STRFERALAS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 57, ["text"] = "FEEDBACKUI_FERALAS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[62] = { ["index"] = FEEDBACKUI_STRMOONGLADE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 58, ["text"] = "FEEDBACKUI_MOONGLADE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[58] = { ["index"] = FEEDBACKUI_STRMULGORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 59, ["text"] = "FEEDBACKUI_MULGORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[59] = { ["index"] = FEEDBACKUI_STRORGRIMMAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 60, ["text"] = "FEEDBACKUI_ORGRIMMAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[64] = { ["index"] = FEEDBACKUI_STRSILITHUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 61, ["text"] = "FEEDBACKUI_SILITHUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[63] = { ["index"] = FEEDBACKUI_STRSTONETALON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 62, ["text"] = "FEEDBACKUI_STONETALON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[66] = { ["index"] = FEEDBACKUI_STRTANARIS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 63, ["text"] = "FEEDBACKUI_TANARIS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[68] = { ["index"] = FEEDBACKUI_STRTELDRASSIL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 64, ["text"] = "FEEDBACKUI_TELDRASSIL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[61] = { ["index"] = FEEDBACKUI_STRTHUNDERBLUFF, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 65, ["text"] = "FEEDBACKUI_THUNDERBLUFF" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[57] = { ["index"] = FEEDBACKUI_STRTHOUSANDNEEDLES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 66, ["text"] = "FEEDBACKUI_THOUSANDNEEDLES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[69] = { ["index"] = FEEDBACKUI_STRUNGORO, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 67, ["text"] = "FEEDBACKUI_UNGORO" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[50] = { ["index"] = FEEDBACKUI_STRWARSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 68, ["text"] = "FEEDBACKUI_WARSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[47] = { ["index"] = FEEDBACKUI_STRWINTERSPRING, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 69, ["text"] = "FEEDBACKUI_WINTERSPRING" }, ["link"] = "FEEDBACKUI_WHOTABLE" } }
 								
 elseif ( GetLocale() == "koKR" ) then
 --Localized Korean strings for FEEDBACKUI
@@ -618,6 +787,7 @@ FEEDBACKUI_STRSILVERMOON = "- 실버문에서 발생합니다."
 FEEDBACKUI_STRSILVERPINE = "- 은빛소나무 숲에서 발생합니다."
 FEEDBACKUI_STRSTORMWIND = "- 스톰윈드에서 발생합니다."
 FEEDBACKUI_STRSTRANGLETHORN = "- 가시덤불 골짜기에서 발생합니다."
+FEEDBACKUI_STRSWAMPOFSORROWS = "- 슬픔의 늪에서 발생합니다."
 FEEDBACKUI_STRTIRISFAL = "- 티리스팔 숲에서 발생합니다."
 FEEDBACKUI_STRUNDERCITY = "- 언더시티에서 발생합니다."
 FEEDBACKUI_STRWPLAGUELANDS = "- 서부 역병지대에서 발생합니다."
@@ -655,6 +825,7 @@ FEEDBACKUI_EVERYWHERE = "게임 내 모든 곳"
 FEEDBACKUI_EKINGDOMS = "동부 왕국"
 FEEDBACKUI_KALIMDOR = "칼림도어"
 FEEDBACKUI_OUTLANDS = "아웃랜드"
+FEEDBACKUI_AZEROTH = "아제로스"
 
 FEEDBACKUI_BLADESEDGE = "아웃랜드 - 칼날 산맥"
 FEEDBACKUI_HELLFIRE = "아웃랜드 - 지옥불 반도"
@@ -691,6 +862,7 @@ FEEDBACKUI_SILVERMOON = "동부 왕국 - 실버문"
 FEEDBACKUI_SILVERPINE = "동부 왕국 - 은빛소나무 숲"
 FEEDBACKUI_STORMWIND = "동부 왕국 - 스톰윈드"
 FEEDBACKUI_STRANGLETHORN = "동부 왕국 - 가시덤불 골짜기"
+FEEDBACKUI_SWAMPOFSORROWS = "동부 왕국 - 슬픔의 늪"
 FEEDBACKUI_TIRISFAL = "동부 왕국 - 티리스팔 숲"
 FEEDBACKUI_UNDERCITY = "동부 왕국 - 언더시티"
 FEEDBACKUI_WPLAGUELANDS = "동부 왕국 - 서부 역병지대"
@@ -792,81 +964,82 @@ FEEDBACKUI_CRASHHARDLOCK = "컴퓨터 다운 문제"
 FEEDBACKUI_CRASHWOWLAG = "랙 문제"
 FEEDBACKUI_CRASHOTHER = "일반 안정성 문제"
 
-FEEDBACKUI_AREATABLE = {[1] = { ["index"] = FEEDBACKUI_STREVERYWHERE, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EVERYWHERE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[2] = { ["index"] = FEEDBACKUI_STROUTLANDS, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_OUTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[9] = { ["index"] = FEEDBACKUI_STRBLADESEDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLADESEDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[8] = { ["index"] = FEEDBACKUI_STRHELLFIRE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HELLFIRE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[3] = { ["index"] = FEEDBACKUI_STRNAGRAND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_NAGRAND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[11] = { ["index"] = FEEDBACKUI_STRNETHERSTORM, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_NETHERSTORM" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[6] = { ["index"] = FEEDBACKUI_STRSHADOWMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SHADOWMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[5] = { ["index"] = FEEDBACKUI_STRSHATTRATH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SHATTRATH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[10] = { ["index"] = FEEDBACKUI_STRTERROKAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TERROKAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[4] = { ["index"] = FEEDBACKUI_STRTWISTINGNETHER, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TWISTINGNETHER" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[7] = { ["index"] = FEEDBACKUI_STRZANGARMARSH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ZANGARMARSH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[12] = { ["index"] = FEEDBACKUI_STREKINGDOMS, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EKINGDOMS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[29] = { ["index"] = FEEDBACKUI_STRALTERACMOUNTAINS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ALTERACMOUNTAINS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[28] = { ["index"] = FEEDBACKUI_STRALTERACVALLEY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ALTERACVALLEY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[27] = { ["index"] = FEEDBACKUI_STRARATHIBASIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ARATHIBASIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[26] = { ["index"] = FEEDBACKUI_STRARATHIHIGHLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ARATHIHIGHLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[41] = { ["index"] = FEEDBACKUI_STRBADLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BADLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[14] = { ["index"] = FEEDBACKUI_STRBLACKROCKMOUNTAIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLACKROCKMOUNTAIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[38] = { ["index"] = FEEDBACKUI_STRBLASTEDLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLASTEDLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[21] = { ["index"] = FEEDBACKUI_STRBURNINGSTEPPES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BURNINGSTEPPES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[39] = { ["index"] = FEEDBACKUI_STRDEADWINDPASS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DEADWINDPASS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[16] = { ["index"] = FEEDBACKUI_STRDUNMOROGH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUNMOROGH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[15] = { ["index"] = FEEDBACKUI_STRDUSKWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUSKWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[18] = { ["index"] = FEEDBACKUI_STREPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[32] = { ["index"] = FEEDBACKUI_STRELWYNN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ELWYNN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[33] = { ["index"] = FEEDBACKUI_STREVERSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EVERSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[34] = { ["index"] = FEEDBACKUI_STRGHOSTLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_GHOSTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[42] = { ["index"] = FEEDBACKUI_STRHILLSBRAD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HILLSBRAD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[17] = { ["index"] = FEEDBACKUI_STRHINTERLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HINTERLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[30] = { ["index"] = FEEDBACKUI_STRIRONFORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_IRONFORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[19] = { ["index"] = FEEDBACKUI_STRLOCHMODAN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_LOCHMODAN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[20] = { ["index"] = FEEDBACKUI_STRREDRIDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_REDRIDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[36] = { ["index"] = FEEDBACKUI_STRSEARINGGORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SEARINGGORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[25] = { ["index"] = FEEDBACKUI_STRSILVERMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILVERMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[35] = { ["index"] = FEEDBACKUI_STRSILVERPINE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILVERPINE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[24] = { ["index"] = FEEDBACKUI_STRSTORMWIND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STORMWIND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[13] = { ["index"] = FEEDBACKUI_STRSTRANGLETHORN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STRANGLETHORN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[40] = { ["index"] = FEEDBACKUI_STRTIRISFAL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TIRISFAL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[31] = { ["index"] = FEEDBACKUI_STRUNDERCITY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_UNDERCITY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[23] = { ["index"] = FEEDBACKUI_STRWPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[22] = { ["index"] = FEEDBACKUI_STRWESTFALL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WESTFALL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[37] = { ["index"] = FEEDBACKUI_STRWETLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WETLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[43] = { ["index"] = FEEDBACKUI_STRKALIMDOR, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_KALIMDOR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[63] = { ["index"] = FEEDBACKUI_STRASHENVALE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ASHENVALE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[54] = { ["index"] = FEEDBACKUI_STRAZSHARA, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_AZSHARA" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[68] = { ["index"] = FEEDBACKUI_STRAZUREMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_AZUREMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[51] = { ["index"] = FEEDBACKUI_STRBARRENS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BARRENS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[67] = { ["index"] = FEEDBACKUI_STRBLOODMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLOODMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[56] = { ["index"] = FEEDBACKUI_STRDARKSHORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DARKSHORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[44] = { ["index"] = FEEDBACKUI_STRDARNASSUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DARNASSUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[61] = { ["index"] = FEEDBACKUI_STRDESOLACE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DESOLACE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[47] = { ["index"] = FEEDBACKUI_STRDUROTAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUROTAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[48] = { ["index"] = FEEDBACKUI_STRDUSTWALLOW, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUSTWALLOW" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[57] = { ["index"] = FEEDBACKUI_STREXODAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EXODAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[55] = { ["index"] = FEEDBACKUI_STRFELWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_FELWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[66] = { ["index"] = FEEDBACKUI_STRFERALAS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_FERALAS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[45] = { ["index"] = FEEDBACKUI_STRMOONGLADE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_MOONGLADE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[49] = { ["index"] = FEEDBACKUI_STRMULGORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_MULGORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[59] = { ["index"] = FEEDBACKUI_STRORGRIMMAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ORGRIMMAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[52] = { ["index"] = FEEDBACKUI_STRSILITHUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILITHUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[46] = { ["index"] = FEEDBACKUI_STRSTONETALON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STONETALON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[64] = { ["index"] = FEEDBACKUI_STRTANARIS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TANARIS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[65] = { ["index"] = FEEDBACKUI_STRTELDRASSIL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TELDRASSIL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[53] = { ["index"] = FEEDBACKUI_STRTHUNDERBLUFF, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_THUNDERBLUFF" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[50] = { ["index"] = FEEDBACKUI_STRTHOUSANDNEEDLES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_THOUSANDNEEDLES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[60] = { ["index"] = FEEDBACKUI_STRUNGORO, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_UNGORO" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[62] = { ["index"] = FEEDBACKUI_STRWARSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WARSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[58] = { ["index"] = FEEDBACKUI_STRWINTERSPRING, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WINTERSPRING" }, ["link"] = "FEEDBACKUI_WHOTABLE" } }
+FEEDBACKUI_AREATABLE = {[1] = { ["index"] = FEEDBACKUI_STREVERYWHERE, ["summary"] = { ["type"] = "where", ["value"] = 1, ["text"] = "FEEDBACKUI_EVERYWHERE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[2] = { ["index"] = FEEDBACKUI_STROUTLANDS, ["summary"] = { ["type"] = "where", ["value"] = 2, ["text"] = "FEEDBACKUI_OUTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[9] = { ["index"] = FEEDBACKUI_STRBLADESEDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 3, ["text"] = "FEEDBACKUI_BLADESEDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[8] = { ["index"] = FEEDBACKUI_STRHELLFIRE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 4, ["text"] = "FEEDBACKUI_HELLFIRE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[3] = { ["index"] = FEEDBACKUI_STRNAGRAND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 5, ["text"] = "FEEDBACKUI_NAGRAND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[11] = { ["index"] = FEEDBACKUI_STRNETHERSTORM, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 6, ["text"] = "FEEDBACKUI_NETHERSTORM" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[6] = { ["index"] = FEEDBACKUI_STRSHADOWMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 7, ["text"] = "FEEDBACKUI_SHADOWMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[5] = { ["index"] = FEEDBACKUI_STRSHATTRATH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 8, ["text"] = "FEEDBACKUI_SHATTRATH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[10] = { ["index"] = FEEDBACKUI_STRTERROKAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 9, ["text"] = "FEEDBACKUI_TERROKAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[4] = { ["index"] = FEEDBACKUI_STRTWISTINGNETHER, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 10, ["text"] = "FEEDBACKUI_TWISTINGNETHER" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[7] = { ["index"] = FEEDBACKUI_STRZANGARMARSH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 11, ["text"] = "FEEDBACKUI_ZANGARMARSH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[12] = { ["index"] = FEEDBACKUI_STREKINGDOMS, ["summary"] = { ["type"] = "where", ["value"] = 12, ["text"] = "FEEDBACKUI_EKINGDOMS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[30] = { ["index"] = FEEDBACKUI_STRALTERACMOUNTAINS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 13, ["text"] = "FEEDBACKUI_ALTERACMOUNTAINS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[29] = { ["index"] = FEEDBACKUI_STRALTERACVALLEY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 14, ["text"] = "FEEDBACKUI_ALTERACVALLEY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[28] = { ["index"] = FEEDBACKUI_STRARATHIBASIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 15, ["text"] = "FEEDBACKUI_ARATHIBASIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[27] = { ["index"] = FEEDBACKUI_STRARATHIHIGHLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 16, ["text"] = "FEEDBACKUI_ARATHIHIGHLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[42] = { ["index"] = FEEDBACKUI_STRBADLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 17, ["text"] = "FEEDBACKUI_BADLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[14] = { ["index"] = FEEDBACKUI_STRBLACKROCKMOUNTAIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 18, ["text"] = "FEEDBACKUI_BLACKROCKMOUNTAIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[39] = { ["index"] = FEEDBACKUI_STRBLASTEDLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 19, ["text"] = "FEEDBACKUI_BLASTEDLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[21] = { ["index"] = FEEDBACKUI_STRBURNINGSTEPPES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 20, ["text"] = "FEEDBACKUI_BURNINGSTEPPES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[40] = { ["index"] = FEEDBACKUI_STRDEADWINDPASS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 21, ["text"] = "FEEDBACKUI_DEADWINDPASS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[16] = { ["index"] = FEEDBACKUI_STRDUNMOROGH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 22, ["text"] = "FEEDBACKUI_DUNMOROGH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[15] = { ["index"] = FEEDBACKUI_STRDUSKWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 23, ["text"] = "FEEDBACKUI_DUSKWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[18] = { ["index"] = FEEDBACKUI_STREPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 24, ["text"] = "FEEDBACKUI_EPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[33] = { ["index"] = FEEDBACKUI_STRELWYNN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 25, ["text"] = "FEEDBACKUI_ELWYNN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[34] = { ["index"] = FEEDBACKUI_STREVERSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 26, ["text"] = "FEEDBACKUI_EVERSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[35] = { ["index"] = FEEDBACKUI_STRGHOSTLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 27, ["text"] = "FEEDBACKUI_GHOSTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[43] = { ["index"] = FEEDBACKUI_STRHILLSBRAD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 28, ["text"] = "FEEDBACKUI_HILLSBRAD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[17] = { ["index"] = FEEDBACKUI_STRHINTERLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 29, ["text"] = "FEEDBACKUI_HINTERLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[31] = { ["index"] = FEEDBACKUI_STRIRONFORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 30, ["text"] = "FEEDBACKUI_IRONFORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[19] = { ["index"] = FEEDBACKUI_STRLOCHMODAN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 31, ["text"] = "FEEDBACKUI_LOCHMODAN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[20] = { ["index"] = FEEDBACKUI_STRREDRIDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 32, ["text"] = "FEEDBACKUI_REDRIDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[36] = { ["index"] = FEEDBACKUI_STRSEARINGGORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 33, ["text"] = "FEEDBACKUI_SEARINGGORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[26] = { ["index"] = FEEDBACKUI_STRSILVERMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 34, ["text"] = "FEEDBACKUI_SILVERMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[37] = { ["index"] = FEEDBACKUI_STRSILVERPINE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 35, ["text"] = "FEEDBACKUI_SILVERPINE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[24] = { ["index"] = FEEDBACKUI_STRSTORMWIND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 36, ["text"] = "FEEDBACKUI_STORMWIND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[13] = { ["index"] = FEEDBACKUI_STRSTRANGLETHORN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 37, ["text"] = "FEEDBACKUI_STRANGLETHORN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[25] = { ["index"] = FEEDBACKUI_STRSWAMPOFSORROWS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 38, ["text"] = "FEEDBACKUI_SWAMPOFSORROWS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[41] = { ["index"] = FEEDBACKUI_STRTIRISFAL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 39, ["text"] = "FEEDBACKUI_TIRISFAL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[32] = { ["index"] = FEEDBACKUI_STRUNDERCITY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 40, ["text"] = "FEEDBACKUI_UNDERCITY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[23] = { ["index"] = FEEDBACKUI_STRWPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 41, ["text"] = "FEEDBACKUI_WPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[22] = { ["index"] = FEEDBACKUI_STRWESTFALL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 42, ["text"] = "FEEDBACKUI_WESTFALL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[38] = { ["index"] = FEEDBACKUI_STRWETLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 43, ["text"] = "FEEDBACKUI_WETLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[44] = { ["index"] = FEEDBACKUI_STRKALIMDOR, ["summary"] = { ["type"] = "where", ["value"] = 44, ["text"] = "FEEDBACKUI_KALIMDOR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[64] = { ["index"] = FEEDBACKUI_STRASHENVALE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 45, ["text"] = "FEEDBACKUI_ASHENVALE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[55] = { ["index"] = FEEDBACKUI_STRAZSHARA, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 46, ["text"] = "FEEDBACKUI_AZSHARA" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[69] = { ["index"] = FEEDBACKUI_STRAZUREMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 47, ["text"] = "FEEDBACKUI_AZUREMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[52] = { ["index"] = FEEDBACKUI_STRBARRENS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 48, ["text"] = "FEEDBACKUI_BARRENS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[68] = { ["index"] = FEEDBACKUI_STRBLOODMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 49, ["text"] = "FEEDBACKUI_BLOODMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[57] = { ["index"] = FEEDBACKUI_STRDARKSHORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 50, ["text"] = "FEEDBACKUI_DARKSHORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[45] = { ["index"] = FEEDBACKUI_STRDARNASSUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 51, ["text"] = "FEEDBACKUI_DARNASSUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[62] = { ["index"] = FEEDBACKUI_STRDESOLACE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 52, ["text"] = "FEEDBACKUI_DESOLACE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[48] = { ["index"] = FEEDBACKUI_STRDUROTAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 53, ["text"] = "FEEDBACKUI_DUROTAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[49] = { ["index"] = FEEDBACKUI_STRDUSTWALLOW, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 54, ["text"] = "FEEDBACKUI_DUSTWALLOW" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[58] = { ["index"] = FEEDBACKUI_STREXODAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 55, ["text"] = "FEEDBACKUI_EXODAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[56] = { ["index"] = FEEDBACKUI_STRFELWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 56, ["text"] = "FEEDBACKUI_FELWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[67] = { ["index"] = FEEDBACKUI_STRFERALAS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 57, ["text"] = "FEEDBACKUI_FERALAS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[46] = { ["index"] = FEEDBACKUI_STRMOONGLADE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 58, ["text"] = "FEEDBACKUI_MOONGLADE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[50] = { ["index"] = FEEDBACKUI_STRMULGORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 59, ["text"] = "FEEDBACKUI_MULGORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[60] = { ["index"] = FEEDBACKUI_STRORGRIMMAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 60, ["text"] = "FEEDBACKUI_ORGRIMMAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[53] = { ["index"] = FEEDBACKUI_STRSILITHUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 61, ["text"] = "FEEDBACKUI_SILITHUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[47] = { ["index"] = FEEDBACKUI_STRSTONETALON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 62, ["text"] = "FEEDBACKUI_STONETALON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[65] = { ["index"] = FEEDBACKUI_STRTANARIS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 63, ["text"] = "FEEDBACKUI_TANARIS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[66] = { ["index"] = FEEDBACKUI_STRTELDRASSIL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 64, ["text"] = "FEEDBACKUI_TELDRASSIL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[54] = { ["index"] = FEEDBACKUI_STRTHUNDERBLUFF, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 65, ["text"] = "FEEDBACKUI_THUNDERBLUFF" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[51] = { ["index"] = FEEDBACKUI_STRTHOUSANDNEEDLES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 66, ["text"] = "FEEDBACKUI_THOUSANDNEEDLES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[61] = { ["index"] = FEEDBACKUI_STRUNGORO, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 67, ["text"] = "FEEDBACKUI_UNGORO" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[63] = { ["index"] = FEEDBACKUI_STRWARSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 68, ["text"] = "FEEDBACKUI_WARSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[59] = { ["index"] = FEEDBACKUI_STRWINTERSPRING, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 69, ["text"] = "FEEDBACKUI_WINTERSPRING" }, ["link"] = "FEEDBACKUI_WHOTABLE" } }
 							
 FEEDBACKUILBLFRMCLARITY_TEXT = "명확도:"
 FEEDBACKUILBLFRMDIFFICULTY_TEXT = "난이도:"
 FEEDBACKUILBLFRMREWARD_TEXT = "보상:"
 FEEDBACKUILBLFRMFUN_TEXT = "재미:"
 FEEDBACKUISURVEYTYPE_QUEST = "퀘스트"
-FEEDBACKUISURVEYTYPE_INSTANCE = "인스턴스 던전"
+FEEDBACKUISURVEYTYPE_AREA = "인스턴스 던전"
 	
 FEEDBACKUISKIP_TEXT = "설문 건너뛰기"
 FEEDBACKUILBLSURVEYALERTSCHECK_TEXT = "알림 표시"
@@ -877,7 +1050,7 @@ FEEDBACKUI_SURVEYCOLUMNNAME = "이름"
 FEEDBACKUI_SURVEYCOLUMNMODIFIED = "진행한 시간"
 	
 FEEDBACKUI_ALLHEADERTEXT = "전체"
-FEEDBACKUI_INSTANCEHEADERTEXT = "인스턴스"
+FEEDBACKUI_AREAHEADERTEXT = "인스턴스"
 FEEDBACKUI_QUESTHEADERTEXT = "퀘스트"
 	
 FEEDBACKUI_STATUSALLTEXT = "전체"
@@ -886,7 +1059,7 @@ FEEDBACKUI_STATUSSKIPPEDTEXT = "건너뛴 설문"
 FEEDBACKUI_STATUSCOMPLETEDTEXT = "완료한 설문"
 	
 FEEDBACKUI_SURVEYTOOLTIPQUESTHEADER = "퀘스트 이름:"
-FEEDBACKUI_SURVEYTOOLTIPINSTANCEHEADER = "인스턴스 던전 이름:"
+FEEDBACKUI_SURVEYTOOLTIPAREAHEADER = "인스턴스 던전 이름:"
 FEEDBACKUI_SURVEYTOOLTIPEXPERIENCEDHEADER = "진행한 시간:"
 FEEDBACKUI_SURVEYTOOLTIPQUESTOBJECTIVESHEADER = "퀘스트 임무:"
 	
@@ -915,8 +1088,8 @@ FEEDBACKUI_CLARITY4 = "매우 명확함"
 	
 FEEDBACKUI_QUESTSDIFFICULTYTABLEHEADER = "난이도"
 FEEDBACKUI_QUESTSDIFFICULTYTABLESUBTEXT = "퀘스트의 난이도는 어떤 수준이었습니까?"
-FEEDBACKUI_INSTANCESDIFFICULTYTABLEHEADER = "난이도"
-FEEDBACKUI_INSTANCESDIFFICULTYTABLESUBTEXT = "인스턴스 던전의 난이도는 어떤 수준이었습니까?"
+FEEDBACKUI_AREASDIFFICULTYTABLEHEADER = "난이도"
+FEEDBACKUI_AREASDIFFICULTYTABLESUBTEXT = "인스턴스 던전의 난이도는 어떤 수준이었습니까?"
 	
 FEEDBACKUI_STRDIFFICULTY1 = "쉬움"
 FEEDBACKUI_STRDIFFICULTY2 = "적당함"
@@ -930,8 +1103,8 @@ FEEDBACKUI_DIFFICULTY4 = "어려움"
 	
 FEEDBACKUI_QUESTSREWARDTABLEHEADER = "보상"
 FEEDBACKUI_QUESTSREWARDTABLESUBTEXT = "퀘스트의 보상은 어떤 수준입니까?"
-FEEDBACKUI_INSTANCESREWARDTABLEHEADER = "보상"
-FEEDBACKUI_INSTANCESREWARDTABLESUBTEXT = "인스턴스 던전의 보상은 어떤 수준입니까?"
+FEEDBACKUI_AREASREWARDTABLEHEADER = "보상"
+FEEDBACKUI_AREASREWARDTABLESUBTEXT = "인스턴스 던전의 보상은 어떤 수준입니까?"
 	
 FEEDBACKUI_STRREWARD1 = "형편 없음"
 FEEDBACKUI_STRREWARD2 = "나쁨"
@@ -945,8 +1118,8 @@ FEEDBACKUI_REWARD4 = "매우 좋음"
 	
 FEEDBACKUI_QUESTSFUNTABLEHEADER = "재미"
 FEEDBACKUI_QUESTSFUNTABLESUBTEXT = "퀘스트는 얼마나 재미있게 즐기셨습니까?"
-FEEDBACKUI_INSTANCESFUNTABLEHEADER = "재미"
-FEEDBACKUI_INSTANCESFUNTABLESUBTEXT = "인스턴스 던전은 얼마나 재미있게 즐기셨습니까?"
+FEEDBACKUI_AREASFUNTABLEHEADER = "재미"
+FEEDBACKUI_AREASFUNTABLESUBTEXT = "인스턴스 던전은 얼마나 재미있게 즐기셨습니까?"
 	
 FEEDBACKUI_STRFUN1 = "전혀 재미 없음"
 FEEDBACKUI_STRFUN2 = "그다지 재미 없음"
@@ -960,8 +1133,6 @@ FEEDBACKUI_FUN4 = "굉장히 재미 있음"
 	
 FEEDBACKUISURVEYFRMINPUTBOX_TEXT = "<의견을 적어 주십시오>"
 FEEDBACKUI_SURVEYINPUTHEADER = "추가로 전하시고 싶으신 의견을 적어 주십시오."
-FEEDBACKUIRESUBMIT_TEXT = "다시 보내기"
-	
 FEEDBACKUI_WELCOMETABLEBUGHEADER = "버그 보내기"
 FEEDBACKUI_WELCOMETABLEBUGSUBTEXT = "버그를 보내주시면 게임 오류를 수정하는 데 많은 도움이 됩니다."
 FEEDBACKUI_WELCOMETABLESUGGESTHEADER = "제안 보내기"
@@ -970,6 +1141,161 @@ FEEDBACKUI_BUGINPUTHEADER = "버그의 재현 방법을 설명해 주십시오."
 FEEDBACKUI_SUGGESTINPUTHEADER="제안을 설명해 주십시오."
 							
 FEEDBACKUI_SURVEYNEWBIETEXT = "최근 마친 인스턴스와 퀘스트에 관한 의견을 주시려면 여기를 누르십시요"
+FEEDBACKUI_POIMASK = ".-%s%-%s(.+)"
+
+FEEDBACKUI_LEVELPREFIX = "레벨";
+FEEDBACKUI_HILLSBRAD = "동부 왕국 - 힐스브래드 구릉지";
+FEEDBACKUISURVEYTYPE_AREA = "지역"
+FEEDBACKUISURVEYTYPE_ITEM = "아이템"
+FEEDBACKUISURVEYTYPE_MOB = "몬스터"
+FEEDBACKUI_AREAHEADERTEXT = "지역"
+FEEDBACKUI_QUESTHEADERTEXT = "퀘스트"
+FEEDBACKUI_ITEMHEADERTEXT = "아이템"
+FEEDBACKUI_MOBHEADERTEXT = "몬스터"
+FEEDBACKUI_SURVEYTOOLTIPAREAHEADER = "지역 이름"
+FEEDBACKUI_AREASDIFFICULTYTABLEHEADER = "난이도"
+FEEDBACKUI_AREASDIFFICULTYTABLESUBTEXT = "이 지역의 난이도는 어떤 수준이었습니까?"
+FEEDBACKUI_AREASREWARDTABLEHEADER = "보상"
+FEEDBACKUI_AREASREWARDTABLESUBTEXT = "이 지역의 보상은 어떤 수준입니까?"
+FEEDBACKUI_AREASFUNTABLEHEADER = "재미"
+FEEDBACKUI_AREASFUNTABLESUBTEXT = "이 지역은 얼마나 재미있게 즐기셨습니까?"
+FEEDBACKUI_SURVEYINPUTSUBTEXT = "의견 예시를 보시려면 여기를 클릭하십시오."
+FEEDBACKUI_SURVEYNEWBIETEXT = "이 주제에 대한 설문을 작성하시려면 클릭하십시오."
+FEEDBACKUI_WELCOMETABLESURVEYHEADER = "설문을 선택해주세요"
+
+FEEDBACKUI_SPECIFICWELCOME = "보다 나은 월드 오브 워크래프트를 위해 소중한 시간을 내어 주셔서 감사드립니다. 다음 주제에 대한 설문을 진행 중입니다:\n\n\n\n\n계속 진행하려면 다음 항목 중 하나를 선택해 주십시오:";
+FEEDBACKUI_GENERALWELCOME = "월드 오브 워크래프트를 위해 소중한 시간을 내어 주셔서 감사드립니다. 보내주신 의견은 보다 나은 월드 오브 워크래프트를 위해 유용하게 사용될 것입니다.\n\n계속 진행하려면 다음 항목 중 하나를 선택해 주십시오:";
+
+FEEDBACKUI_STARTBUG = "버그 제보"
+FEEDBACKUI_STARTSURVEY = "설문 시작"
+FEEDBACKUI_STARTSUGGESTION = "의견 보내기"
+
+FEEDBACKUI_WELCOMEBUGHEADER = "버그"
+FEEDBACKUI_WELCOMESUGGESTHEADER = "제안"
+FEEDBACKUI_WELCOMESURVEYHEADER = "설문"
+
+FEEDBACKUI_WELCOMEBUGTEXT = "버그 제보를 통하여 발견하신 버그를 제보해 주십시오." 
+FEEDBACKUI_WELCOMESUGGESTTEXT = "의견 보내기를 통하여 게임을 어떻게 개선하면 좋을지 알려주십시오."
+FEEDBACKUI_WELCOMESURVEYTEXT = "설문을 통하여 게임의 특정 주제에 대한 다양한 의견을 보내주십시오."
+FEEDBACKUI_WELCOMESURVEYDISABLED = "현재는 이와 관련하여 준비된 설문이 없습니다."
+
+FEEDBACKUI_MODIFIERKEY = "단축키 설정:"
+FEEDBACKUI_MOUSE1 = "마우스 왼쪽"
+FEEDBACKUI_MOUSE2 = "마우스 오른쪽"
+
+FEEDBACKUI_LALT = "Alt 왼쪽"
+FEEDBACKUI_RALT = "Alt 오른쪽"
+FEEDBACKUI_LCTRL = "Ctrl 왼쪽"
+FEEDBACKUI_RCTRL = "Ctrl 오른쪽"
+FEEDBACKUI_LSHIFT = "Shift 왼쪽"
+FEEDBACKUI_RSHIFT = "Shift 오른쪽"
+
+FEEDBACKUI_TOOLTIP_MESSAGE = "<피드백을 보내려면 %s + %s 클릭>";
+FEEDBACKUI_MAP_MESSAGE = "피드백을 보내려면 %s + %s 클릭";
+FEEDBACKUI_ITEMTARGETS = { "방어구", "소비 용품", "가방", "투사체", "화살통", "무기", "조제법", "조리법", "제조법", "보석" };
+FEEDBACKUI_MISCTYPE = "기타";
+FEEDBACKUISHOWCUES_TEXT = "대기열 툴팁 보기";
+
+FEEDBACKUI_CATEGORYLABEL = "종류:"
+FEEDBACKUI_STATUSLABEL = "상태:"
+
+NEWBIE_TOOLTIP_BUG="보다 나은 월드 오브 워크래프트가 될 수 있도록 여러분이 발견하신 버그 또는 제안을 보내 주시거나 설문에 참여해 주십시오.\n\n" .. FEEDBACKUI_BLUE .. "시작하려면 왼쪽 클릭\n설정을 보려면 오른쪽 클릭";
+FEEDBACKUILBLAPPEARANCE_TEXT = "외관:"
+FEEDBACKUILBLUTILITY_TEXT = "유용성:"
+
+FEEDBACKUI_MOBSDIFFICULTYTABLEHEADER = "난이도"                                      
+FEEDBACKUI_MOBSDIFFICULTYTABLESUBTEXT = "이 몬스터를 처치하기가 얼마나 어렵습니까?"
+FEEDBACKUI_MOBSREWARDTABLEHEADER = "보상"
+FEEDBACKUI_MOBSREWARDTABLESUBTEXT = "이 몬스터의 보상은 어떤 수준입니까?"
+FEEDBACKUI_MOBSFUNTABLEHEADER = "재미"
+FEEDBACKUI_MOBSFUNTABLESUBTEXT = "이 몬스터와의 전투를 얼마나 재미있게 즐기셨습니까?"
+FEEDBACKUI_MOBSAPPEARANCETABLEHEADER = "외관"
+FEEDBACKUI_MOBSAPPEARANCETABLESUBTEXT = "이 몬스터의 외관은 어떤 수준입니까?"
+
+FEEDBACKUI_ITEMSDIFFICULTYTABLEHEADER = "난이도"
+FEEDBACKUI_ITEMSDIFFICULTYTABLESUBTEXT = "이 아이템을 얻기가 얼마나 어렵습니까?"
+FEEDBACKUI_ITEMSUTILITYHEADER = "유용성"
+FEEDBACKUI_ITEMSUTILITYSUBTEXT = "이 아이템은 얼마나 유용합니까?"
+FEEDBACKUI_ITEMSAPPEARANCETABLEHEADER = "외관"
+FEEDBACKUI_ITEMSAPPEARANCETABLESUBTEXT = "이 아이템의 외관은 어떤 수준입니까?"
+
+FEEDBACKUI_STRUTILITY1 = "완전히 쓸모없음"
+FEEDBACKUI_STRUTILITY2 = "별로 쓸모없음"
+FEEDBACKUI_STRUTILITY3 = "유용함"
+FEEDBACKUI_STRUTILITY4 = "아주 유용함"
+
+FEEDBACKUI_UTILITY1 = "완전히 쓸모없음"
+FEEDBACKUI_UTILITY2 = "별로 쓸모없음"
+FEEDBACKUI_UTILITY3 = "유용함"
+FEEDBACKUI_UTILITY4 = "아주 유용함"
+
+FEEDBACKUI_STRAPPEARANCE1 = "형편 없음"
+FEEDBACKUI_STRAPPEARANCE2 = "별로임"
+FEEDBACKUI_STRAPPEARANCE3 = "괜찮음"
+FEEDBACKUI_STRAPPEARANCE4 = "아주 멋짐"
+
+FEEDBACKUI_APPEARANCE1 = "형편 없음"
+FEEDBACKUI_APPEARANCE2 = "별로임"
+FEEDBACKUI_APPEARANCE3 = "괜찮음"
+FEEDBACKUI_APPEARANCE4 = "아주 멋짐"
+
+FEEDBACKUI_POIUNDERCITY = "언더시티";
+FEEDBACKUI_POISILVERMOON = "실버문";
+FEEDBACKUI_POIIRONFORGE = "아이언포지";
+FEEDBACKUI_POISTORMWIND = "스톰윈드";
+FEEDBACKUI_POISEPULCHER = "공동묘지";
+FEEDBACKUI_POITARRENMILL = "타렌 밀농장";
+FEEDBACKUI_POISOUTHSHORE = "사우스쇼어";
+FEEDBACKUI_POIAERIEPEAK = "맹금의 봉우리";
+FEEDBACKUI_POIREVANTUSK = "레반터스크 마을";
+FEEDBACKUI_POIHAMMERFALL = "해머폴";
+FEEDBACKUI_POIMENETHIL = "메네실 항구";
+FEEDBACKUI_POITHELSAMAR = "텔사마";
+FEEDBACKUI_POIKARGATH = "카르가스";
+FEEDBACKUI_POILAKESHIRE = "레이크샤이어";
+FEEDBACKUI_POISENTINELHILL = "감시의 언덕";
+FEEDBACKUI_POIDARKSHIRE = "다크샤이어";
+FEEDBACKUI_POISTONARD = "스토나드";
+FEEDBACKUI_POIGROMGOL = "그롬골 주둔지";
+FEEDBACKUI_POIBOOTY = "무법항"
+
+FEEDBACKUI_POIDARNASSUS = "다르나서스";
+FEEDBACKUI_POIEXODAR = "엑소다르";
+FEEDBACKUI_POIORGRIMMAR = "오그리마";
+FEEDBACKUI_POITHUNDERB = "썬더 블러프";
+FEEDBACKUI_POIAUBERDINE = "아우버다인";
+FEEDBACKUI_POIEVERLOOK = "눈망루 마을";
+FEEDBACKUI_POISTONETALON = "돌발톱 봉우리";
+FEEDBACKUI_POIASTRANAAR = "아스트라나르";
+FEEDBACKUI_POISPLINTERTREE = "토막나무 주둔지";
+FEEDBACKUI_POISUNROCK = "해바위 야영지";
+FEEDBACKUI_POINIJELS = "나이젤의 야영지";
+FEEDBACKUI_POISHADOWPREY = "그늘수렵 마을";
+FEEDBACKUI_POIFEATHERMOON = "페더문 요새";
+FEEDBACKUI_POIMOJACHE = "모자케 야영지";
+FEEDBACKUI_POITHALANAAR = "탈라나르";
+FEEDBACKUI_POICENARIONHOLD = "세나리온 요새";
+FEEDBACKUI_POIGADGET = "가젯잔";
+FEEDBACKUI_POIFREEWIND = "높새바람 봉우리";
+FEEDBACKUI_POITAURAJO = "타우라조 야영지";
+FEEDBACKUI_POICROSSROADS = "크로스로드";
+FEEDBACKUI_POIRATCHET = "톱니항";
+FEEDBACKUI_POITHERAMORE = "테라모어 섬";
+
+FEEDBACKUI_SURVEYTOOLTIPMOBHEADER = "몬스터 이름:"
+FEEDBACKUI_SURVEYTOOLTIPMOBZONEHEADER = "생성 지역:"
+
+FEEDBACKUI_BLACKTEMPLE = "검은 사원"
+FEEDBACKUI_ZULAMAN = "줄아만"
+FEEDBACKUI_SUNWELLPLATEAU = "태양샘 고원"
+FEEDBACKUI_MAGISTERSTERRACE = "마법학자의 정원"
+
+FEEDBACKUI_VOICECHATTOOLTIP = FEEDBACKUI_WHITE .. "통합 음성 대화";
+FEEDBACKUI_VOICECHAT = "음성 대화";
+FEEDBACKUI_STRVOICECHAT = "음성 대화에 관한 문제입니다.";
+FEEDBACKUI_STRUSBHEADSET = "USB 헤드셋을 사용합니다.";
+FEEDBACKUI_STRANALOGHEADSET = "아날로그 헤드셋을 사용합니다.";
+FEEDBACKUI_HEADSETTYPE = "어떤 종류의 헤드셋을 사용하십니까?";
                             
 elseif ( GetLocale() == "deDE" ) then
 --Localized German strings for FEEDBACKUI
@@ -1002,20 +1328,20 @@ FEEDBACKUILBLFRMWHO_TEXT = "Wen: "
 FEEDBACKUILBLFRMWHERE_TEXT = "Wo: "
 FEEDBACKUILBLFRMWHEN_TEXT = "Wann: "
 FEEDBACKUILBLFRMTYPE_TEXT = "Art: "
-FEEDBACKUI_GENDERTABLE = { "Unbekanntes", "Männliches", "Weibliches" }
+FEEDBACKUI_GENDERTABLE = { "unbekannt", "männlich", "weiblich" }
 
 --Prompts
 FEEDBACKUIBUGFRMINPUTBOX_TEXT = "<Geben Sie hier Schritte ein, um den Fehler nachzustellen>"
 FEEDBACKUISUGGESTFRMINPUTBOX_TEXT = "<Geben Sie hier Ihren Vorschlag ein>"
 FEEDBACKUILBLADDONS_MOUSEOVER = "<Für aktive Add-Ons Mauszeiger hierher bewegen>"
-FEEDBACKUI_CONFIRMATION = "Ihre Kommentare wurden abgeschickt\nVielen Dank für Ihre Hilfe bei der Verbesserung von World of Warcraft!"
+FEEDBACKUI_CONFIRMATION = "Ihre Kommentare wurden abgeschickt.\nVielen Dank für Ihre Hilfe bei der Verbesserung von World of Warcraft!"
 
 --Tooltips & Buttons
 BUG_BUTTON="Kommentare senden"
 NEWBIE_TOOLTIP_BUG="Melden Sie uns Fehler oder schicken Sie Vorschläge, um World of Warcraft zu verbessern."
 FEEDBACKUIBACK_TEXT = "Schritt zurück"
 FEEDBACKUIRESET_TEXT = "Zurücksetzen"
-FEEDBACKUISUBMIT_TEXT = "Senden!"
+FEEDBACKUISUBMIT_TEXT = "Senden"
 FEEDBACKUISTART_TEXT = "Start!"
 
 --Tables and strings for navigation.
@@ -1097,6 +1423,7 @@ FEEDBACKUI_STRSILVERMOON = "- Tritt in Silbermond auf."
 FEEDBACKUI_STRSILVERPINE = "- Tritt im Silberwald auf."
 FEEDBACKUI_STRSTORMWIND = "- Tritt in Sturmwind auf."
 FEEDBACKUI_STRSTRANGLETHORN = "- Tritt im Schlingendorntal auf."
+FEEDBACKUI_STRSWAMPOFSORROWS = "- Tritt in den Sümpfen des Elends auf."
 FEEDBACKUI_STRTIRISFAL = "- Tritt in Tirisfal auf."
 FEEDBACKUI_STRUNDERCITY = "- Tritt in Unterstadt auf."
 FEEDBACKUI_STRWPLAGUELANDS = "- Tritt in den westlichen Pestländern auf."
@@ -1134,6 +1461,7 @@ FEEDBACKUI_EVERYWHERE = "Überall im Spiel"
 FEEDBACKUI_EKINGDOMS = "Östliche Königreiche"
 FEEDBACKUI_KALIMDOR = "Kalimdor"
 FEEDBACKUI_OUTLANDS = "Scherbenwelt"
+FEEDBACKUI_AZEROTH = "Azeroth"
 
 FEEDBACKUI_BLADESEDGE = "Scherbenwelt - Schergrat"
 FEEDBACKUI_HELLFIRE = "Scherbenwelt - Höllenfeuerhalbinsel"
@@ -1160,7 +1488,6 @@ FEEDBACKUI_EPLAGUELANDS = "Östliche Königreiche - Östliche Pestländer"
 FEEDBACKUI_ELWYNN = "Östliche Königreiche - Wald von Elwynn"
 FEEDBACKUI_EVERSONG = "Östliche Königreiche - Immersangwald"
 FEEDBACKUI_GHOSTLANDS = "Östliche Königreiche - Geisterlande"
-FEEDBACKUI_HILLSBRAD = "Östliche Königreiche - Hügelland"
 FEEDBACKUI_HINTERLANDS = "Östliche Königreiche - Hinterland"
 FEEDBACKUI_IRONFORGE = "Östliche Königreiche - Eisenschmiede"
 FEEDBACKUI_LOCHMODAN = "Östliche Königreiche - Loch Modan"
@@ -1170,6 +1497,7 @@ FEEDBACKUI_SILVERMOON = "Östliche Königreiche - Silbermond"
 FEEDBACKUI_SILVERPINE = "Östliche Königreiche - Silberwald"
 FEEDBACKUI_STORMWIND = "Östliche Königreiche - Sturmwind"
 FEEDBACKUI_STRANGLETHORN = "Östliche Königreiche - Schlingendorntal"
+FEEDBACKUI_SWAMPOFSORROWS = "Östliche Königreiche - Sümpfen des Elends";
 FEEDBACKUI_TIRISFAL = "Östliche Königreiche - Tirisfal"
 FEEDBACKUI_UNDERCITY = "Östliche Königreiche - Unterstadt"
 FEEDBACKUI_WPLAGUELANDS = "Östliche Königreiche - Westliche Pestländer"
@@ -1276,7 +1604,7 @@ FEEDBACKUILBLFRMDIFFICULTY_TEXT = "Schwierigkeit:"
 FEEDBACKUILBLFRMREWARD_TEXT = "Belohnung:"
 FEEDBACKUILBLFRMFUN_TEXT = "Spaß:"
 FEEDBACKUISURVEYTYPE_QUEST = "Quest"
-FEEDBACKUISURVEYTYPE_INSTANCE = "Instanz"
+FEEDBACKUISURVEYTYPE_AREA = "Instanz"
 	
 FEEDBACKUISKIP_TEXT = "Abbrechen"
 FEEDBACKUILBLSURVEYALERTSCHECK_TEXT = "Erinnerung"
@@ -1287,7 +1615,7 @@ FEEDBACKUI_SURVEYCOLUMNNAME = "Name"
 FEEDBACKUI_SURVEYCOLUMNMODIFIED = "Entdeckt"
 	
 FEEDBACKUI_ALLHEADERTEXT = "Alle"
-FEEDBACKUI_INSTANCEHEADERTEXT = "Instanzen"
+FEEDBACKUI_AREAHEADERTEXT = "Instanzen"
 FEEDBACKUI_QUESTHEADERTEXT = "Quests"
 	
 FEEDBACKUI_STATUSALLTEXT = "Alle"
@@ -1296,7 +1624,7 @@ FEEDBACKUI_STATUSSKIPPEDTEXT = "Abgebrochen"
 FEEDBACKUI_STATUSCOMPLETEDTEXT = "Abgeschlossen"
 	
 FEEDBACKUI_SURVEYTOOLTIPQUESTHEADER = "Questtitel:"
-FEEDBACKUI_SURVEYTOOLTIPINSTANCEHEADER = "Instanz:"
+FEEDBACKUI_SURVEYTOOLTIPAREAHEADER = "Instanz:"
 FEEDBACKUI_SURVEYTOOLTIPEXPERIENCEDHEADER = "Entdeckt:"
 FEEDBACKUI_SURVEYTOOLTIPQUESTOBJECTIVESHEADER = "Questziele:"
 	
@@ -1326,8 +1654,8 @@ FEEDBACKUI_CLARITY4 = "Absolut verständlich"
 	
 FEEDBACKUI_QUESTSDIFFICULTYTABLEHEADER = "Schwierigkeitsgrad"
 FEEDBACKUI_QUESTSDIFFICULTYTABLESUBTEXT = "Wie schwierig war die Quest?"
-FEEDBACKUI_INSTANCESDIFFICULTYTABLEHEADER = "Schwierigkeitsgrad"
-FEEDBACKUI_INSTANCESDIFFICULTYTABLESUBTEXT = "Wie schwierig waren die Instanzbegegnungen?"
+FEEDBACKUI_AREASDIFFICULTYTABLEHEADER = "Schwierigkeitsgrad"
+FEEDBACKUI_AREASDIFFICULTYTABLESUBTEXT = "Wie schwierig waren die Instanzbegegnungen?"
 	
 FEEDBACKUI_STRDIFFICULTY1 = "Leicht"
 FEEDBACKUI_STRDIFFICULTY2 = "Schaffbar"
@@ -1341,8 +1669,8 @@ FEEDBACKUI_DIFFICULTY4 = "Schwer"
 	
 FEEDBACKUI_QUESTSREWARDTABLEHEADER = "Belohnung"
 FEEDBACKUI_QUESTSREWARDTABLESUBTEXT = "Wie würden Sie die Questbelohnung bewerten?"
-FEEDBACKUI_INSTANCESREWARDTABLEHEADER = "Belohnung"
-FEEDBACKUI_INSTANCESREWARDTABLESUBTEXT = "Wie würden Sie die Instanzbelohnungen bewerten?"
+FEEDBACKUI_AREASREWARDTABLEHEADER = "Belohnung"
+FEEDBACKUI_AREASREWARDTABLESUBTEXT = "Wie würden Sie die Instanzbelohnungen bewerten?"
 	
 FEEDBACKUI_STRREWARD1 = "Erbärmlich"
 FEEDBACKUI_STRREWARD2 = "Schlecht"
@@ -1356,8 +1684,8 @@ FEEDBACKUI_REWARD4 = "Fantastisch"
 	
 FEEDBACKUI_QUESTSFUNTABLEHEADER = "Spaß"
 FEEDBACKUI_QUESTSFUNTABLESUBTEXT = "Wie unterhaltsam war die Quest?"
-FEEDBACKUI_INSTANCESFUNTABLEHEADER = "Spaß"
-FEEDBACKUI_INSTANCESFUNTABLESUBTEXT = "Wie unterhaltsam war die Instanz?"
+FEEDBACKUI_AREASFUNTABLEHEADER = "Spaß"
+FEEDBACKUI_AREASFUNTABLESUBTEXT = "Wie unterhaltsam war die Instanz?"
 	
 FEEDBACKUI_STRFUN1 = "Nicht unterhaltsam"
 FEEDBACKUI_STRFUN2 = "Wenig unterhaltsam"
@@ -1371,7 +1699,7 @@ FEEDBACKUI_FUN4 = "Sehr unterhaltsam"
 	
 FEEDBACKUISURVEYFRMINPUTBOX_TEXT = "<Zusätzliche Kommentare bitte hier eintragen>"
 FEEDBACKUI_SURVEYINPUTHEADER = "Danke für zusätzliche Kommentare"
-FEEDBACKUIRESUBMIT_TEXT = "Neu senden!"
+FEEDBACKUIRESUBMIT_TEXT = "Neu senden"
 	
 FEEDBACKUI_WELCOMETABLEBUGHEADER = "Bug melden"
 FEEDBACKUI_WELCOMETABLEBUGSUBTEXT = "Bugmeldungen helfen Fehler schneller zu beheben"
@@ -1381,75 +1709,232 @@ FEEDBACKUI_BUGINPUTHEADER = "Wie kann man den Bug nachstellen?"
 FEEDBACKUI_SUGGESTINPUTHEADER="Bitte geben Sie ihren Vorschlag ein."
 
 FEEDBACKUI_SURVEYNEWBIETEXT = "Klicken Sie hier, um eine Umfrage, über eine kürzlich abgeschlossene Instanz, oder Quest, zu schließen."
+FEEDBACKUI_POIMASK = ".-%s%-%s(.+)"
 
-FEEDBACKUI_AREATABLE = {[1] = { ["index"] = FEEDBACKUI_STREVERYWHERE, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EVERYWHERE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[2] = { ["index"] = FEEDBACKUI_STROUTLANDS, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_OUTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[8] = { ["index"] = FEEDBACKUI_STRBLADESEDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLADESEDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[3] = { ["index"] = FEEDBACKUI_STRHELLFIRE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HELLFIRE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[4] = { ["index"] = FEEDBACKUI_STRNAGRAND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_NAGRAND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[6] = { ["index"] = FEEDBACKUI_STRNETHERSTORM, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_NETHERSTORM" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[7] = { ["index"] = FEEDBACKUI_STRSHADOWMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SHADOWMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[9] = { ["index"] = FEEDBACKUI_STRSHATTRATH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SHATTRATH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[10] = { ["index"] = FEEDBACKUI_STRTERROKAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TERROKAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[5] = { ["index"] = FEEDBACKUI_STRTWISTINGNETHER, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TWISTINGNETHER" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[11] = { ["index"] = FEEDBACKUI_STRZANGARMARSH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ZANGARMARSH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[12] = { ["index"] = FEEDBACKUI_STREKINGDOMS, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EKINGDOMS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[13] = { ["index"] = FEEDBACKUI_STRALTERACMOUNTAINS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ALTERACMOUNTAINS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[14] = { ["index"] = FEEDBACKUI_STRALTERACVALLEY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ALTERACVALLEY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[15] = { ["index"] = FEEDBACKUI_STRARATHIBASIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ARATHIBASIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[16] = { ["index"] = FEEDBACKUI_STRARATHIHIGHLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ARATHIHIGHLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[26] = { ["index"] = FEEDBACKUI_STRBADLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BADLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[31] = { ["index"] = FEEDBACKUI_STRBLACKROCKMOUNTAIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLACKROCKMOUNTAIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[24] = { ["index"] = FEEDBACKUI_STRBLASTEDLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLASTEDLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[35] = { ["index"] = FEEDBACKUI_STRBURNINGSTEPPES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BURNINGSTEPPES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[20] = { ["index"] = FEEDBACKUI_STRDEADWINDPASS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DEADWINDPASS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[18] = { ["index"] = FEEDBACKUI_STRDUNMOROGH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUNMOROGH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[17] = { ["index"] = FEEDBACKUI_STRDUSKWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUSKWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[27] = { ["index"] = FEEDBACKUI_STREPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[41] = { ["index"] = FEEDBACKUI_STRELWYNN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ELWYNN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[23] = { ["index"] = FEEDBACKUI_STREVERSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EVERSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[21] = { ["index"] = FEEDBACKUI_STRGHOSTLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_GHOSTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[40] = { ["index"] = FEEDBACKUI_STRHILLSBRAD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HILLSBRAD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[22] = { ["index"] = FEEDBACKUI_STRHINTERLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HINTERLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[19] = { ["index"] = FEEDBACKUI_STRIRONFORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_IRONFORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[25] = { ["index"] = FEEDBACKUI_STRLOCHMODAN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_LOCHMODAN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[29] = { ["index"] = FEEDBACKUI_STRREDRIDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_REDRIDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[32] = { ["index"] = FEEDBACKUI_STRSEARINGGORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SEARINGGORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[33] = { ["index"] = FEEDBACKUI_STRSILVERMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILVERMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[34] = { ["index"] = FEEDBACKUI_STRSILVERPINE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILVERPINE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[36] = { ["index"] = FEEDBACKUI_STRSTORMWIND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STORMWIND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[30] = { ["index"] = FEEDBACKUI_STRSTRANGLETHORN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STRANGLETHORN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[38] = { ["index"] = FEEDBACKUI_STRTIRISFAL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TIRISFAL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[39] = { ["index"] = FEEDBACKUI_STRUNDERCITY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_UNDERCITY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[28] = { ["index"] = FEEDBACKUI_STRWPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[42] = { ["index"] = FEEDBACKUI_STRWESTFALL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WESTFALL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[37] = { ["index"] = FEEDBACKUI_STRWETLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WETLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[43] = { ["index"] = FEEDBACKUI_STRKALIMDOR, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_KALIMDOR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[54] = { ["index"] = FEEDBACKUI_STRASHENVALE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ASHENVALE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[44] = { ["index"] = FEEDBACKUI_STRAZSHARA, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_AZSHARA" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[45] = { ["index"] = FEEDBACKUI_STRAZUREMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_AZUREMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[47] = { ["index"] = FEEDBACKUI_STRBARRENS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BARRENS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[46] = { ["index"] = FEEDBACKUI_STRBLOODMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLOODMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[51] = { ["index"] = FEEDBACKUI_STRDARKSHORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DARKSHORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[48] = { ["index"] = FEEDBACKUI_STRDARNASSUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DARNASSUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[49] = { ["index"] = FEEDBACKUI_STRDESOLACE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DESOLACE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[52] = { ["index"] = FEEDBACKUI_STRDUROTAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUROTAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[53] = { ["index"] = FEEDBACKUI_STRDUSTWALLOW, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUSTWALLOW" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[55] = { ["index"] = FEEDBACKUI_STREXODAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EXODAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[67] = { ["index"] = FEEDBACKUI_STRFELWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_FELWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[56] = { ["index"] = FEEDBACKUI_STRFERALAS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_FERALAS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[59] = { ["index"] = FEEDBACKUI_STRMOONGLADE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_MOONGLADE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[60] = { ["index"] = FEEDBACKUI_STRMULGORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_MULGORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[61] = { ["index"] = FEEDBACKUI_STRORGRIMMAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ORGRIMMAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[62] = { ["index"] = FEEDBACKUI_STRSILITHUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILITHUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[63] = { ["index"] = FEEDBACKUI_STRSTONETALON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STONETALON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[64] = { ["index"] = FEEDBACKUI_STRTANARIS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TANARIS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[65] = { ["index"] = FEEDBACKUI_STRTELDRASSIL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TELDRASSIL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[50] = { ["index"] = FEEDBACKUI_STRTHUNDERBLUFF, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_THUNDERBLUFF" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[66] = { ["index"] = FEEDBACKUI_STRTHOUSANDNEEDLES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_THOUSANDNEEDLES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[57] = { ["index"] = FEEDBACKUI_STRUNGORO, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_UNGORO" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[58] = { ["index"] = FEEDBACKUI_STRWARSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WARSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[68] = { ["index"] = FEEDBACKUI_STRWINTERSPRING, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WINTERSPRING" }, ["link"] = "FEEDBACKUI_WHOTABLE" } }
+
+FEEDBACKUI_LEVELPREFIX = "Stufe"
+FEEDBACKUI_HILLSBRAD = "Östliche Königreiche - Vorgebirge des Hügellands";
+FEEDBACKUISURVEYTYPE_AREA = "Gebiet"
+FEEDBACKUISURVEYTYPE_ITEM = "Gegenstand"
+FEEDBACKUISURVEYTYPE_MOB = "Gegner"
+FEEDBACKUI_AREAHEADERTEXT = "Gebiete"
+FEEDBACKUI_QUESTHEADERTEXT = "Quests"
+FEEDBACKUI_ITEMHEADERTEXT = "Gegenstände"
+FEEDBACKUI_MOBHEADERTEXT = "Gegner"
+FEEDBACKUI_SURVEYTOOLTIPAREAHEADER = "Gebietsname:"
+FEEDBACKUI_AREASDIFFICULTYTABLEHEADER = "Schwierigkeitsgrad"
+FEEDBACKUI_AREASDIFFICULTYTABLESUBTEXT = "Wie schwierig waren die Begegnungen?"
+FEEDBACKUI_AREASREWARDTABLEHEADER = "Belohnung"
+FEEDBACKUI_AREASREWARDTABLESUBTEXT = "Wie würden Sie die Belohnungen bewerten?"
+FEEDBACKUI_AREASFUNTABLEHEADER = "Spaß"
+FEEDBACKUI_AREASFUNTABLESUBTEXT = "Wie unterhaltsam waren die Inhalte?"
+FEEDBACKUI_SURVEYINPUTSUBTEXT = "Hier klicken, um Bewertungsbeispiele anzuzeigen"
+FEEDBACKUI_SURVEYNEWBIETEXT = "Hier klicken, um die Erfahrungsbewertung abzuschließen."
+FEEDBACKUI_WELCOMETABLESURVEYHEADER = "Bitte Bewertung auswählen"
+
+FEEDBACKUI_SPECIFICWELCOME = "Vielen Dank für Ihre Kommentare zu World of Warcraft. Sie möchten Feedback geben zu:\n\n\n\n\nBitte wählen Sie eine der folgenden Feedbackoptionen aus, um fortzufahren:";
+FEEDBACKUI_GENERALWELCOME = "Vielen Dank für Ihre Kommentare zu World of Warcraft. Jede Einsendung, die wir erhalten, spielt eine wichtige Rolle für die Qualität des Spiels.\n\nBitte wählen Sie eine der folgenden Feedbackoptionen aus, um fortzufahren:";
+
+FEEDBACKUI_STARTBUG = "Fehler melden"
+FEEDBACKUI_STARTSURVEY = "Bewertung starten"
+FEEDBACKUI_STARTSUGGESTION = "Vorschlag einreichen"
+
+FEEDBACKUI_WELCOMEBUGHEADER = "Fehler"
+FEEDBACKUI_WELCOMESUGGESTHEADER = "Vorschlag"
+FEEDBACKUI_WELCOMESURVEYHEADER = "Bewertung"
+
+FEEDBACKUI_WELCOMEBUGTEXT = "Hier können Sie auf Fehler im Spiel hinweisen." 
+FEEDBACKUI_WELCOMESUGGESTTEXT = "Über einen Vorschlag können Sie Ideen für Verbesserungen des Spiels einreichen."
+FEEDBACKUI_WELCOMESURVEYTEXT = "Mit Bewertungen können Sie Feedback zu bestimmten Bereichen des Spiels abgeben."
+FEEDBACKUI_WELCOMESURVEYDISABLED = "Für dieses Thema steht momentan keine Bewertung zur Verfügung."
+
+FEEDBACKUI_MODIFIERKEY = "Belegung:"
+FEEDBACKUI_MOUSE1 = "Linksklick"
+FEEDBACKUI_MOUSE2 = "Rechtsklick"
+
+FEEDBACKUI_LALT = "LAlt"
+FEEDBACKUI_RALT = "RAlt"
+FEEDBACKUI_LCTRL = "LCtrl"
+FEEDBACKUI_RCTRL = "RCtrl"
+FEEDBACKUI_LSHIFT = "LShift"
+FEEDBACKUI_RSHIFT = "RShift"
+
+FEEDBACKUI_TOOLTIP_MESSAGE = "<Für Feedback %s-%s>";
+FEEDBACKUI_MAP_MESSAGE = "Für Feedback auf Karte %s-%s";
+FEEDBACKUI_ITEMTARGETS = { "Rüstung", "Verbrauchbar", "Behälter", "Projektil", "Köcher", "Waffe", "Rezept", "Edelstein" };
+FEEDBACKUI_MISCTYPE = "Verschiedenes";
+FEEDBACKUISHOWCUES_TEXT = "Tooltipps anzeigen";
+
+FEEDBACKUI_CATEGORYLABEL = "Art:"
+FEEDBACKUI_STATUSLABEL = "Status:"
+
+NEWBIE_TOOLTIP_BUG="Helfen Sie uns, World of Warcraft zu verbessern, indem Sie Fehler, Vorschläge oder eine Bewertung einreichen.\n\n" .. FEEDBACKUI_BLUE .. "Linksklick zum Beginnen.\nRechtsklick für Anzeigeoptionen.";
+FEEDBACKUILBLAPPEARANCE_TEXT = "Aussehen:"
+FEEDBACKUILBLUTILITY_TEXT = "Nutzen:"
+
+FEEDBACKUI_MOBSDIFFICULTYTABLEHEADER = "Schwierigkeitsgrad"                                      
+FEEDBACKUI_MOBSDIFFICULTYTABLESUBTEXT = "Wie schwierig war der Gegner zu besiegen?"
+FEEDBACKUI_MOBSREWARDTABLEHEADER = "Belohnung"
+FEEDBACKUI_MOBSREWARDTABLESUBTEXT = "Wie würden Sie die Beute des Gegners bewerten?"
+FEEDBACKUI_MOBSFUNTABLEHEADER = "Spaß"
+FEEDBACKUI_MOBSFUNTABLESUBTEXT = "Wie unterhaltsam war die Begegnung?"
+FEEDBACKUI_MOBSAPPEARANCETABLEHEADER = "Ausssehen"
+FEEDBACKUI_MOBSAPPEARANCETABLESUBTEXT = "Wie würden Sie das Aussehen des Gegners bewerten?"
+
+FEEDBACKUI_ITEMSDIFFICULTYTABLEHEADER = "Schwierigkeitsgrad"
+FEEDBACKUI_ITEMSDIFFICULTYTABLESUBTEXT = "Wie schwer ist es, den Gegenstand zu erhalten?"
+FEEDBACKUI_ITEMSUTILITYHEADER = "Nutzen"
+FEEDBACKUI_ITEMSUTILITYSUBTEXT = "Bewerten Sie bitte den generellen Nutzen des Gegenstands?"
+FEEDBACKUI_ITEMSAPPEARANCETABLEHEADER = "Aussehen"
+FEEDBACKUI_ITEMSAPPEARANCETABLESUBTEXT = "Wie würden Sie das Aussehen des Gegenstands bewerten?"
+
+FEEDBACKUI_STRUTILITY1 = "Völlig nutzlos"
+FEEDBACKUI_STRUTILITY2 = "Fast gänzlich nutzlos"
+FEEDBACKUI_STRUTILITY3 = "Nützlich"
+FEEDBACKUI_STRUTILITY4 = "Sehr nützlich"
+
+FEEDBACKUI_UTILITY1 = "Völlig nutzlos"
+FEEDBACKUI_UTILITY2 = "Fast gänzlich nutzlos"
+FEEDBACKUI_UTILITY3 = "Nützlich"
+FEEDBACKUI_UTILITY4 = "Sehr nützlich"
+
+FEEDBACKUI_STRAPPEARANCE1 = "Ungenügend"
+FEEDBACKUI_STRAPPEARANCE2 = "Unscheinbar"
+FEEDBACKUI_STRAPPEARANCE3 = "Gut"
+FEEDBACKUI_STRAPPEARANCE4 = "Herausragend"
+
+FEEDBACKUI_APPEARANCE1 = "Ungenügend"
+FEEDBACKUI_APPEARANCE2 = "Unscheinbar"
+FEEDBACKUI_APPEARANCE3 = "Gut"
+FEEDBACKUI_APPEARANCE4 = "Herausragend"
+
+FEEDBACKUI_POIUNDERCITY = "Unterstadt";
+FEEDBACKUI_POISILVERMOON = "Silbermond";
+FEEDBACKUI_POIIRONFORGE = "Eisenschmiede";
+FEEDBACKUI_POISTORMWIND = "Sturmwind";
+FEEDBACKUI_POISEPULCHER = "Das Grabmal";
+FEEDBACKUI_POITARRENMILL = "Tarrens Mühle";
+FEEDBACKUI_POISOUTHSHORE = "Süderstade";
+FEEDBACKUI_POIAERIEPEAK = "Nistgipfel";
+FEEDBACKUI_POIREVANTUSK = "Dorf der Bruchhauer";
+FEEDBACKUI_POIHAMMERFALL = "Hammerfall";
+FEEDBACKUI_POIMENETHIL = "Hafen von Menethil";
+FEEDBACKUI_POITHELSAMAR = "Thelsamar";
+FEEDBACKUI_POIKARGATH = "Kargath";
+FEEDBACKUI_POILAKESHIRE = "Seenhain";
+FEEDBACKUI_POISENTINELHILL = "Späherkuppe";
+FEEDBACKUI_POIDARKSHIRE = "Dunkelhain";
+FEEDBACKUI_POISTONARD = "Steinard";
+FEEDBACKUI_POIGROMGOL = "Basislager von Grom'gol";
+FEEDBACKUI_POIBOOTY = "Beutebucht"
+
+FEEDBACKUI_POIDARNASSUS = "Darnassus";
+FEEDBACKUI_POIEXODAR = "Die Exodar";
+FEEDBACKUI_POIORGRIMMAR = "Orgrimmar";
+FEEDBACKUI_POITHUNDERB = "Donnerfels";
+FEEDBACKUI_POIAUBERDINE = "Auberdine";
+FEEDBACKUI_POIEVERLOOK = "Ewige Warte";
+FEEDBACKUI_POISTONETALON = "Steinkrallengipfel";
+FEEDBACKUI_POIASTRANAAR = "Astranaar";
+FEEDBACKUI_POISPLINTERTREE = "Splitterholzposten";
+FEEDBACKUI_POISUNROCK = "Sonnenfels";
+FEEDBACKUI_POINIJELS = "Nijelspitze";
+FEEDBACKUI_POISHADOWPREY = "Schattenflucht";
+FEEDBACKUI_POIFEATHERMOON = "Mondfederfeste";
+FEEDBACKUI_POIMOJACHE = "Camp Mojache";
+FEEDBACKUI_POITHALANAAR = "Thalanaar";
+FEEDBACKUI_POICENARIONHOLD = "Burg Cenarius";
+FEEDBACKUI_POIGADGET = "Gadgetzan";
+FEEDBACKUI_POIFREEWIND = "Freiwindposten";
+FEEDBACKUI_POITAURAJO = "Camp Taurajo";
+FEEDBACKUI_POICROSSROADS = "Das Wegekreuz";
+FEEDBACKUI_POIRATCHET = "Ratschet";
+FEEDBACKUI_POITHERAMORE = "Insel Theramore";
+
+FEEDBACKUI_SURVEYTOOLTIPMOBHEADER = "Gegnername:"
+FEEDBACKUI_SURVEYTOOLTIPMOBZONEHEADER = "Gefunden in:"
+
+FEEDBACKUI_BLACKTEMPLE = "Der Schwarze Tempel"
+FEEDBACKUI_ZULAMAN = "Zul'Aman"
+FEEDBACKUI_SUNWELLPLATEAU = "Sonnenbrunnenplateau"
+FEEDBACKUI_MAGISTERSTERRACE = "Terrasse der Magister"
+
+FEEDBACKUI_VOICECHATTOOLTIP = FEEDBACKUI_WHITE .. "Integrierter Sprachchat";
+FEEDBACKUI_VOICECHAT = "Sprachchat";
+FEEDBACKUI_STRVOICECHAT = "Problem mit dem Sprachchat.";
+FEEDBACKUI_STRUSBHEADSET = "Ich benutze ein USB Headset.";
+FEEDBACKUI_STRANALOGHEADSET = "Ich benutze ein Analoges Headset.";
+FEEDBACKUI_HEADSETTYPE = "Welche Art von Headset benutzt ihr?";
+
+FEEDBACKUI_AREATABLE = {[1] = { ["index"] = FEEDBACKUI_STREVERYWHERE, ["summary"] = { ["type"] = "where", ["value"] = 1, ["text"] = "FEEDBACKUI_EVERYWHERE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[2] = { ["index"] = FEEDBACKUI_STROUTLANDS, ["summary"] = { ["type"] = "where", ["value"] = 2, ["text"] = "FEEDBACKUI_OUTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[8] = { ["index"] = FEEDBACKUI_STRBLADESEDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 3, ["text"] = "FEEDBACKUI_BLADESEDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[3] = { ["index"] = FEEDBACKUI_STRHELLFIRE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 4, ["text"] = "FEEDBACKUI_HELLFIRE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[4] = { ["index"] = FEEDBACKUI_STRNAGRAND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 5, ["text"] = "FEEDBACKUI_NAGRAND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[6] = { ["index"] = FEEDBACKUI_STRNETHERSTORM, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 6, ["text"] = "FEEDBACKUI_NETHERSTORM" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[7] = { ["index"] = FEEDBACKUI_STRSHADOWMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 7, ["text"] = "FEEDBACKUI_SHADOWMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[9] = { ["index"] = FEEDBACKUI_STRSHATTRATH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 8, ["text"] = "FEEDBACKUI_SHATTRATH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[10] = { ["index"] = FEEDBACKUI_STRTERROKAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 9, ["text"] = "FEEDBACKUI_TERROKAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[5] = { ["index"] = FEEDBACKUI_STRTWISTINGNETHER, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 10, ["text"] = "FEEDBACKUI_TWISTINGNETHER" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[11] = { ["index"] = FEEDBACKUI_STRZANGARMARSH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 11, ["text"] = "FEEDBACKUI_ZANGARMARSH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[12] = { ["index"] = FEEDBACKUI_STREKINGDOMS, ["summary"] = { ["type"] = "where", ["value"] = 12, ["text"] = "FEEDBACKUI_EKINGDOMS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[13] = { ["index"] = FEEDBACKUI_STRALTERACMOUNTAINS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 13, ["text"] = "FEEDBACKUI_ALTERACMOUNTAINS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[14] = { ["index"] = FEEDBACKUI_STRALTERACVALLEY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 14, ["text"] = "FEEDBACKUI_ALTERACVALLEY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[15] = { ["index"] = FEEDBACKUI_STRARATHIBASIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 15, ["text"] = "FEEDBACKUI_ARATHIBASIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[16] = { ["index"] = FEEDBACKUI_STRARATHIHIGHLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 16, ["text"] = "FEEDBACKUI_ARATHIHIGHLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[26] = { ["index"] = FEEDBACKUI_STRBADLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 17, ["text"] = "FEEDBACKUI_BADLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[31] = { ["index"] = FEEDBACKUI_STRBLACKROCKMOUNTAIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 18, ["text"] = "FEEDBACKUI_BLACKROCKMOUNTAIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[24] = { ["index"] = FEEDBACKUI_STRBLASTEDLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 19, ["text"] = "FEEDBACKUI_BLASTEDLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[35] = { ["index"] = FEEDBACKUI_STRBURNINGSTEPPES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 20, ["text"] = "FEEDBACKUI_BURNINGSTEPPES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[20] = { ["index"] = FEEDBACKUI_STRDEADWINDPASS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 21, ["text"] = "FEEDBACKUI_DEADWINDPASS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[18] = { ["index"] = FEEDBACKUI_STRDUNMOROGH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 22, ["text"] = "FEEDBACKUI_DUNMOROGH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[17] = { ["index"] = FEEDBACKUI_STRDUSKWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 23, ["text"] = "FEEDBACKUI_DUSKWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[27] = { ["index"] = FEEDBACKUI_STREPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 24, ["text"] = "FEEDBACKUI_EPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[42] = { ["index"] = FEEDBACKUI_STRELWYNN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 25, ["text"] = "FEEDBACKUI_ELWYNN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[23] = { ["index"] = FEEDBACKUI_STREVERSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 26, ["text"] = "FEEDBACKUI_EVERSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[21] = { ["index"] = FEEDBACKUI_STRGHOSTLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 27, ["text"] = "FEEDBACKUI_GHOSTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[41] = { ["index"] = FEEDBACKUI_STRHILLSBRAD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 28, ["text"] = "FEEDBACKUI_HILLSBRAD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[22] = { ["index"] = FEEDBACKUI_STRHINTERLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 29, ["text"] = "FEEDBACKUI_HINTERLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[19] = { ["index"] = FEEDBACKUI_STRIRONFORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 30, ["text"] = "FEEDBACKUI_IRONFORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[25] = { ["index"] = FEEDBACKUI_STRLOCHMODAN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 31, ["text"] = "FEEDBACKUI_LOCHMODAN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[29] = { ["index"] = FEEDBACKUI_STRREDRIDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 32, ["text"] = "FEEDBACKUI_REDRIDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[32] = { ["index"] = FEEDBACKUI_STRSEARINGGORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 33, ["text"] = "FEEDBACKUI_SEARINGGORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[33] = { ["index"] = FEEDBACKUI_STRSILVERMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 34, ["text"] = "FEEDBACKUI_SILVERMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[34] = { ["index"] = FEEDBACKUI_STRSILVERPINE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 35, ["text"] = "FEEDBACKUI_SILVERPINE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[36] = { ["index"] = FEEDBACKUI_STRSTORMWIND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 36, ["text"] = "FEEDBACKUI_STORMWIND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[37] = { ["index"] = FEEDBACKUI_STRSWAMPOFSORROWS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 38, ["text"] = "FEEDBACKUI_SWAMPOFSORROWS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[30] = { ["index"] = FEEDBACKUI_STRSTRANGLETHORN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 37, ["text"] = "FEEDBACKUI_STRANGLETHORN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[39] = { ["index"] = FEEDBACKUI_STRTIRISFAL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 39, ["text"] = "FEEDBACKUI_TIRISFAL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[40] = { ["index"] = FEEDBACKUI_STRUNDERCITY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 40, ["text"] = "FEEDBACKUI_UNDERCITY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[28] = { ["index"] = FEEDBACKUI_STRWPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 41, ["text"] = "FEEDBACKUI_WPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[43] = { ["index"] = FEEDBACKUI_STRWESTFALL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 42, ["text"] = "FEEDBACKUI_WESTFALL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[38] = { ["index"] = FEEDBACKUI_STRWETLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 43, ["text"] = "FEEDBACKUI_WETLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[44] = { ["index"] = FEEDBACKUI_STRKALIMDOR, ["summary"] = { ["type"] = "where", ["value"] = 44, ["text"] = "FEEDBACKUI_KALIMDOR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[55] = { ["index"] = FEEDBACKUI_STRASHENVALE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 45, ["text"] = "FEEDBACKUI_ASHENVALE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[45] = { ["index"] = FEEDBACKUI_STRAZSHARA, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 46, ["text"] = "FEEDBACKUI_AZSHARA" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[46] = { ["index"] = FEEDBACKUI_STRAZUREMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 47, ["text"] = "FEEDBACKUI_AZUREMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[48] = { ["index"] = FEEDBACKUI_STRBARRENS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 48, ["text"] = "FEEDBACKUI_BARRENS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[47] = { ["index"] = FEEDBACKUI_STRBLOODMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 49, ["text"] = "FEEDBACKUI_BLOODMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[52] = { ["index"] = FEEDBACKUI_STRDARKSHORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 50, ["text"] = "FEEDBACKUI_DARKSHORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[49] = { ["index"] = FEEDBACKUI_STRDARNASSUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 51, ["text"] = "FEEDBACKUI_DARNASSUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[50] = { ["index"] = FEEDBACKUI_STRDESOLACE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 52, ["text"] = "FEEDBACKUI_DESOLACE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[53] = { ["index"] = FEEDBACKUI_STRDUROTAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 53, ["text"] = "FEEDBACKUI_DUROTAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[54] = { ["index"] = FEEDBACKUI_STRDUSTWALLOW, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 54, ["text"] = "FEEDBACKUI_DUSTWALLOW" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[56] = { ["index"] = FEEDBACKUI_STREXODAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 55, ["text"] = "FEEDBACKUI_EXODAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[68] = { ["index"] = FEEDBACKUI_STRFELWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 56, ["text"] = "FEEDBACKUI_FELWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[57] = { ["index"] = FEEDBACKUI_STRFERALAS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 57, ["text"] = "FEEDBACKUI_FERALAS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[60] = { ["index"] = FEEDBACKUI_STRMOONGLADE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 58, ["text"] = "FEEDBACKUI_MOONGLADE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[61] = { ["index"] = FEEDBACKUI_STRMULGORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 59, ["text"] = "FEEDBACKUI_MULGORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[62] = { ["index"] = FEEDBACKUI_STRORGRIMMAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 60, ["text"] = "FEEDBACKUI_ORGRIMMAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[63] = { ["index"] = FEEDBACKUI_STRSILITHUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 61, ["text"] = "FEEDBACKUI_SILITHUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[64] = { ["index"] = FEEDBACKUI_STRSTONETALON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 62, ["text"] = "FEEDBACKUI_STONETALON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[65] = { ["index"] = FEEDBACKUI_STRTANARIS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 63, ["text"] = "FEEDBACKUI_TANARIS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[66] = { ["index"] = FEEDBACKUI_STRTELDRASSIL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 64, ["text"] = "FEEDBACKUI_TELDRASSIL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[51] = { ["index"] = FEEDBACKUI_STRTHUNDERBLUFF, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 65, ["text"] = "FEEDBACKUI_THUNDERBLUFF" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[67] = { ["index"] = FEEDBACKUI_STRTHOUSANDNEEDLES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 66, ["text"] = "FEEDBACKUI_THOUSANDNEEDLES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[58] = { ["index"] = FEEDBACKUI_STRUNGORO, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 67, ["text"] = "FEEDBACKUI_UNGORO" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[59] = { ["index"] = FEEDBACKUI_STRWARSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 68, ["text"] = "FEEDBACKUI_WARSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[69] = { ["index"] = FEEDBACKUI_STRWINTERSPRING, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 69, ["text"] = "FEEDBACKUI_WINTERSPRING" }, ["link"] = "FEEDBACKUI_WHOTABLE" } }
 
 elseif ( GetLocale() == "esES" ) then
 -- Localized Spanish strings for FEEDBACKUI
@@ -1495,7 +1980,7 @@ BUG_BUTTON="Enviar información"
 NEWBIE_TOOLTIP_BUG="Envíanos información sobre errores o sugerencias para ayudarnos a mejorar World of Warcraft."
 FEEDBACKUIBACK_TEXT = "Volver"
 FEEDBACKUIRESET_TEXT = "Borrar todo"
-FEEDBACKUISUBMIT_TEXT = "¡Enviar!"
+FEEDBACKUISUBMIT_TEXT = "Enviar"
 FEEDBACKUISTART_TEXT = "¡Inicio!"
 
 --Tables and strings for navigation.
@@ -1577,6 +2062,7 @@ FEEDBACKUI_STRSILVERMOON = "- Ocurre en la Ciudad de Lunargenta."
 FEEDBACKUI_STRSILVERPINE = "- Ocurre en el Bosque de Argénteos."
 FEEDBACKUI_STRSTORMWIND = "- Ocurre en Ventormenta."
 FEEDBACKUI_STRSTRANGLETHORN = "- Ocurre en la Vega de Tuercespina."
+FEEDBACKUI_STRSWAMPOFSORROWS = "- Ocurre en el Pantano de las Penas."
 FEEDBACKUI_STRTIRISFAL = "- Ocurre en los Claros de Tirisfal."
 FEEDBACKUI_STRUNDERCITY = "- Ocurre en Entrañas."
 FEEDBACKUI_STRWPLAGUELANDS = "- Ocurre en las Tierras de la Peste del Oeste."
@@ -1614,6 +2100,7 @@ FEEDBACKUI_EVERYWHERE = "En todo el juego"
 FEEDBACKUI_EKINGDOMS = "Reinos del Este"
 FEEDBACKUI_KALIMDOR = "Kalimdor"
 FEEDBACKUI_OUTLANDS = "Terrallende"
+FEEDBACKUI_AZEROTH = "Azeroth"
 
 FEEDBACKUI_BLADESEDGE = "Terrallende - Montañas Filospada"
 FEEDBACKUI_HELLFIRE = "Terrallende - Península del Fuego Infernal"
@@ -1650,6 +2137,7 @@ FEEDBACKUI_SILVERMOON = "Reinos del Este - Ciudad de Lunargenta"
 FEEDBACKUI_SILVERPINE = "Reinos del Este - Bosque de Argénteos"
 FEEDBACKUI_STORMWIND = "Reinos del Este - Ventormenta"
 FEEDBACKUI_STRANGLETHORN = "Reinos del Este - Vega de Tuercespina"
+FEEDBACKUI_SWAMPOFSORROWS = "Reinos del Este - Pantano de las Penas";
 FEEDBACKUI_TIRISFAL = "Reinos del Este - Claros de Tirisfal"
 FEEDBACKUI_UNDERCITY = "Reinos del Este - Entrañas"
 FEEDBACKUI_WPLAGUELANDS = "Reinos del Este - Tierras de la Peste del Oeste"
@@ -1723,7 +2211,7 @@ FEEDBACKUI_STRCRASHOTHER = "Es un problema de estabilidad."
 FEEDBACKUI_STRCRASHBUG = "- Causa que WoW se cierre."
 FEEDBACKUI_STRCRASHSOFTLOCK = "- Causa que WoW deje de responder."
 FEEDBACKUI_STRCRASHHARDLOCK = "- Causa que mi ordenador no responda."
-FEEDBACKUI_STRCRASHWOWLAG = "- El problema está relacionado con un retraso."
+FEEDBACKUI_STRCRASHWOWLAG = "- Relacionado con un retardo de conexión."
 												
 FEEDBACKUI_UIITEMS = "Problema de interfaz de objeto"
 FEEDBACKUI_UISPAWNS = "Problema de interfaz de criatura"
@@ -1756,7 +2244,7 @@ FEEDBACKUILBLFRMDIFFICULTY_TEXT = "Dificultad:"
 FEEDBACKUILBLFRMREWARD_TEXT = "Recompensa:"
 FEEDBACKUILBLFRMFUN_TEXT = "Diversión:"
 FEEDBACKUISURVEYTYPE_QUEST = "Misión"
-FEEDBACKUISURVEYTYPE_INSTANCE = "Estancia"
+FEEDBACKUISURVEYTYPE_AREA = "Estancia"
 	
 FEEDBACKUISKIP_TEXT = "Saltar encuesta"
 FEEDBACKUILBLSURVEYALERTSCHECK_TEXT = "Mostrar alertas"
@@ -1767,7 +2255,7 @@ FEEDBACKUI_SURVEYCOLUMNNAME = "Nombre"
 FEEDBACKUI_SURVEYCOLUMNMODIFIED = "Probado"
 	
 FEEDBACKUI_ALLHEADERTEXT = "Todo"
-FEEDBACKUI_INSTANCEHEADERTEXT = "Estancias"
+FEEDBACKUI_AREAHEADERTEXT = "Estancias"
 FEEDBACKUI_QUESTHEADERTEXT = "Misiones"
 	
 FEEDBACKUI_STATUSALLTEXT = "Todo"
@@ -1776,8 +2264,8 @@ FEEDBACKUI_STATUSSKIPPEDTEXT = "Descartado"
 FEEDBACKUI_STATUSCOMPLETEDTEXT = "Completado"
 	
 FEEDBACKUI_SURVEYTOOLTIPQUESTHEADER = "Nombre misión:"
-FEEDBACKUI_SURVEYTOOLTIPINSTANCEHEADER = "Nombre estancia:"
-FEEDBACKUI_SURVEYTOOLTIPEXPERIENCEDHEADER = "Hace:"
+FEEDBACKUI_SURVEYTOOLTIPAREAHEADER = "Nombre estancia:"
+FEEDBACKUI_SURVEYTOOLTIPEXPERIENCEDHEADER = "Ocurrido:"
 FEEDBACKUI_SURVEYTOOLTIPQUESTOBJECTIVESHEADER = "Objetivos de misión:"
 	
 FEEDBACKUI_NEW = "Nuevo"
@@ -1805,8 +2293,8 @@ FEEDBACKUI_CLARITY4 = "Perfectamente claros"
 	
 FEEDBACKUI_QUESTSDIFFICULTYTABLEHEADER = "Dificultad"
 FEEDBACKUI_QUESTSDIFFICULTYTABLESUBTEXT = "¿Cuál fue la dificultad de la misión?"
-FEEDBACKUI_INSTANCESDIFFICULTYTABLEHEADER = "Dificultad"
-FEEDBACKUI_INSTANCESDIFFICULTYTABLESUBTEXT = "¿Cuál fue la dificultad de los encuentros de la estancia?"
+FEEDBACKUI_AREASDIFFICULTYTABLEHEADER = "Dificultad"
+FEEDBACKUI_AREASDIFFICULTYTABLESUBTEXT = "¿Cuál fue la dificultad de los encuentros de la estancia?"
 	
 FEEDBACKUI_STRDIFFICULTY1 = "Fácil"
 FEEDBACKUI_STRDIFFICULTY2 = "Razonable"
@@ -1820,8 +2308,8 @@ FEEDBACKUI_DIFFICULTY4 = "Difícil"
 	
 FEEDBACKUI_QUESTSREWARDTABLEHEADER = "Recompensa"
 FEEDBACKUI_QUESTSREWARDTABLESUBTEXT = "¿Cómo valoras la recompensa de la misión?"
-FEEDBACKUI_INSTANCESREWARDTABLEHEADER = "Recompensa"
-FEEDBACKUI_INSTANCESREWARDTABLESUBTEXT = "¿Cómo valoras la recompensa de la estancia?"
+FEEDBACKUI_AREASREWARDTABLEHEADER = "Recompensa"
+FEEDBACKUI_AREASREWARDTABLESUBTEXT = "¿Cómo valoras la recompensa de la estancia?"
 	
 FEEDBACKUI_STRREWARD1 = "Horrible"
 FEEDBACKUI_STRREWARD2 = "Mala"
@@ -1835,8 +2323,8 @@ FEEDBACKUI_REWARD4 = "Genial"
 	
 FEEDBACKUI_QUESTSFUNTABLEHEADER = "Diversión"
 FEEDBACKUI_QUESTSFUNTABLESUBTEXT = "¿Fue divertida la misión?"
-FEEDBACKUI_INSTANCESFUNTABLEHEADER = "Diversión"
-FEEDBACKUI_INSTANCESFUNTABLESUBTEXT = "¿Fue divertida la estancia?"
+FEEDBACKUI_AREASFUNTABLEHEADER = "Diversión"
+FEEDBACKUI_AREASFUNTABLESUBTEXT = "¿Fue divertida la estancia?"
 	
 FEEDBACKUI_STRFUN1 = "Nada divertida"
 FEEDBACKUI_STRFUN2 = "No muy divertida"
@@ -1850,7 +2338,7 @@ FEEDBACKUI_FUN4 = "Muy divertida"
 	
 FEEDBACKUISURVEYFRMINPUTBOX_TEXT = "<Escribe cualquier otro comentario aquí.>"
 FEEDBACKUI_SURVEYINPUTHEADER = "Añade más comentarios"
-FEEDBACKUIRESUBMIT_TEXT = "¡Reenviar!"
+FEEDBACKUIRESUBMIT_TEXT = "Reenviar"
 	
 FEEDBACKUI_WELCOMETABLEBUGHEADER = "Señalar un error"
 FEEDBACKUI_WELCOMETABLEBUGSUBTEXT = "Señalar errores ayuda a arreglar los problemas del juego"
@@ -1860,75 +2348,233 @@ FEEDBACKUI_BUGINPUTHEADER = "¿Cómo podemos reproducir este error?"
 FEEDBACKUI_SUGGESTINPUTHEADER = "Describe tu sugerencia."
 
 FEEDBACKUI_SURVEYNEWBIETEXT = "Chasque aquí para completar una encuesta sobre una mazmorra o búsqueda que han terminado recientemente."
+FEEDBACKUI_POIMASK = ".-%s%-%s(.+)"
 
-FEEDBACKUI_AREATABLE = {[1] = { ["index"] = FEEDBACKUI_STREVERYWHERE, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EVERYWHERE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[2] = { ["index"] = FEEDBACKUI_STROUTLANDS, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_OUTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[7] = { ["index"] = FEEDBACKUI_STRBLADESEDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLADESEDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[9] = { ["index"] = FEEDBACKUI_STRHELLFIRE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HELLFIRE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[8] = { ["index"] = FEEDBACKUI_STRNAGRAND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_NAGRAND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[10] = { ["index"] = FEEDBACKUI_STRNETHERSTORM, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_NETHERSTORM" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[11] = { ["index"] = FEEDBACKUI_STRSHADOWMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SHADOWMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[4] = { ["index"] = FEEDBACKUI_STRSHATTRATH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SHATTRATH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[3] = { ["index"] = FEEDBACKUI_STRTERROKAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TERROKAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[5] = { ["index"] = FEEDBACKUI_STRTWISTINGNETHER, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TWISTINGNETHER" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[6] = { ["index"] = FEEDBACKUI_STRZANGARMARSH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ZANGARMARSH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[12] = { ["index"] = FEEDBACKUI_STREKINGDOMS, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EKINGDOMS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[32] = { ["index"] = FEEDBACKUI_STRALTERACMOUNTAINS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ALTERACMOUNTAINS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[40] = { ["index"] = FEEDBACKUI_STRALTERACVALLEY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ALTERACVALLEY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[19] = { ["index"] = FEEDBACKUI_STRARATHIBASIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ARATHIBASIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[35] = { ["index"] = FEEDBACKUI_STRARATHIHIGHLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ARATHIHIGHLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[27] = { ["index"] = FEEDBACKUI_STRBADLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BADLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[30] = { ["index"] = FEEDBACKUI_STRBLACKROCKMOUNTAIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLACKROCKMOUNTAIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[26] = { ["index"] = FEEDBACKUI_STRBLASTEDLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLASTEDLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[25] = { ["index"] = FEEDBACKUI_STRBURNINGSTEPPES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BURNINGSTEPPES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[34] = { ["index"] = FEEDBACKUI_STRDEADWINDPASS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DEADWINDPASS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[20] = { ["index"] = FEEDBACKUI_STRDUNMOROGH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUNMOROGH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[16] = { ["index"] = FEEDBACKUI_STRDUSKWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUSKWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[37] = { ["index"] = FEEDBACKUI_STREPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[15] = { ["index"] = FEEDBACKUI_STRELWYNN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ELWYNN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[13] = { ["index"] = FEEDBACKUI_STREVERSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EVERSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[36] = { ["index"] = FEEDBACKUI_STRGHOSTLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_GHOSTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[24] = { ["index"] = FEEDBACKUI_STRHILLSBRAD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HILLSBRAD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[39] = { ["index"] = FEEDBACKUI_STRHINTERLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HINTERLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[22] = { ["index"] = FEEDBACKUI_STRIRONFORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_IRONFORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[28] = { ["index"] = FEEDBACKUI_STRLOCHMODAN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_LOCHMODAN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[31] = { ["index"] = FEEDBACKUI_STRREDRIDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_REDRIDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[23] = { ["index"] = FEEDBACKUI_STRSEARINGGORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SEARINGGORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[17] = { ["index"] = FEEDBACKUI_STRSILVERMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILVERMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[14] = { ["index"] = FEEDBACKUI_STRSILVERPINE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILVERPINE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[42] = { ["index"] = FEEDBACKUI_STRSTORMWIND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STORMWIND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[41] = { ["index"] = FEEDBACKUI_STRSTRANGLETHORN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STRANGLETHORN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[18] = { ["index"] = FEEDBACKUI_STRTIRISFAL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TIRISFAL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[21] = { ["index"] = FEEDBACKUI_STRUNDERCITY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_UNDERCITY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[38] = { ["index"] = FEEDBACKUI_STRWPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[33] = { ["index"] = FEEDBACKUI_STRWESTFALL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WESTFALL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[29] = { ["index"] = FEEDBACKUI_STRWETLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WETLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[43] = { ["index"] = FEEDBACKUI_STRKALIMDOR, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_KALIMDOR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[44] = { ["index"] = FEEDBACKUI_STRASHENVALE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ASHENVALE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[68] = { ["index"] = FEEDBACKUI_STRAZSHARA, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_AZSHARA" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[57] = { ["index"] = FEEDBACKUI_STRAZUREMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_AZUREMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[60] = { ["index"] = FEEDBACKUI_STRBARRENS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BARRENS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[58] = { ["index"] = FEEDBACKUI_STRBLOODMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLOODMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[47] = { ["index"] = FEEDBACKUI_STRDARKSHORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DARKSHORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[50] = { ["index"] = FEEDBACKUI_STRDARNASSUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DARNASSUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[51] = { ["index"] = FEEDBACKUI_STRDESOLACE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DESOLACE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[52] = { ["index"] = FEEDBACKUI_STRDUROTAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUROTAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[61] = { ["index"] = FEEDBACKUI_STRDUSTWALLOW, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUSTWALLOW" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[53] = { ["index"] = FEEDBACKUI_STREXODAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EXODAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[55] = { ["index"] = FEEDBACKUI_STRFELWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_FELWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[54] = { ["index"] = FEEDBACKUI_STRFERALAS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_FERALAS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[46] = { ["index"] = FEEDBACKUI_STRMOONGLADE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_MOONGLADE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[62] = { ["index"] = FEEDBACKUI_STRMULGORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_MULGORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[63] = { ["index"] = FEEDBACKUI_STRORGRIMMAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ORGRIMMAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[65] = { ["index"] = FEEDBACKUI_STRSILITHUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILITHUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[64] = { ["index"] = FEEDBACKUI_STRSTONETALON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STONETALON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[66] = { ["index"] = FEEDBACKUI_STRTANARIS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TANARIS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[67] = { ["index"] = FEEDBACKUI_STRTELDRASSIL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TELDRASSIL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[45] = { ["index"] = FEEDBACKUI_STRTHUNDERBLUFF, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_THUNDERBLUFF" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[59] = { ["index"] = FEEDBACKUI_STRTHOUSANDNEEDLES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_THOUSANDNEEDLES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[48] = { ["index"] = FEEDBACKUI_STRUNGORO, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_UNGORO" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[56] = { ["index"] = FEEDBACKUI_STRWARSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WARSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[49] = { ["index"] = FEEDBACKUI_STRWINTERSPRING, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WINTERSPRING" }, ["link"] = "FEEDBACKUI_WHOTABLE" } }
+
+FEEDBACKUI_LEVELPREFIX = "Nivel"
+FEEDBACKUI_HILLSBRAD = "Reinos del Este - Laderas de Trabalomas";
+FEEDBACKUISURVEYTYPE_AREA = "Área"
+FEEDBACKUISURVEYTYPE_ITEM = "Objeto"
+FEEDBACKUISURVEYTYPE_MOB = "Enemigo"
+FEEDBACKUI_AREAHEADERTEXT = "Áreas"
+FEEDBACKUI_QUESTHEADERTEXT = "Misiones"
+FEEDBACKUI_ITEMHEADERTEXT = "Objetos"
+FEEDBACKUI_MOBHEADERTEXT = "Enemigos"
+FEEDBACKUI_SURVEYTOOLTIPAREAHEADER = "Nombre del área:"
+FEEDBACKUI_AREASDIFFICULTYTABLEHEADER = "Dificultad"
+FEEDBACKUI_AREASDIFFICULTYTABLESUBTEXT = "¿Qué dificultad han tenido los encuentros del área?"
+FEEDBACKUI_AREASREWARDTABLEHEADER = "Recompensa"
+FEEDBACKUI_AREASREWARDTABLESUBTEXT = "¿Cómo valorarías las recompensas de esta área?"
+FEEDBACKUI_AREASFUNTABLEHEADER = "Diversión"
+FEEDBACKUI_AREASFUNTABLESUBTEXT = "¿Cuánto te has divertido en el área?"
+FEEDBACKUI_SURVEYINPUTSUBTEXT = "Haz clic aquí para ver algunas opiniones"
+FEEDBACKUI_SURVEYNEWBIETEXT = "Haz clic aquí para rellenar una encuesta sobre esta experiencia."
+FEEDBACKUI_WELCOMETABLESURVEYHEADER = "Selecciona una encuesta"
+
+FEEDBACKUI_SPECIFICWELCOME = "Gracias por tu opinión acerca de World of Warcraft. Has elegido opinar sobre:\n\n\n\n\nElige una de las siguientes opciones para continuar:";
+FEEDBACKUI_GENERALWELCOME = "Gracias por tu opinión acerca de World of Warcraft. Cada comentario que recibimos desempeña un papel muy importante a la hora de determinar la calidad del juego.\n\nElige una de estas opciones para continuar:";
+
+FEEDBACKUI_STARTBUG = "Informar de un error"
+FEEDBACKUI_STARTSURVEY = "Comenzar encuesta"
+FEEDBACKUI_STARTSUGGESTION = "Hacer una sugerencia"
+
+FEEDBACKUI_WELCOMEBUGHEADER = "Error"
+FEEDBACKUI_WELCOMESUGGESTHEADER = "Sugerencia"
+FEEDBACKUI_WELCOMESURVEYHEADER = "Encuesta"
+
+FEEDBACKUI_WELCOMEBUGTEXT = "Un error nos informa acerca de un fallo que has encontrado en el juego." 
+FEEDBACKUI_WELCOMESUGGESTTEXT = "Una sugerencia nos informa de qué te gustaría que mejoráramos en el juego."
+FEEDBACKUI_WELCOMESURVEYTEXT = "La encuesta permite que nos des tu opinión acerca de una parte específica del juego."
+FEEDBACKUI_WELCOMESURVEYDISABLED = "En este momento no existe ninguna encuesta disponible sobre este tema."
+
+FEEDBACKUI_MODIFIERKEY = "Atar:"
+FEEDBACKUI_MOUSE1 = "clic izquierdo"
+FEEDBACKUI_MOUSE2 = "clic derecha"
+
+FEEDBACKUI_LALT = "LAlt"
+FEEDBACKUI_RALT = "RAlt"
+FEEDBACKUI_LCTRL = "LCtrl"
+FEEDBACKUI_RCTRL = "RCtrl"
+FEEDBACKUI_LSHIFT = "LShift"
+FEEDBACKUI_RSHIFT = "RShift"
+
+FEEDBACKUI_TOOLTIP_MESSAGE = "<%s %s izquierdo para opinar>";
+FEEDBACKUI_MAP_MESSAGE = "%s %s izquierdo en el mapa para opinar";
+FEEDBACKUI_ITEMTARGETS = { "Armadura", "Consumible", "Contenedor", "Proyectil", "Carcaj", "Arma", "Receta", "Gema" };
+FEEDBACKUI_MISCTYPE = "Miscelánea";
+FEEDBACKUISHOWCUES_TEXT = "Mostrar consejos";
+
+FEEDBACKUI_CATEGORYLABEL = "Tipo:"
+FEEDBACKUI_STATUSLABEL = "Estado:"
+
+NEWBIE_TOOLTIP_BUG="Ayúdanos a mejorar World of Warcraft enviándonos informes de error o sugerencias, o bien, contestando a nuestras encuestas.\n\n" .. FEEDBACKUI_BLUE .. "Clic izquierdo para comenzar.\nClic derecho para mostrar las opciones.";
+FEEDBACKUILBLAPPEARANCE_TEXT = "Apariencia:"
+FEEDBACKUILBLUTILITY_TEXT = "Utilidad:"
+
+FEEDBACKUI_MOBSDIFFICULTYTABLEHEADER = "Dificultad"                                      
+FEEDBACKUI_MOBSDIFFICULTYTABLESUBTEXT = "¿Cómo de difícil de matar es este enemigo?"
+FEEDBACKUI_MOBSREWARDTABLEHEADER = "Recompensa"
+FEEDBACKUI_MOBSREWARDTABLESUBTEXT = "¿Cómo valoras las recompensas del enemigo?"
+FEEDBACKUI_MOBSFUNTABLEHEADER = "Diversión"
+FEEDBACKUI_MOBSFUNTABLESUBTEXT = "¿Cómo de divertidos son los enfrentamientos con este enemigo?"
+FEEDBACKUI_MOBSAPPEARANCETABLEHEADER = "Apariencia"
+FEEDBACKUI_MOBSAPPEARANCETABLESUBTEXT = "¿Cómo valoras la apariencia de este enemigo?"
+
+FEEDBACKUI_ITEMSDIFFICULTYTABLEHEADER = "Dificultad"
+FEEDBACKUI_ITEMSDIFFICULTYTABLESUBTEXT = "¿Cómo de difícil es adquirir este objeto?"
+FEEDBACKUI_ITEMSUTILITYHEADER = "Utilidad"
+FEEDBACKUI_ITEMSUTILITYSUBTEXT = "¿Cómo de útil es este objeto?"
+FEEDBACKUI_ITEMSAPPEARANCETABLEHEADER = "Apariencia"
+FEEDBACKUI_ITEMSAPPEARANCETABLESUBTEXT = "¿Cómo valoras la apariencia de este objeto?"
+
+FEEDBACKUI_STRUTILITY1 = "Totalmente inútil"
+FEEDBACKUI_STRUTILITY2 = "Bastante inútil"
+FEEDBACKUI_STRUTILITY3 = "Útil"
+FEEDBACKUI_STRUTILITY4 = "Muy útil"
+
+FEEDBACKUI_UTILITY1 = "Totalmente inútil"
+FEEDBACKUI_UTILITY2 = "Bastante inútil"
+FEEDBACKUI_UTILITY3 = "Útil"
+FEEDBACKUI_UTILITY4 = "Muy útil"
+
+FEEDBACKUI_STRAPPEARANCE1 = "Inferior"
+FEEDBACKUI_STRAPPEARANCE2 = "Nada de otro mundo"
+FEEDBACKUI_STRAPPEARANCE3 = "Está bien"
+FEEDBACKUI_STRAPPEARANCE4 = "Impresionante"
+
+FEEDBACKUI_APPEARANCE1 = "Inferior"
+FEEDBACKUI_APPEARANCE2 = "Nada de otro mundo"
+FEEDBACKUI_APPEARANCE3 = "Está bien"
+FEEDBACKUI_APPEARANCE4 = "Impresionante"
+
+FEEDBACKUI_POIUNDERCITY = "Entrañas";
+FEEDBACKUI_POISILVERMOON = "Ciudad de Lunargenta";
+FEEDBACKUI_POIIRONFORGE = "Forjaz";
+FEEDBACKUI_POISTORMWIND = "Ciudad de Ventormenta";
+FEEDBACKUI_POISEPULCHER = "El Sepulcro";
+FEEDBACKUI_POITARRENMILL = "Molino Tarren";
+FEEDBACKUI_POISOUTHSHORE = "Costasur";
+FEEDBACKUI_POIAERIEPEAK = "Pico Nidal";
+FEEDBACKUI_POIREVANTUSK = "Poblado Sañadiente";
+FEEDBACKUI_POIHAMMERFALL = "Sentencia";
+FEEDBACKUI_POIMENETHIL = "Puerto de Menethil";
+FEEDBACKUI_POITHELSAMAR = "Thelsamar";
+FEEDBACKUI_POIKARGATH = "Kargath";
+FEEDBACKUI_POILAKESHIRE = "Villa del Lago";
+FEEDBACKUI_POISENTINELHILL = "Colina del Centinela";
+FEEDBACKUI_POIDARKSHIRE = "Villa Oscura";
+FEEDBACKUI_POISTONARD = "Rocal";
+FEEDBACKUI_POIGROMGOL = "Campamento Grom'gol";
+FEEDBACKUI_POIBOOTY = "Bahía del Botín";
+
+FEEDBACKUI_POIDARNASSUS = "Darnassus";
+FEEDBACKUI_POIEXODAR = "El Exodar";
+FEEDBACKUI_POIORGRIMMAR = "Orgrimmar";
+FEEDBACKUI_POITHUNDERB = "Cima del Trueno";
+FEEDBACKUI_POIAUBERDINE = "Auberdine";
+FEEDBACKUI_POIEVERLOOK = "Vista Eterna";
+FEEDBACKUI_POISTONETALON = "Cima del Espolón";
+FEEDBACKUI_POIASTRANAAR = "Astranaar";
+FEEDBACKUI_POISPLINTERTREE = "Puesto del Hachazo";
+FEEDBACKUI_POISUNROCK = "Refugio Roca del Sol";
+FEEDBACKUI_POINIJELS = "Punta de Nijel";
+FEEDBACKUI_POISHADOWPREY = "Aldea Cazasombras";
+FEEDBACKUI_POIFEATHERMOON = "Bastión Plumaluna";
+FEEDBACKUI_POIMOJACHE = "Campamento Mojache";
+FEEDBACKUI_POITHALANAAR = "Thalanaar";
+FEEDBACKUI_POICENARIONHOLD = "Fuerte Cenarion";
+FEEDBACKUI_POIGADGET = "Gadgetzan";
+FEEDBACKUI_POIFREEWIND = "Poblado Viento Libre";
+FEEDBACKUI_POITAURAJO = "Campamento Taurajo";
+FEEDBACKUI_POICROSSROADS = "El Cruce";
+FEEDBACKUI_POIRATCHET = "Trinquete";
+FEEDBACKUI_POITHERAMORE = "Isla Theramore";
+
+FEEDBACKUI_SURVEYTOOLTIPMOBHEADER = "Nombre del enemigo:"
+FEEDBACKUI_SURVEYTOOLTIPMOBZONEHEADER = "Encontrado en:"
+
+FEEDBACKUI_BLACKTEMPLE = "Templo Oscuro"
+FEEDBACKUI_ZULAMAN = "Zul'Aman"
+FEEDBACKUI_SUNWELLPLATEAU = "Meseta de La Fuente del Sol"
+FEEDBACKUI_MAGISTERSTERRACE = "Bancal del Magister"
+
+FEEDBACKUI_VOICECHATTOOLTIP = FEEDBACKUI_WHITE .. "Chat de voz integrado";
+FEEDBACKUI_VOICECHAT = "Chat de voz";
+FEEDBACKUI_STRVOICECHAT = "Es una problema de la chat de voz.";
+FEEDBACKUI_STRUSBHEADSET = "Estoy usando audífonos USB.";
+FEEDBACKUI_STRANALOGHEADSET = "Estoy usando audífonos análogos.";
+FEEDBACKUI_HEADSETTYPE = "¿Qué tipo de audífonos estás usando?";
+
+
+FEEDBACKUI_AREATABLE = {[1] = { ["index"] = FEEDBACKUI_STREVERYWHERE, ["summary"] = { ["type"] = "where", ["value"] = 1, ["text"] = "FEEDBACKUI_EVERYWHERE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[2] = { ["index"] = FEEDBACKUI_STROUTLANDS, ["summary"] = { ["type"] = "where", ["value"] = 2, ["text"] = "FEEDBACKUI_OUTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[7] = { ["index"] = FEEDBACKUI_STRBLADESEDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 3, ["text"] = "FEEDBACKUI_BLADESEDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[9] = { ["index"] = FEEDBACKUI_STRHELLFIRE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 4, ["text"] = "FEEDBACKUI_HELLFIRE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[8] = { ["index"] = FEEDBACKUI_STRNAGRAND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 5, ["text"] = "FEEDBACKUI_NAGRAND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[10] = { ["index"] = FEEDBACKUI_STRNETHERSTORM, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 6, ["text"] = "FEEDBACKUI_NETHERSTORM" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[11] = { ["index"] = FEEDBACKUI_STRSHADOWMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 7, ["text"] = "FEEDBACKUI_SHADOWMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[4] = { ["index"] = FEEDBACKUI_STRSHATTRATH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 8, ["text"] = "FEEDBACKUI_SHATTRATH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[3] = { ["index"] = FEEDBACKUI_STRTERROKAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 9, ["text"] = "FEEDBACKUI_TERROKAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[5] = { ["index"] = FEEDBACKUI_STRTWISTINGNETHER, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 10, ["text"] = "FEEDBACKUI_TWISTINGNETHER" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[6] = { ["index"] = FEEDBACKUI_STRZANGARMARSH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 11, ["text"] = "FEEDBACKUI_ZANGARMARSH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[12] = { ["index"] = FEEDBACKUI_STREKINGDOMS, ["summary"] = { ["type"] = "where", ["value"] = 12, ["text"] = "FEEDBACKUI_EKINGDOMS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[32] = { ["index"] = FEEDBACKUI_STRALTERACMOUNTAINS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 13, ["text"] = "FEEDBACKUI_ALTERACMOUNTAINS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[41] = { ["index"] = FEEDBACKUI_STRALTERACVALLEY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 14, ["text"] = "FEEDBACKUI_ALTERACVALLEY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[19] = { ["index"] = FEEDBACKUI_STRARATHIBASIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 15, ["text"] = "FEEDBACKUI_ARATHIBASIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[36] = { ["index"] = FEEDBACKUI_STRARATHIHIGHLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 16, ["text"] = "FEEDBACKUI_ARATHIHIGHLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[27] = { ["index"] = FEEDBACKUI_STRBADLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 17, ["text"] = "FEEDBACKUI_BADLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[30] = { ["index"] = FEEDBACKUI_STRBLACKROCKMOUNTAIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 18, ["text"] = "FEEDBACKUI_BLACKROCKMOUNTAIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[26] = { ["index"] = FEEDBACKUI_STRBLASTEDLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 19, ["text"] = "FEEDBACKUI_BLASTEDLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[25] = { ["index"] = FEEDBACKUI_STRBURNINGSTEPPES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 20, ["text"] = "FEEDBACKUI_BURNINGSTEPPES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[35] = { ["index"] = FEEDBACKUI_STRDEADWINDPASS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 21, ["text"] = "FEEDBACKUI_DEADWINDPASS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[20] = { ["index"] = FEEDBACKUI_STRDUNMOROGH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 22, ["text"] = "FEEDBACKUI_DUNMOROGH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[16] = { ["index"] = FEEDBACKUI_STRDUSKWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 23, ["text"] = "FEEDBACKUI_DUSKWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[38] = { ["index"] = FEEDBACKUI_STREPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 24, ["text"] = "FEEDBACKUI_EPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[15] = { ["index"] = FEEDBACKUI_STRELWYNN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 25, ["text"] = "FEEDBACKUI_ELWYNN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[13] = { ["index"] = FEEDBACKUI_STREVERSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 26, ["text"] = "FEEDBACKUI_EVERSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[37] = { ["index"] = FEEDBACKUI_STRGHOSTLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 27, ["text"] = "FEEDBACKUI_GHOSTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[24] = { ["index"] = FEEDBACKUI_STRHILLSBRAD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 28, ["text"] = "FEEDBACKUI_HILLSBRAD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[40] = { ["index"] = FEEDBACKUI_STRHINTERLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 29, ["text"] = "FEEDBACKUI_HINTERLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[22] = { ["index"] = FEEDBACKUI_STRIRONFORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 30, ["text"] = "FEEDBACKUI_IRONFORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[28] = { ["index"] = FEEDBACKUI_STRLOCHMODAN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 31, ["text"] = "FEEDBACKUI_LOCHMODAN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[31] = { ["index"] = FEEDBACKUI_STRREDRIDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 32, ["text"] = "FEEDBACKUI_REDRIDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[23] = { ["index"] = FEEDBACKUI_STRSEARINGGORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 33, ["text"] = "FEEDBACKUI_SEARINGGORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[17] = { ["index"] = FEEDBACKUI_STRSILVERMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 34, ["text"] = "FEEDBACKUI_SILVERMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[14] = { ["index"] = FEEDBACKUI_STRSILVERPINE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 35, ["text"] = "FEEDBACKUI_SILVERPINE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[43] = { ["index"] = FEEDBACKUI_STRSTORMWIND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 36, ["text"] = "FEEDBACKUI_STORMWIND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[42] = { ["index"] = FEEDBACKUI_STRSTRANGLETHORN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 37, ["text"] = "FEEDBACKUI_STRANGLETHORN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[33] = { ["index"] = FEEDBACKUI_STRSWAMPOFSORROWS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 38, ["text"] = "FEEDBACKUI_SWAMPOFSORROWS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[18] = { ["index"] = FEEDBACKUI_STRTIRISFAL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 39, ["text"] = "FEEDBACKUI_TIRISFAL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[21] = { ["index"] = FEEDBACKUI_STRUNDERCITY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 40, ["text"] = "FEEDBACKUI_UNDERCITY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[39] = { ["index"] = FEEDBACKUI_STRWPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 41, ["text"] = "FEEDBACKUI_WPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[34] = { ["index"] = FEEDBACKUI_STRWESTFALL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 42, ["text"] = "FEEDBACKUI_WESTFALL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[29] = { ["index"] = FEEDBACKUI_STRWETLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 43, ["text"] = "FEEDBACKUI_WETLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[44] = { ["index"] = FEEDBACKUI_STRKALIMDOR, ["summary"] = { ["type"] = "where", ["value"] = 44, ["text"] = "FEEDBACKUI_KALIMDOR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[69] = { ["index"] = FEEDBACKUI_STRASHENVALE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 45, ["text"] = "FEEDBACKUI_ASHENVALE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[45] = { ["index"] = FEEDBACKUI_STRAZSHARA, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 46, ["text"] = "FEEDBACKUI_AZSHARA" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[58] = { ["index"] = FEEDBACKUI_STRAZUREMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 47, ["text"] = "FEEDBACKUI_AZUREMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[61] = { ["index"] = FEEDBACKUI_STRBARRENS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 48, ["text"] = "FEEDBACKUI_BARRENS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[59] = { ["index"] = FEEDBACKUI_STRBLOODMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 49, ["text"] = "FEEDBACKUI_BLOODMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[48] = { ["index"] = FEEDBACKUI_STRDARKSHORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 50, ["text"] = "FEEDBACKUI_DARKSHORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[51] = { ["index"] = FEEDBACKUI_STRDARNASSUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 51, ["text"] = "FEEDBACKUI_DARNASSUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[52] = { ["index"] = FEEDBACKUI_STRDESOLACE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 52, ["text"] = "FEEDBACKUI_DESOLACE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[53] = { ["index"] = FEEDBACKUI_STRDUROTAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 53, ["text"] = "FEEDBACKUI_DUROTAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[62] = { ["index"] = FEEDBACKUI_STRDUSTWALLOW, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 54, ["text"] = "FEEDBACKUI_DUSTWALLOW" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[54] = { ["index"] = FEEDBACKUI_STREXODAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 55, ["text"] = "FEEDBACKUI_EXODAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[56] = { ["index"] = FEEDBACKUI_STRFELWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 56, ["text"] = "FEEDBACKUI_FELWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[55] = { ["index"] = FEEDBACKUI_STRFERALAS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 57, ["text"] = "FEEDBACKUI_FERALAS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[47] = { ["index"] = FEEDBACKUI_STRMOONGLADE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 58, ["text"] = "FEEDBACKUI_MOONGLADE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[63] = { ["index"] = FEEDBACKUI_STRMULGORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 59, ["text"] = "FEEDBACKUI_MULGORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[64] = { ["index"] = FEEDBACKUI_STRORGRIMMAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 60, ["text"] = "FEEDBACKUI_ORGRIMMAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[66] = { ["index"] = FEEDBACKUI_STRSILITHUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 61, ["text"] = "FEEDBACKUI_SILITHUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[65] = { ["index"] = FEEDBACKUI_STRSTONETALON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 62, ["text"] = "FEEDBACKUI_STONETALON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[67] = { ["index"] = FEEDBACKUI_STRTANARIS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 63, ["text"] = "FEEDBACKUI_TANARIS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[68] = { ["index"] = FEEDBACKUI_STRTELDRASSIL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 64, ["text"] = "FEEDBACKUI_TELDRASSIL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[46] = { ["index"] = FEEDBACKUI_STRTHUNDERBLUFF, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 65, ["text"] = "FEEDBACKUI_THUNDERBLUFF" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[60] = { ["index"] = FEEDBACKUI_STRTHOUSANDNEEDLES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 66, ["text"] = "FEEDBACKUI_THOUSANDNEEDLES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[49] = { ["index"] = FEEDBACKUI_STRUNGORO, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 67, ["text"] = "FEEDBACKUI_UNGORO" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[57] = { ["index"] = FEEDBACKUI_STRWARSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 68, ["text"] = "FEEDBACKUI_WARSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[50] = { ["index"] = FEEDBACKUI_STRWINTERSPRING, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 69, ["text"] = "FEEDBACKUI_WINTERSPRING" }, ["link"] = "FEEDBACKUI_WHOTABLE" } }
 
 else
 --English strings for FEEDBACKUI.
@@ -1971,27 +2617,23 @@ Thank you for helping us to improve World of Warcraft!]]
 
 --Tooltips & Buttons
 BUG_BUTTON="Submit Feedback"
-NEWBIE_TOOLTIP_BUG="Send us feedback about a bug or suggestion you have in order to help improve World of Warcraft."
 FEEDBACKUIBACK_TEXT = "Back a Step"
 FEEDBACKUIRESET_TEXT = "Reset Form"
-FEEDBACKUISUBMIT_TEXT = "Submit!"
-FEEDBACKUISTART_TEXT = "Start!"
+FEEDBACKUISUBMIT_TEXT = "Submit"
+FEEDBACKUISTART_TEXT = "Start"
 
 --Tables and strings for navigation.
-FEEDBACKUI_WELCOMETABLEBUGHEADER = FEEDBACKUI_WHITE .. "Report a bug" .. FEEDBACKUI_WHITE
-FEEDBACKUI_WELCOMETABLEBUGSUBTEXT = "Bug submissions help fix game errors"
-FEEDBACKUI_WELCOMETABLESUGGESTHEADER = FEEDBACKUI_WHITE .. "Make a suggestion" .. FEEDBACKUI_WHITE
-FEEDBACKUI_WELCOMETABLESUGGESTSUBTEXT = "Suggestions help us improve game design"
+FEEDBACKUI_WELCOMETABLEBUGHEADER = "Report a bug"
+FEEDBACKUI_WELCOMETABLEBUGSUBTEXT = "Bug submissions help fix game errors."
+FEEDBACKUI_WELCOMETABLESUGGESTHEADER = "Make a suggestion"
+FEEDBACKUI_WELCOMETABLESUGGESTSUBTEXT = "Suggestions help us improve game design."
 FEEDBACKUI_WELCOMETABLESUBTEXT = "Thanks for your feedback!"
 
-FEEDBACKUI_WELCOME = [[
 
-Thank you for offering feedback on World of Warcraft. Each and every submission we receive plays an important role in determining the quality of World of Warcraft.
-
-Please fill out this short questionnaire so that we may efficiently process the huge amount of feedback we receive.
-
-Thank You,
-Blizzard Entertainment]]
+FEEDBACKUI_WELCOME = "\nThank you for offering feedback on World of Warcraft. Each and every submission we receive plays an important role in determining the quality of World of Warcraft.\n\nPlease fill out this short questionnaire so that we may efficiently process the huge amount of feedback we receive.\n\nThank You,\nBlizzard Entertainment";
+-- FEEDBACKUI_SPECIFICBUG = "Report a bug that affects " .. NORMAL_FONT_COLOR_CODE .. "%s" .. HIGHLIGHT_FONT_COLOR_CODE .. "."
+-- FEEDBACKUI_SPECIFICSUGGESTION = "Make a suggestion regarding " .. NORMAL_FONT_COLOR_CODE .. "%s" .. HIGHLIGHT_FONT_COLOR_CODE .. "."
+-- FEEDBACKUI_SPECIFICSURVEY = "Take a survey about " .. NORMAL_FONT_COLOR_CODE .. "%s" .. HIGHLIGHT_FONT_COLOR_CODE .. "."
 							
 FEEDBACKUI_WHOTABLEHEADER = FEEDBACKUI_WHITE .. "Who" .. FEEDBACKUI_WHITE
 FEEDBACKUI_WHOTABLESUBTEXT = "What does this issue affect?"
@@ -2065,6 +2707,7 @@ FEEDBACKUI_STRSILVERMOON = "- This occurs in Silvermoon City."
 FEEDBACKUI_STRSILVERPINE = "- This occurs in Silverpine Forest."
 FEEDBACKUI_STRSTORMWIND = "- This occurs in Stormwind."
 FEEDBACKUI_STRSTRANGLETHORN = "- This occurs in Stranglethorn Vale."
+FEEDBACKUI_STRSWAMPOFSORROWS = "- This occurs in Swamp of Sorrows."
 FEEDBACKUI_STRTIRISFAL = "- This occurs in Tirisfal Glades."
 FEEDBACKUI_STRUNDERCITY = "- This occurs in Undercity."
 FEEDBACKUI_STRWPLAGUELANDS = "- This occurs in Western Plaguelands."
@@ -2102,8 +2745,9 @@ FEEDBACKUI_EVERYWHERE = "Everywhere in-game"
 FEEDBACKUI_EKINGDOMS = "Eastern Kingdoms"
 FEEDBACKUI_KALIMDOR = "Kalimdor"
 FEEDBACKUI_OUTLANDS = "Outlands"
+FEEDBACKUI_AZEROTH = "Azeroth"
 
-FEEDBACKUI_BLADESEDGE = "Outlands - Blades Edge Mtns"
+FEEDBACKUI_BLADESEDGE = "Outlands - Blade's Edge Mountains"
 FEEDBACKUI_HELLFIRE = "Outlands - Hellfire Peninsula"
 FEEDBACKUI_NAGRAND = "Outlands - Nagrand"
 FEEDBACKUI_NETHERSTORM = "Outlands - Netherstorm"
@@ -2128,7 +2772,7 @@ FEEDBACKUI_EPLAGUELANDS = "Eastern Kingdoms - Eastern Plaguelands";
 FEEDBACKUI_ELWYNN = "Eastern Kingdoms - Elwynn Forest";
 FEEDBACKUI_EVERSONG = "Eastern Kingdoms - Eversong Woods";
 FEEDBACKUI_GHOSTLANDS = "Eastern Kingdoms - Ghostlands";
-FEEDBACKUI_HILLSBRAD = "Eastern Kingdoms - Hillsbrad";
+FEEDBACKUI_HILLSBRAD = "Eastern Kingdoms - Hillsbrad Foothills";
 FEEDBACKUI_HINTERLANDS = "Eastern Kingdoms - The Hinterlands";
 FEEDBACKUI_IRONFORGE = "Eastern Kingdoms - Ironforge";
 FEEDBACKUI_LOCHMODAN = "Eastern Kingdoms - Loch Modan";
@@ -2138,6 +2782,7 @@ FEEDBACKUI_SILVERMOON = "Eastern Kingdoms - Silvermoon City";
 FEEDBACKUI_SILVERPINE = "Eastern Kingdoms - Silverpine Forest";
 FEEDBACKUI_STORMWIND = "Eastern Kingdoms - Stormwind";
 FEEDBACKUI_STRANGLETHORN = "Eastern Kingdoms - Stranglethorn Vale";
+FEEDBACKUI_SWAMPOFSORROWS = "Eastern Kingdoms - Swamp of Sorrows";
 FEEDBACKUI_TIRISFAL = "Eastern Kingdoms - Tirisfal Glades";
 FEEDBACKUI_UNDERCITY = "Eastern Kingdoms - Undercity";
 FEEDBACKUI_WPLAGUELANDS = "Eastern Kingdoms - Western Plaguelands";
@@ -2177,7 +2822,6 @@ FEEDBACKUI_STRREPRODUCABLE = "This occurs all the time."
 FEEDBACKUI_STRSOMETIMES = "This occurs occasionally."
 FEEDBACKUI_STRRARELY = "This occurs rarely."
 FEEDBACKUI_STRONETIME = "This only happened once."
-
 								
 FEEDBACKUI_REPRODUCABLE = "Always"
 FEEDBACKUI_SOMETIMES = "Occasionally"
@@ -2238,14 +2882,15 @@ FEEDBACKUI_CRASHSOFTLOCK = "Issue Causes WoW to Freeze"
 FEEDBACKUI_CRASHHARDLOCK = "Issue Causes Computer to Freeze"
 FEEDBACKUI_CRASHWOWLAG = "Issue Causes WoW to Lag"
 FEEDBACKUI_CRASHOTHER = "General Stability Issue"
-
                             
 FEEDBACKUILBLFRMCLARITY_TEXT = "Clarity:"
 FEEDBACKUILBLFRMDIFFICULTY_TEXT = "Difficulty:"
 FEEDBACKUILBLFRMREWARD_TEXT = "Reward:"
 FEEDBACKUILBLFRMFUN_TEXT = "Fun:"
 FEEDBACKUISURVEYTYPE_QUEST = "Quest"
-FEEDBACKUISURVEYTYPE_INSTANCE = "Instance"
+FEEDBACKUISURVEYTYPE_AREA = "Area"
+FEEDBACKUISURVEYTYPE_ITEM = "Item"
+FEEDBACKUISURVEYTYPE_MOB = "Mob"
 
 FEEDBACKUISKIP_TEXT = "Skip Survey"
 FEEDBACKUILBLSURVEYALERTSCHECK_TEXT = "Show Alerts"
@@ -2256,8 +2901,10 @@ FEEDBACKUI_SURVEYCOLUMNNAME = "Name"
 FEEDBACKUI_SURVEYCOLUMNMODIFIED = "Experienced"
 
 FEEDBACKUI_ALLHEADERTEXT = "All"
-FEEDBACKUI_INSTANCEHEADERTEXT = "Instances"
+FEEDBACKUI_AREAHEADERTEXT = "Areas"
 FEEDBACKUI_QUESTHEADERTEXT = "Quests"
+FEEDBACKUI_ITEMHEADERTEXT = "Items"
+FEEDBACKUI_MOBHEADERTEXT = "Mobs"
 
 FEEDBACKUI_STATUSALLTEXT = "All"
 FEEDBACKUI_STATUSAVAILABLETEXT = "Available"
@@ -2265,7 +2912,7 @@ FEEDBACKUI_STATUSSKIPPEDTEXT = "Skipped"
 FEEDBACKUI_STATUSCOMPLETEDTEXT = "Completed"
 
 FEEDBACKUI_SURVEYTOOLTIPQUESTHEADER = "Quest name:"
-FEEDBACKUI_SURVEYTOOLTIPINSTANCEHEADER = "Instance name:"
+FEEDBACKUI_SURVEYTOOLTIPAREAHEADER = "Area name:"
 FEEDBACKUI_SURVEYTOOLTIPEXPERIENCEDHEADER = "Experienced:"
 FEEDBACKUI_SURVEYTOOLTIPQUESTOBJECTIVESHEADER = "Quest objectives:"
 
@@ -2294,8 +2941,8 @@ FEEDBACKUI_CLARITY4 = "Perfectly clear"
 
 FEEDBACKUI_QUESTSDIFFICULTYTABLEHEADER = "Difficulty"
 FEEDBACKUI_QUESTSDIFFICULTYTABLESUBTEXT = "How difficult was the Quest?"
-FEEDBACKUI_INSTANCESDIFFICULTYTABLEHEADER = "Difficulty"
-FEEDBACKUI_INSTANCESDIFFICULTYTABLESUBTEXT = "How difficult were the Instance's encounters?"
+FEEDBACKUI_AREASDIFFICULTYTABLEHEADER = "Difficulty"
+FEEDBACKUI_AREASDIFFICULTYTABLESUBTEXT = "How difficult were the Area's encounters?"
 
 FEEDBACKUI_STRDIFFICULTY1 = "Easy"
 FEEDBACKUI_STRDIFFICULTY2 = "Manageable"
@@ -2309,8 +2956,8 @@ FEEDBACKUI_DIFFICULTY4 = "Hard"
 
 FEEDBACKUI_QUESTSREWARDTABLEHEADER = "Reward"
 FEEDBACKUI_QUESTSREWARDTABLESUBTEXT = "How would you rate the Quest's reward?"
-FEEDBACKUI_INSTANCESREWARDTABLEHEADER = "Reward"
-FEEDBACKUI_INSTANCESREWARDTABLESUBTEXT = "How would you rate the Instance's rewards?"
+FEEDBACKUI_AREASREWARDTABLEHEADER = "Reward"
+FEEDBACKUI_AREASREWARDTABLESUBTEXT = "How would you rate the Area's rewards?"
 
 FEEDBACKUI_STRREWARD1 = "Awful"
 FEEDBACKUI_STRREWARD2 = "Bad"
@@ -2324,8 +2971,8 @@ FEEDBACKUI_REWARD4 = "Awesome"
 
 FEEDBACKUI_QUESTSFUNTABLEHEADER = "Fun"
 FEEDBACKUI_QUESTSFUNTABLESUBTEXT = "How fun was the Quest?"
-FEEDBACKUI_INSTANCESFUNTABLEHEADER = "Fun"
-FEEDBACKUI_INSTANCESFUNTABLESUBTEXT = "How fun was the Instance?"
+FEEDBACKUI_AREASFUNTABLEHEADER = "Fun"
+FEEDBACKUI_AREASFUNTABLESUBTEXT = "How fun was the Area?"
 
 FEEDBACKUI_STRFUN1 = "Not fun at all"
 FEEDBACKUI_STRFUN2 = "Not very fun"
@@ -2339,204 +2986,506 @@ FEEDBACKUI_FUN4 = "A lot of fun"
 
 FEEDBACKUISURVEYFRMINPUTBOX_TEXT = "<Type any other feedback you have here>"
 FEEDBACKUI_SURVEYINPUTHEADER = "Please add any additional feedback"
-FEEDBACKUIRESUBMIT_TEXT = "Resubmit!"
+FEEDBACKUI_SURVEYINPUTSUBTEXT = "Click here to see some feedback examples"
+FEEDBACKUIRESUBMIT_TEXT = "Resubmit"
 
-FEEDBACKUI_SURVEYNEWBIETEXT = "Click here to complete a survey about an instance or quest you have recently completed."
+FEEDBACKUI_SURVEYNEWBIETEXT = "Click here to complete a survey about this experience."
 
+FEEDBACKUI_WELCOMETABLESURVEYHEADER = "Please select a survey"
+
+FEEDBACKUI_SPECIFICWELCOME = "Thank you for offering feedback on World of Warcraft. You've chosen to give feedback on:\n\n\n\n\nPlease choose one of the following feedback options to continue:";
+FEEDBACKUI_GENERALWELCOME = "Thank you for offering feedback on World of Warcraft. Each and every submission we receive plays an important role in determining the quality of World of Warcraft.\n\nPlease choose one of the following feedback options to continue:";
+
+FEEDBACKUI_STARTBUG = "Report Bug"
+FEEDBACKUI_STARTSURVEY = "Start Survey"
+FEEDBACKUI_STARTSUGGESTION = "Make Suggestion"
+
+FEEDBACKUI_WELCOMEBUGHEADER = "Bug"
+FEEDBACKUI_WELCOMESUGGESTHEADER = "Suggestion"
+FEEDBACKUI_WELCOMESURVEYHEADER = "Survey"
+
+FEEDBACKUI_WELCOMEBUGTEXT = "A bug tells us about an error you have found in the game." 
+FEEDBACKUI_WELCOMESUGGESTTEXT = "A suggestion tells us how you would like to see the game improved."
+FEEDBACKUI_WELCOMESURVEYTEXT = "A survey allows you to give us feedback about a specific part of the game."
+FEEDBACKUI_WELCOMESURVEYDISABLED = "There are no surveys available for this object at this time."
+
+FEEDBACKUI_MODIFIERKEY = "Binding:"
+FEEDBACKUI_MOUSE1 = "Left Click"
+FEEDBACKUI_MOUSE2 = "Right Click"
+
+FEEDBACKUI_LALT = "LAlt"
+FEEDBACKUI_RALT = "RAlt"
+FEEDBACKUI_LCTRL = "LCtrl"
+FEEDBACKUI_RCTRL = "RCtrl"
+FEEDBACKUI_LSHIFT = "LShift"
+FEEDBACKUI_RSHIFT = "RShift"
+
+FEEDBACKUI_TOOLTIP_MESSAGE = "<%s+%s for Feedback>";
+FEEDBACKUI_MAP_MESSAGE = "%s+%s On Map For Feedback";
+FEEDBACKUI_ITEMTARGETS = { "Armor", "Consumable", "Container", "Projectile", "Quiver", "Weapon", "Recipe", "Gem" };
+FEEDBACKUI_MISCTYPE = "Miscellaneous";
+FEEDBACKUISHOWCUES_TEXT = "Show Tooltip Cues";
+
+FEEDBACKUI_CATEGORYLABEL = "Type:"
+FEEDBACKUI_STATUSLABEL = "Status:"
+FEEDBACKUI_MODIFIERKEY = "Binding:"
+
+NEWBIE_TOOLTIP_BUG="Help improve World of Warcraft by submitting a bug or suggestion, or by taking a survey.\n\n" .. FEEDBACKUI_BLUE .. "Left Click to start\nRight Click for display options\nRight Click and drag to move";
+FEEDBACKUILBLAPPEARANCE_TEXT = "Appearance:"
+FEEDBACKUILBLUTILITY_TEXT = "Usefulness:"
+
+
+FEEDBACKUI_MOBSDIFFICULTYTABLEHEADER = "Difficulty"                                      
+FEEDBACKUI_MOBSDIFFICULTYTABLESUBTEXT = "How difficult is this mob to defeat?"
+FEEDBACKUI_MOBSREWARDTABLEHEADER = "Reward"
+FEEDBACKUI_MOBSREWARDTABLESUBTEXT = "How would you rate the Mob's rewards?"
+FEEDBACKUI_MOBSFUNTABLEHEADER = "Fun"
+FEEDBACKUI_MOBSFUNTABLESUBTEXT = "How fun are encounters with this Mob?"
+FEEDBACKUI_MOBSAPPEARANCETABLEHEADER = "Appearance"
+FEEDBACKUI_MOBSAPPEARANCETABLESUBTEXT = "How would you rate this Mob's appearance?"
+
+FEEDBACKUI_ITEMSDIFFICULTYTABLEHEADER = "Difficulty"
+FEEDBACKUI_ITEMSDIFFICULTYTABLESUBTEXT = "How difficult is this Item to acquire?"
+FEEDBACKUI_ITEMSUTILITYHEADER = "Utility"
+FEEDBACKUI_ITEMSUTILITYSUBTEXT = "How useful is this Item in general?"
+FEEDBACKUI_ITEMSAPPEARANCETABLEHEADER = "Appearance"
+FEEDBACKUI_ITEMSAPPEARANCETABLESUBTEXT = "How would you rate the art for this Item?"
+
+FEEDBACKUI_STRUTILITY1 = "Quite Useless"
+FEEDBACKUI_STRUTILITY2 = "Somewhat Useless"
+FEEDBACKUI_STRUTILITY3 = "Useful"
+FEEDBACKUI_STRUTILITY4 = "Quite Useful"
+
+FEEDBACKUI_UTILITY1 = "Quite Useless"
+FEEDBACKUI_UTILITY2 = "Somewhat Useless"
+FEEDBACKUI_UTILITY3 = "Useful"
+FEEDBACKUI_UTILITY4 = "Quite Useful"
+
+FEEDBACKUI_STRAPPEARANCE1 = "Ugly"
+FEEDBACKUI_STRAPPEARANCE2 = "Below Average"
+FEEDBACKUI_STRAPPEARANCE3 = "Above Average"
+FEEDBACKUI_STRAPPEARANCE4 = "Beautiful"
+
+FEEDBACKUI_APPEARANCE1 = "Ugly"
+FEEDBACKUI_APPEARANCE2 = "Below Average"
+FEEDBACKUI_APPEARANCE3 = "Above Average"
+FEEDBACKUI_APPEARANCE4 = "Beautiful"
+
+FEEDBACKUI_POIUNDERCITY = "Undercity";
+FEEDBACKUI_POISILVERMOON = "Silvermoon City";
+FEEDBACKUI_POIIRONFORGE = "Ironforge";
+FEEDBACKUI_POISTORMWIND = "Stormwind City";
+FEEDBACKUI_POISEPULCHER = "The Sepulcher";
+FEEDBACKUI_POITARRENMILL = "Tarren Mill";
+FEEDBACKUI_POISOUTHSHORE = "Southshore";
+FEEDBACKUI_POIAERIEPEAK = "Aerie Peak";
+FEEDBACKUI_POIREVANTUSK = "Revantusk Village";
+FEEDBACKUI_POIHAMMERFALL = "Hammerfall";
+FEEDBACKUI_POIMENETHIL = "Menethil Harbor";
+FEEDBACKUI_POITHELSAMAR = "Thelsamar";
+FEEDBACKUI_POIKARGATH = "Kargath";
+FEEDBACKUI_POILAKESHIRE = "Lakeshire";
+FEEDBACKUI_POISENTINELHILL = "Sentinel Hill";
+FEEDBACKUI_POIDARKSHIRE = "Darkshire";
+FEEDBACKUI_POISTONARD = "Stonard";
+FEEDBACKUI_POIGROMGOL = "Grom'gol Base Camp";
+FEEDBACKUI_POIBOOTY = "Booty Bay"
+
+FEEDBACKUI_POIDARNASSUS = "Darnassus";
+FEEDBACKUI_POIEXODAR = "The Exodar";
+FEEDBACKUI_POIORGRIMMAR = "Orgrimmar";
+FEEDBACKUI_POITHUNDERB = "Thunder Bluff";
+FEEDBACKUI_POIAUBERDINE = "Auberdine";
+FEEDBACKUI_POIEVERLOOK = "Everlook";
+FEEDBACKUI_POISTONETALON = "Stonetalon Peak";
+FEEDBACKUI_POIASTRANAAR = "Astranaar";
+FEEDBACKUI_POISPLINTERTREE = "Splintertree Post";
+FEEDBACKUI_POISUNROCK = "Sun Rock Retreat";
+FEEDBACKUI_POINIJELS = "Nijel's Point";
+FEEDBACKUI_POISHADOWPREY = "Shadowprey Village";
+FEEDBACKUI_POIFEATHERMOON = "Feathermoon Stronghold";
+FEEDBACKUI_POIMOJACHE = "Camp Mojache";
+FEEDBACKUI_POITHALANAAR = "Thalanaar";
+FEEDBACKUI_POICENARIONHOLD = "Cenarion Hold";
+FEEDBACKUI_POIGADGET = "Gadgetzan";
+FEEDBACKUI_POIFREEWIND = "Freewind Post";
+FEEDBACKUI_POITAURAJO = "Camp Taurajo";
+FEEDBACKUI_POICROSSROADS = "The Crossroads";
+FEEDBACKUI_POIRATCHET = "Ratchet";
+FEEDBACKUI_POITHERAMORE = "Theramore Isle";
+
+FEEDBACKUI_POIMASK = ".-%s%-%s(.+)"
+
+FEEDBACKUI_LEVELPREFIX = "Lvl" 
+FEEDBACKUI_SURVEYTOOLTIPMOBHEADER = "Mob Name:"
+FEEDBACKUI_SURVEYTOOLTIPMOBZONEHEADER = "Found in:"
+
+FEEDBACKUI_BLACKTEMPLE = "Black Temple";
+FEEDBACKUI_ZULAMAN = "Zul'Aman";
+FEEDBACKUI_SUNWELLPLATEAU = "Sunwell Plateau"
+FEEDBACKUI_MAGISTERSTERRACE = "Magisters' Terrace"
+
+FEEDBACKUI_VOICECHATTOOLTIP = FEEDBACKUI_WHITE .. "Integrated Voice Chat";
+FEEDBACKUI_VOICECHAT = "Voice Chat";
+FEEDBACKUI_STRVOICECHAT = "This is a voice chat issue.";
+FEEDBACKUI_STRUSBHEADSET = "I am using a USB headset.";
+FEEDBACKUI_STRANALOGHEADSET = "I am using an Analog headset.";
+FEEDBACKUI_HEADSETTYPE = "What type of headset are you using?";
 end
+
+FEEDBACKUI_VOICECHATTYPETABLE = { [1] = { ["index"] = FEEDBACKUI_STRUSBHEADSET, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_VOICECHAT", ["value"] = 23 }, ["link"] = "FEEDBACKUI_WHENTABLE" }, 
+                                [2] = { ["index"] = FEEDBACKUI_STRANALOGHEADSET, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_VOICECHAT", ["value"] = 24 }, ["link"] = "FEEDBACKUI_WHENTABLE" }, 
+                                ["header"] = "",
+                                ["subtext"] = FEEDBACKUI_HEADSETTYPE }
 
 if ( not FEEDBACKUI_AREATABLE ) then
 
-FEEDBACKUI_AREATABLE = {[1] = { ["index"] = FEEDBACKUI_STREVERYWHERE, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EVERYWHERE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[2] = { ["index"] = FEEDBACKUI_STROUTLANDS, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_OUTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[3] = { ["index"] = FEEDBACKUI_STRBLADESEDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLADESEDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[4] = { ["index"] = FEEDBACKUI_STRHELLFIRE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HELLFIRE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[5] = { ["index"] = FEEDBACKUI_STRNAGRAND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_NAGRAND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[6] = { ["index"] = FEEDBACKUI_STRNETHERSTORM, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_NETHERSTORM" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[7] = { ["index"] = FEEDBACKUI_STRSHADOWMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SHADOWMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[8] = { ["index"] = FEEDBACKUI_STRSHATTRATH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SHATTRATH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[9] = { ["index"] = FEEDBACKUI_STRTERROKAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TERROKAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[10] = { ["index"] = FEEDBACKUI_STRTWISTINGNETHER, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TWISTINGNETHER" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[11] = { ["index"] = FEEDBACKUI_STRZANGARMARSH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ZANGARMARSH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[12] = { ["index"] = FEEDBACKUI_STREKINGDOMS, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EKINGDOMS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[13] = { ["index"] = FEEDBACKUI_STRALTERACMOUNTAINS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ALTERACMOUNTAINS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[14] = { ["index"] = FEEDBACKUI_STRALTERACVALLEY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ALTERACVALLEY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[15] = { ["index"] = FEEDBACKUI_STRARATHIBASIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ARATHIBASIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[16] = { ["index"] = FEEDBACKUI_STRARATHIHIGHLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ARATHIHIGHLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[17] = { ["index"] = FEEDBACKUI_STRBADLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BADLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[18] = { ["index"] = FEEDBACKUI_STRBLACKROCKMOUNTAIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLACKROCKMOUNTAIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[19] = { ["index"] = FEEDBACKUI_STRBLASTEDLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLASTEDLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[20] = { ["index"] = FEEDBACKUI_STRBURNINGSTEPPES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BURNINGSTEPPES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[21] = { ["index"] = FEEDBACKUI_STRDEADWINDPASS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DEADWINDPASS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[22] = { ["index"] = FEEDBACKUI_STRDUNMOROGH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUNMOROGH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[23] = { ["index"] = FEEDBACKUI_STRDUSKWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUSKWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[24] = { ["index"] = FEEDBACKUI_STREPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[25] = { ["index"] = FEEDBACKUI_STRELWYNN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ELWYNN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[26] = { ["index"] = FEEDBACKUI_STREVERSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EVERSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[27] = { ["index"] = FEEDBACKUI_STRGHOSTLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_GHOSTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[28] = { ["index"] = FEEDBACKUI_STRHILLSBRAD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HILLSBRAD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[29] = { ["index"] = FEEDBACKUI_STRHINTERLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_HINTERLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[30] = { ["index"] = FEEDBACKUI_STRIRONFORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_IRONFORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[31] = { ["index"] = FEEDBACKUI_STRLOCHMODAN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_LOCHMODAN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[32] = { ["index"] = FEEDBACKUI_STRREDRIDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_REDRIDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[33] = { ["index"] = FEEDBACKUI_STRSEARINGGORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SEARINGGORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[34] = { ["index"] = FEEDBACKUI_STRSILVERMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILVERMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[35] = { ["index"] = FEEDBACKUI_STRSILVERPINE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILVERPINE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[36] = { ["index"] = FEEDBACKUI_STRSTORMWIND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STORMWIND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[37] = { ["index"] = FEEDBACKUI_STRSTRANGLETHORN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STRANGLETHORN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[38] = { ["index"] = FEEDBACKUI_STRTIRISFAL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TIRISFAL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[39] = { ["index"] = FEEDBACKUI_STRUNDERCITY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_UNDERCITY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[40] = { ["index"] = FEEDBACKUI_STRWPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[41] = { ["index"] = FEEDBACKUI_STRWESTFALL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WESTFALL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[42] = { ["index"] = FEEDBACKUI_STRWETLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WETLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-						[43] = { ["index"] = FEEDBACKUI_STRKALIMDOR, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_KALIMDOR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[44] = { ["index"] = FEEDBACKUI_STRASHENVALE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ASHENVALE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[45] = { ["index"] = FEEDBACKUI_STRAZSHARA, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_AZSHARA" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[46] = { ["index"] = FEEDBACKUI_STRAZUREMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_AZUREMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[47] = { ["index"] = FEEDBACKUI_STRBARRENS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BARRENS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[48] = { ["index"] = FEEDBACKUI_STRBLOODMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_BLOODMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[49] = { ["index"] = FEEDBACKUI_STRDARKSHORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DARKSHORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[50] = { ["index"] = FEEDBACKUI_STRDARNASSUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DARNASSUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[51] = { ["index"] = FEEDBACKUI_STRDESOLACE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DESOLACE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[52] = { ["index"] = FEEDBACKUI_STRDUROTAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUROTAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[53] = { ["index"] = FEEDBACKUI_STRDUSTWALLOW, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_DUSTWALLOW" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[54] = { ["index"] = FEEDBACKUI_STREXODAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_EXODAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[55] = { ["index"] = FEEDBACKUI_STRFELWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_FELWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[56] = { ["index"] = FEEDBACKUI_STRFERALAS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_FERALAS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[57] = { ["index"] = FEEDBACKUI_STRMOONGLADE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_MOONGLADE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[58] = { ["index"] = FEEDBACKUI_STRMULGORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_MULGORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[59] = { ["index"] = FEEDBACKUI_STRORGRIMMAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_ORGRIMMAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[60] = { ["index"] = FEEDBACKUI_STRSILITHUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_SILITHUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[61] = { ["index"] = FEEDBACKUI_STRSTONETALON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_STONETALON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[62] = { ["index"] = FEEDBACKUI_STRTANARIS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TANARIS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[63] = { ["index"] = FEEDBACKUI_STRTELDRASSIL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_TELDRASSIL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[64] = { ["index"] = FEEDBACKUI_STRTHUNDERBLUFF, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_THUNDERBLUFF" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[65] = { ["index"] = FEEDBACKUI_STRTHOUSANDNEEDLES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_THOUSANDNEEDLES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[66] = { ["index"] = FEEDBACKUI_STRUNGORO, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_UNGORO" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[67] = { ["index"] = FEEDBACKUI_STRWARSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WARSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
-							[68] = { ["index"] = FEEDBACKUI_STRWINTERSPRING, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WINTERSPRING" }, ["link"] = "FEEDBACKUI_WHOTABLE" } }
+FEEDBACKUI_AREATABLE = {[1] = { ["index"] = FEEDBACKUI_STREVERYWHERE, ["summary"] = { ["type"] = "where", ["value"] = 1, ["text"] = "FEEDBACKUI_EVERYWHERE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[2] = { ["index"] = FEEDBACKUI_STROUTLANDS, ["summary"] = { ["type"] = "where", ["value"] = 2, ["text"] = "FEEDBACKUI_OUTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[3] = { ["index"] = FEEDBACKUI_STRBLADESEDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 3, ["text"] = "FEEDBACKUI_BLADESEDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[4] = { ["index"] = FEEDBACKUI_STRHELLFIRE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 4, ["text"] = "FEEDBACKUI_HELLFIRE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[5] = { ["index"] = FEEDBACKUI_STRNAGRAND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 5, ["text"] = "FEEDBACKUI_NAGRAND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[6] = { ["index"] = FEEDBACKUI_STRNETHERSTORM, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 6, ["text"] = "FEEDBACKUI_NETHERSTORM" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[7] = { ["index"] = FEEDBACKUI_STRSHADOWMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 7, ["text"] = "FEEDBACKUI_SHADOWMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[8] = { ["index"] = FEEDBACKUI_STRSHATTRATH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 8, ["text"] = "FEEDBACKUI_SHATTRATH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[9] = { ["index"] = FEEDBACKUI_STRTERROKAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 9, ["text"] = "FEEDBACKUI_TERROKAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[10] = { ["index"] = FEEDBACKUI_STRTWISTINGNETHER, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 10, ["text"] = "FEEDBACKUI_TWISTINGNETHER" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[11] = { ["index"] = FEEDBACKUI_STRZANGARMARSH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 11, ["text"] = "FEEDBACKUI_ZANGARMARSH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[12] = { ["index"] = FEEDBACKUI_STREKINGDOMS, ["summary"] = { ["type"] = "where", ["value"] = 12, ["text"] = "FEEDBACKUI_EKINGDOMS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[13] = { ["index"] = FEEDBACKUI_STRALTERACMOUNTAINS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 13, ["text"] = "FEEDBACKUI_ALTERACMOUNTAINS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[14] = { ["index"] = FEEDBACKUI_STRALTERACVALLEY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 14, ["text"] = "FEEDBACKUI_ALTERACVALLEY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[15] = { ["index"] = FEEDBACKUI_STRARATHIBASIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 15, ["text"] = "FEEDBACKUI_ARATHIBASIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[16] = { ["index"] = FEEDBACKUI_STRARATHIHIGHLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 16, ["text"] = "FEEDBACKUI_ARATHIHIGHLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[17] = { ["index"] = FEEDBACKUI_STRBADLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 17, ["text"] = "FEEDBACKUI_BADLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[18] = { ["index"] = FEEDBACKUI_STRBLACKROCKMOUNTAIN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 18, ["text"] = "FEEDBACKUI_BLACKROCKMOUNTAIN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[19] = { ["index"] = FEEDBACKUI_STRBLASTEDLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 19, ["text"] = "FEEDBACKUI_BLASTEDLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[20] = { ["index"] = FEEDBACKUI_STRBURNINGSTEPPES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 20, ["text"] = "FEEDBACKUI_BURNINGSTEPPES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[21] = { ["index"] = FEEDBACKUI_STRDEADWINDPASS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 21, ["text"] = "FEEDBACKUI_DEADWINDPASS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[22] = { ["index"] = FEEDBACKUI_STRDUNMOROGH, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 22, ["text"] = "FEEDBACKUI_DUNMOROGH" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[23] = { ["index"] = FEEDBACKUI_STRDUSKWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 23, ["text"] = "FEEDBACKUI_DUSKWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[24] = { ["index"] = FEEDBACKUI_STREPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 24, ["text"] = "FEEDBACKUI_EPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[25] = { ["index"] = FEEDBACKUI_STRELWYNN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 25, ["text"] = "FEEDBACKUI_ELWYNN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[26] = { ["index"] = FEEDBACKUI_STREVERSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 26, ["text"] = "FEEDBACKUI_EVERSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[27] = { ["index"] = FEEDBACKUI_STRGHOSTLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 27, ["text"] = "FEEDBACKUI_GHOSTLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[28] = { ["index"] = FEEDBACKUI_STRHILLSBRAD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 28, ["text"] = "FEEDBACKUI_HILLSBRAD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[29] = { ["index"] = FEEDBACKUI_STRHINTERLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 29, ["text"] = "FEEDBACKUI_HINTERLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[30] = { ["index"] = FEEDBACKUI_STRIRONFORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 30, ["text"] = "FEEDBACKUI_IRONFORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[31] = { ["index"] = FEEDBACKUI_STRLOCHMODAN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 31, ["text"] = "FEEDBACKUI_LOCHMODAN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[32] = { ["index"] = FEEDBACKUI_STRREDRIDGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 32, ["text"] = "FEEDBACKUI_REDRIDGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[33] = { ["index"] = FEEDBACKUI_STRSEARINGGORGE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 33, ["text"] = "FEEDBACKUI_SEARINGGORGE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[34] = { ["index"] = FEEDBACKUI_STRSILVERMOON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 34, ["text"] = "FEEDBACKUI_SILVERMOON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[35] = { ["index"] = FEEDBACKUI_STRSILVERPINE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 35, ["text"] = "FEEDBACKUI_SILVERPINE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[36] = { ["index"] = FEEDBACKUI_STRSTORMWIND, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 36, ["text"] = "FEEDBACKUI_STORMWIND" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[37] = { ["index"] = FEEDBACKUI_STRSTRANGLETHORN, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 37, ["text"] = "FEEDBACKUI_STRANGLETHORN" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+                            [38] = { ["index"] = FEEDBACKUI_STRSWAMPOFSORROWS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 38, ["text"] = "FEEDBACKUI_SWAMPOFSORROWS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[39] = { ["index"] = FEEDBACKUI_STRTIRISFAL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 39, ["text"] = "FEEDBACKUI_TIRISFAL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[40] = { ["index"] = FEEDBACKUI_STRUNDERCITY, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 40, ["text"] = "FEEDBACKUI_UNDERCITY" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[41] = { ["index"] = FEEDBACKUI_STRWPLAGUELANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 41, ["text"] = "FEEDBACKUI_WPLAGUELANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[42] = { ["index"] = FEEDBACKUI_STRWESTFALL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 42, ["text"] = "FEEDBACKUI_WESTFALL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[43] = { ["index"] = FEEDBACKUI_STRWETLANDS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 43, ["text"] = "FEEDBACKUI_WETLANDS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+						[44] = { ["index"] = FEEDBACKUI_STRKALIMDOR, ["summary"] = { ["type"] = "where", ["value"] = 44, ["text"] = "FEEDBACKUI_KALIMDOR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[45] = { ["index"] = FEEDBACKUI_STRASHENVALE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 45, ["text"] = "FEEDBACKUI_ASHENVALE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[46] = { ["index"] = FEEDBACKUI_STRAZSHARA, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 46, ["text"] = "FEEDBACKUI_AZSHARA" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[47] = { ["index"] = FEEDBACKUI_STRAZUREMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 47, ["text"] = "FEEDBACKUI_AZUREMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[48] = { ["index"] = FEEDBACKUI_STRBARRENS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 48, ["text"] = "FEEDBACKUI_BARRENS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[49] = { ["index"] = FEEDBACKUI_STRBLOODMYST, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 49, ["text"] = "FEEDBACKUI_BLOODMYST" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[50] = { ["index"] = FEEDBACKUI_STRDARKSHORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 50, ["text"] = "FEEDBACKUI_DARKSHORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[51] = { ["index"] = FEEDBACKUI_STRDARNASSUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 51, ["text"] = "FEEDBACKUI_DARNASSUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[52] = { ["index"] = FEEDBACKUI_STRDESOLACE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 52, ["text"] = "FEEDBACKUI_DESOLACE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[53] = { ["index"] = FEEDBACKUI_STRDUROTAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 53, ["text"] = "FEEDBACKUI_DUROTAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[54] = { ["index"] = FEEDBACKUI_STRDUSTWALLOW, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 54, ["text"] = "FEEDBACKUI_DUSTWALLOW" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[55] = { ["index"] = FEEDBACKUI_STREXODAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 55, ["text"] = "FEEDBACKUI_EXODAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[56] = { ["index"] = FEEDBACKUI_STRFELWOOD, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 56, ["text"] = "FEEDBACKUI_FELWOOD" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[57] = { ["index"] = FEEDBACKUI_STRFERALAS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 57, ["text"] = "FEEDBACKUI_FERALAS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[58] = { ["index"] = FEEDBACKUI_STRMOONGLADE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 58, ["text"] = "FEEDBACKUI_MOONGLADE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[59] = { ["index"] = FEEDBACKUI_STRMULGORE, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 59, ["text"] = "FEEDBACKUI_MULGORE" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[60] = { ["index"] = FEEDBACKUI_STRORGRIMMAR, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 60, ["text"] = "FEEDBACKUI_ORGRIMMAR" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[61] = { ["index"] = FEEDBACKUI_STRSILITHUS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 61, ["text"] = "FEEDBACKUI_SILITHUS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[62] = { ["index"] = FEEDBACKUI_STRSTONETALON, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 62, ["text"] = "FEEDBACKUI_STONETALON" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[63] = { ["index"] = FEEDBACKUI_STRTANARIS, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 63, ["text"] = "FEEDBACKUI_TANARIS" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[64] = { ["index"] = FEEDBACKUI_STRTELDRASSIL, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 64, ["text"] = "FEEDBACKUI_TELDRASSIL" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[65] = { ["index"] = FEEDBACKUI_STRTHUNDERBLUFF, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 65, ["text"] = "FEEDBACKUI_THUNDERBLUFF" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[66] = { ["index"] = FEEDBACKUI_STRTHOUSANDNEEDLES, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 66, ["text"] = "FEEDBACKUI_THOUSANDNEEDLES" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[67] = { ["index"] = FEEDBACKUI_STRUNGORO, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 67, ["text"] = "FEEDBACKUI_UNGORO" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[68] = { ["index"] = FEEDBACKUI_STRWARSONG, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 68, ["text"] = "FEEDBACKUI_WARSONG" }, ["link"] = "FEEDBACKUI_WHOTABLE" },
+							[69] = { ["index"] = FEEDBACKUI_STRWINTERSPRING, ["offset"] = 1, ["summary"] = { ["type"] = "where", ["value"] = 69, ["text"] = "FEEDBACKUI_WINTERSPRING" }, ["link"] = "FEEDBACKUI_WHOTABLE" } }
 								
 end
 
-FEEDBACKUI_TYPETABLE = { [1] = { ["index"] = FEEDBACKUI_STRUIOTHER, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_UIOTHER" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[2] = { ["index"] = FEEDBACKUI_STRUIITEMS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_UIITEMS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[3] = { ["index"] = FEEDBACKUI_STRUISPAWNS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_UISPAWNS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[4] = { ["index"] = FEEDBACKUI_STRUIQUESTS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_UIQUESTS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[5] = { ["index"] = FEEDBACKUI_STRUISPELLS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_UISPELLS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[6] = { ["index"] = FEEDBACKUI_STRUITRADESKILLS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_UITRADESKILLS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-							[7] = { ["index"] = FEEDBACKUI_STRGRAPHICOTHER, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_GRAPHICOTHER" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[8] = { ["index"] = FEEDBACKUI_STRGRAPHICITEMS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_GRAPHICITEMS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[9] = { ["index"] = FEEDBACKUI_STRGRAPHICSPAWNS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_GRAPHICSPAWNS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[10] = { ["index"] = FEEDBACKUI_STRGRAPHICSPELLS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_GRAPHICSPELLS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[11] = { ["index"] = FEEDBACKUI_STRGRAPHICENVIRONMENT, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_GRAPHICENVIRONMENT" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-							[12] = { ["index"] = FEEDBACKUI_STRFUNCOTHER, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_FUNCOTHER" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[13] = { ["index"] = FEEDBACKUI_STRFUNCITEMS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_FUNCITEMS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[14] = { ["index"] = FEEDBACKUI_STRFUNCSPAWNS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_FUNCSPAWNS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[15] = { ["index"] = FEEDBACKUI_STRFUNCQUESTS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_FUNCQUESTS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[16] = { ["index"] = FEEDBACKUI_STRFUNCSPELLS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_FUNCSPELLS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[17] = { ["index"] = FEEDBACKUI_STRFUNCTRADESKILLS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_FUNCTRADESKILLS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },						 
-							[18] = { ["index"] = FEEDBACKUI_STRCRASHOTHER, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_CRASHOTHER" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[19] = { ["index"] = FEEDBACKUI_STRCRASHBUG, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_CRASHBUG" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[20] = { ["index"] = FEEDBACKUI_STRCRASHSOFTLOCK, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_CRASHSOFTLOCK" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[21] = { ["index"] = FEEDBACKUI_STRCRASHHARDLOCK, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_CRASHHARDLOCK" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-								[22] = { ["index"] = FEEDBACKUI_STRCRASHWOWLAG, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = "FEEDBACKUI_CRASHWOWLAG" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
-							["header"] = "",
-							["subtext"] = FEEDBACKUI_TYPETABLESUBTEXT}
+FEEDBACKUI_POITABLE = { { ["name"] = FEEDBACKUI_POIUNDERCITY, ["zone"] = FEEDBACKUI_EKINGDOMS },
+                        { ["name"] = FEEDBACKUI_POISILVERMOON, ["zone"] = FEEDBACKUI_EKINGDOMS },
+                        { ["name"] = FEEDBACKUI_POIIRONFORGE, ["zone"] = FEEDBACKUI_EKINGDOMS },
+                        { ["name"] = FEEDBACKUI_POISTORMWIND, ["zone"] = FEEDBACKUI_EKINGDOMS },
+                        { ["name"] = FEEDBACKUI_POISEPULCHER, ["zone"] = FEEDBACKUI_SILVERPINE },
+                        { ["name"] = FEEDBACKUI_POITARRENMILL, ["zone"] = FEEDBACKUI_HILLSBRAD },
+                        { ["name"] = FEEDBACKUI_POISOUTHSHORE, ["zone"] = FEEDBACKUI_HILLSBRAD },
+                        { ["name"] = FEEDBACKUI_POIAERIEPEAK, ["zone"] = FEEDBACKUI_HINTERLANDS },
+                        { ["name"] = FEEDBACKUI_POIREVANTUSK, ["zone"] = FEEDBACKUI_HINTERLANDS },
+                        { ["name"] = FEEDBACKUI_POIHAMMERFALL, ["zone"] = FEEDBACKUI_ARATHIHIGHLANDS },
+                        { ["name"] = FEEDBACKUI_POIMENETHIL, ["zone"] = FEEDBACKUI_WETLANDS },
+                        { ["name"] = FEEDBACKUI_POITHELSAMAR, ["zone"] = FEEDBACKUI_LOCHMODAN },
+                        { ["name"] = FEEDBACKUI_POIKARGATH, ["zone"] = FEEDBACKUI_BADLANDS },
+                        { ["name"] = FEEDBACKUI_POILAKESHIRE, ["zone"] = FEEDBACKUI_REDRIDGE },
+                        { ["name"] = FEEDBACKUI_POISENTINELHILL, ["zone"] = FEEDBACKUI_WESTFALL },
+                        { ["name"] = FEEDBACKUI_POIDARKSHIRE, ["zone"] = FEEDBACKUI_DUSKWOOD },
+                        { ["name"] = FEEDBACKUI_POISTONARD, ["zone"] = FEEDBACKUI_SWAMPOFSORROWS },
+                        { ["name"] = FEEDBACKUI_POIGROMGOL, ["zone"] = FEEDBACKUI_STRANGLETHORN },
+                        { ["name"] = FEEDBACKUI_POIBOOTY, ["zone"] = FEEDBACKUI_STRANGLETHORN },
+                        { ["name"] = FEEDBACKUI_POIDARNASSUS, ["zone"] = FEEDBACKUI_KALIMDOR },
+                        { ["name"] = FEEDBACKUI_POIEXODAR, ["zone"] = FEEDBACKUI_KALIMDOR },
+                        { ["name"] = FEEDBACKUI_POIORGRIMMAR, ["zone"] = FEEDBACKUI_KALIMDOR },
+                        { ["name"] = FEEDBACKUI_POITHUNDERB, ["zone"] = FEEDBACKUI_KALIMDOR },
+                        { ["name"] = FEEDBACKUI_POIAUBERDINE, ["zone"] = FEEDBACKUI_DARKSHORE },
+                        { ["name"] = FEEDBACKUI_POIEVERLOOK, ["zone"] = FEEDBACKUI_WINTERSPRING },
+                        { ["name"] = FEEDBACKUI_POISTONETALON, ["zone"] = FEEDBACKUI_STONETALON },
+                        { ["name"] = FEEDBACKUI_POIASTRANAAR, ["zone"] = FEEDBACKUI_ASHENVALE },
+                        { ["name"] = FEEDBACKUI_POISPLINTERTREE, ["zone"] = FEEDBACKUI_ASHENVALE },
+                        { ["name"] = FEEDBACKUI_POISUNROCK, ["zone"] = FEEDBACKUI_STONETALON },
+                        { ["name"] = FEEDBACKUI_POINIJELS, ["zone"] = FEEDBACKUI_DESOLACE },
+                        { ["name"] = FEEDBACKUI_POISHADOWPREY, ["zone"] = FEEDBACKUI_DESOLACE },
+                        { ["name"] = FEEDBACKUI_POIFEATHERMOON, ["zone"] = FEEDBACKUI_FERALAS }, 
+                        { ["name"] = FEEDBACKUI_POIMOJACHE, ["zone"] = FEEDBACKUI_FERALAS },
+                        { ["name"] = FEEDBACKUI_POITHALANAAR, ["zone"] = FEEDBACKUI_FERALAS },
+                        { ["name"] = FEEDBACKUI_POICENARIONHOLD, ["zone"] = FEEDBACKUI_SILITHUS },
+                        { ["name"] = FEEDBACKUI_POIGADGET, ["zone"] = FEEDBACKUI_TANARIS },
+                        { ["name"] = FEEDBACKUI_POIFREEWIND, ["zone"] = FEEDBACKUI_THOUSANDNEEDLES },
+                        { ["name"] = FEEDBACKUI_POITAURAJO, ["zone"] = FEEDBACKUI_BARRENS },
+                        { ["name"] = FEEDBACKUI_POICROSSROADS, ["zone"] = FEEDBACKUI_BARRENS },
+                        { ["name"] = FEEDBACKUI_POIRATCHET, ["zone"] = FEEDBACKUI_BARRENS },
+                        { ["name"] = FEEDBACKUI_POITHERAMORE, ["zone"] = FEEDBACKUI_DUSTWALLOW } }                        
 
-FEEDBACKUI_BUGWELCOMETABLE = { [1] = { ["prompt"] = FEEDBACKUI_WELCOME, ["link"] = "FEEDBACKUI_WHERETABLE" }, ["header"] = FEEDBACKUI_WELCOMETABLEBUGHEADER, ["subtext"] = FEEDBACKUI_WELCOMETABLEBUGSUBTEXT }							 
-FEEDBACKUI_SUGGESTWELCOMETABLE = { [1] = { ["prompt"] = FEEDBACKUI_WELCOME, ["link"] = "FEEDBACKUI_WHERETABLE" }, ["header"] = FEEDBACKUI_WELCOMETABLESUGGESTHEADER, ["subtext"] = FEEDBACKUI_WELCOMETABLESUGGESTSUBTEXT }							 
+FEEDBACKUI_GENERICTYPETABLE = { [1] = { ["index"] = FEEDBACKUI_STRVOICECHAT, ["summary"] = { ["type"] = "type", ["value"] = 23, ["text"] = "FEEDBACKUI_VOICECHAT" }, ["link"] = "FEEDBACKUI_VOICECHATTYPETABLE" },
+                                [2] = { ["index"] = FEEDBACKUI_STRUIOTHER, ["summary"] = { ["type"] = "type", ["value"] = 1, ["text"] = "FEEDBACKUI_UIOTHER" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[3] = { ["index"] = FEEDBACKUI_STRUIITEMS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 2, ["text"] = "FEEDBACKUI_UIITEMS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[4] = { ["index"] = FEEDBACKUI_STRUISPAWNS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 3, ["text"] = "FEEDBACKUI_UISPAWNS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[5] = { ["index"] = FEEDBACKUI_STRUIQUESTS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 4, ["text"] = "FEEDBACKUI_UIQUESTS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[6] = { ["index"] = FEEDBACKUI_STRUISPELLS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 5, ["text"] = "FEEDBACKUI_UISPELLS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[7] = { ["index"] = FEEDBACKUI_STRUITRADESKILLS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 6, ["text"] = "FEEDBACKUI_UITRADESKILLS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+							[8] = { ["index"] = FEEDBACKUI_STRGRAPHICOTHER, ["summary"] = { ["type"] = "type", ["value"] = 7, ["text"] = "FEEDBACKUI_GRAPHICOTHER" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[9] = { ["index"] = FEEDBACKUI_STRGRAPHICITEMS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 8, ["text"] = "FEEDBACKUI_GRAPHICITEMS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[10] = { ["index"] = FEEDBACKUI_STRGRAPHICSPAWNS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 9, ["text"] = "FEEDBACKUI_GRAPHICSPAWNS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[11] = { ["index"] = FEEDBACKUI_STRGRAPHICSPELLS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 10, ["text"] = "FEEDBACKUI_GRAPHICSPELLS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[12] = { ["index"] = FEEDBACKUI_STRGRAPHICENVIRONMENT, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 11, ["text"] = "FEEDBACKUI_GRAPHICENVIRONMENT" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+							[13] = { ["index"] = FEEDBACKUI_STRFUNCOTHER, ["summary"] = { ["type"] = "type", ["value"] = 12, ["text"] = "FEEDBACKUI_FUNCOTHER" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[14] = { ["index"] = FEEDBACKUI_STRFUNCITEMS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 13, ["text"] = "FEEDBACKUI_FUNCITEMS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[15] = { ["index"] = FEEDBACKUI_STRFUNCSPAWNS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 14, ["text"] = "FEEDBACKUI_FUNCSPAWNS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[16] = { ["index"] = FEEDBACKUI_STRFUNCQUESTS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 15, ["text"] = "FEEDBACKUI_FUNCQUESTS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[17] = { ["index"] = FEEDBACKUI_STRFUNCSPELLS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 16, ["text"] = "FEEDBACKUI_FUNCSPELLS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[18] = { ["index"] = FEEDBACKUI_STRFUNCTRADESKILLS, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 17, ["text"] = "FEEDBACKUI_FUNCTRADESKILLS" }, ["link"] = "FEEDBACKUI_WHENTABLE" },						 
+							[19] = { ["index"] = FEEDBACKUI_STRCRASHOTHER, ["summary"] = { ["type"] = "type", ["value"] = 18, ["text"] = "FEEDBACKUI_CRASHOTHER" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[20] = { ["index"] = FEEDBACKUI_STRCRASHBUG, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 19, ["text"] = "FEEDBACKUI_CRASHBUG" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[21] = { ["index"] = FEEDBACKUI_STRCRASHSOFTLOCK, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 20, ["text"] = "FEEDBACKUI_CRASHSOFTLOCK" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[22] = { ["index"] = FEEDBACKUI_STRCRASHHARDLOCK, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 21, ["text"] = "FEEDBACKUI_CRASHHARDLOCK" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+								[23] = { ["index"] = FEEDBACKUI_STRCRASHWOWLAG, ["offset"] = 1, ["summary"] = { ["type"] = "type", ["value"] = 22, ["text"] = "FEEDBACKUI_CRASHWOWLAG" }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+							["header"] = "",
+							["subtext"] = FEEDBACKUI_TYPETABLESUBTEXT }
+
+FEEDBACKUI_BUGWELCOMETABLE = { [1] = { ["prompt"] = FEEDBACKUI_WELCOME, ["link"] = "FEEDBACKUI_WHERETABLE" }, ["header"] = FEEDBACKUI_WHITE .. FEEDBACKUI_WELCOMETABLEBUGHEADER, ["subtext"] = FEEDBACKUI_WELCOMETABLEBUGSUBTEXT }							 
+FEEDBACKUI_SUGGESTWELCOMETABLE = { [1] = { ["prompt"] = FEEDBACKUI_WELCOME, ["link"] = "FEEDBACKUI_WHERETABLE" }, ["header"] = FEEDBACKUI_WHITE .. FEEDBACKUI_WELCOMETABLESUGGESTHEADER, ["subtext"] = FEEDBACKUI_WELCOMETABLESUGGESTSUBTEXT }							 
 							 
-FEEDBACKUI_WHENTABLE = { [1] = { ["index"] = FEEDBACKUI_STRREPRODUCABLE, ["summary"] = { ["type"] = "when", ["value"] = "FEEDBACKUI_REPRODUCABLE" }, ["link"] = "edit" },
-							[2] = { ["index"] = FEEDBACKUI_STRSOMETIMES, ["summary"] = { ["type"] = "when", ["value"] = "FEEDBACKUI_SOMETIMES" }, ["link"] = "edit" },
-							[3] = { ["index"] = FEEDBACKUI_STRRARELY, ["summary"] = { ["type"] = "when", ["value"] = "FEEDBACKUI_RARELY" }, ["link"] = "edit" },
-							[4] = { ["index"] = FEEDBACKUI_STRONETIME, ["summary"] = { ["type"] = "when", ["value"] = "FEEDBACKUI_ONETIME" }, ["link"] = "edit" },
+FEEDBACKUI_WHENTABLE = { [4] = { ["index"] = FEEDBACKUI_STRREPRODUCABLE, ["summary"] = { ["type"] = "when", ["value"] = 4, ["text"] = "FEEDBACKUI_REPRODUCABLE" }, ["link"] = "edit" },
+							[3] = { ["index"] = FEEDBACKUI_STRSOMETIMES, ["summary"] = { ["type"] = "when", ["value"] = 3, ["text"] = "FEEDBACKUI_SOMETIMES" }, ["link"] = "edit" },
+							[2] = { ["index"] = FEEDBACKUI_STRRARELY, ["summary"] = { ["type"] = "when", ["value"] = 2, ["text"] = "FEEDBACKUI_RARELY" }, ["link"] = "edit" },
+							[1] = { ["index"] = FEEDBACKUI_STRONETIME, ["summary"] = { ["type"] = "when", ["value"] = 1, ["text"] = "FEEDBACKUI_ONETIME" }, ["link"] = "edit" },
 							["header"] = "",
 							["subtext"] = FEEDBACKUI_WHENTABLESUBTEXT }
 															
-FEEDBACKUI_WHERETABLE = { [1] = { ["index"] = FEEDBACKUI_STRAREATABLE, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_AREATABLESUMMARY" }, ["link"] = "FEEDBACKUI_AREATABLE" },
-							[2] = { ["index"] = FEEDBACKUI_STRWHEREINSTALL, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WHEREINSTALL" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
-							[3] = { ["index"] = FEEDBACKUI_STRWHEREDOWNLOAD, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WHEREDOWNLOAD" }, ["link"] = "FEEDBACKUI_TYPETABLE" },	
-							[4] = { ["index"] = FEEDBACKUI_STRWHEREPATCH, ["summary"] = { ["type"] = "where", ["value"] = "FEEDBACKUI_WHEREPATCH" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
+FEEDBACKUI_WHERETABLE = { [1] = { ["index"] = FEEDBACKUI_STRAREATABLE, ["summary"] = { ["type"] = "where", ["value"] = 1, ["text"] = "FEEDBACKUI_AREATABLESUMMARY" }, ["link"] = "FEEDBACKUI_AREATABLE" },
+							[2] = { ["index"] = FEEDBACKUI_STRWHEREINSTALL, ["summary"] = { ["type"] = "where", ["value"] = 70, ["text"] = "FEEDBACKUI_WHEREINSTALL" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
+							[3] = { ["index"] = FEEDBACKUI_STRWHEREDOWNLOAD, ["summary"] = { ["type"] = "where", ["value"] = 71, ["text"] = "FEEDBACKUI_WHEREDOWNLOAD" }, ["link"] = "FEEDBACKUI_TYPETABLE" },	
+							[4] = { ["index"] = FEEDBACKUI_STRWHEREPATCH, ["summary"] = { ["type"] = "where", ["value"] = 72, ["text"] = "FEEDBACKUI_WHEREPATCH" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
 							["header"] = "",
-							["subtext"] = FEEDBACKUI_WHERETABLESUBTEXT }					
+							["subtext"] = FEEDBACKUI_WHERETABLESUBTEXT }	
+                            
+FEEDBACKUI_AREATABLE["header"] = "";
+FEEDBACKUI_AREATABLE["subtext"] = FEEDBACKUI_WHERETABLESUBTEXT;                            
 
-FEEDBACKUI_WHOTABLE = { [1] = { ["index"] = FEEDBACKUI_STRWHOPLAYER, ["summary"] = { ["type"] = "who", ["value"] = "FEEDBACKUI_WHOPLAYER" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
-							[2] = { ["index"] = FEEDBACKUI_STRPARTYMEMBER, ["summary"] = { ["type"] = "who", ["value"] = "FEEDBACKUI_PARTYMEMBER" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
-							[3] = { ["index"] = FEEDBACKUI_STRRAIDMEMBER, ["summary"] = { ["type"] = "who", ["value"] = "FEEDBACKUI_RAIDMEMBER" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
-							[4] = { ["index"] = FEEDBACKUI_STRENEMYPLAYER, ["summary"] = { ["type"] = "who", ["value"] = "FEEDBACKUI_ENEMYPLAYER" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
-							[5] = { ["index"] = FEEDBACKUI_STRFRIENDLYPLAYER, ["summary"] = { ["type"] = "who", ["value"] = "FEEDBACKUI_FRIENDLYPLAYER" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
-							[6] = { ["index"] = FEEDBACKUI_STRENEMYCREATURE, ["summary"] = { ["type"] = "who", ["value"] = "FEEDBACKUI_ENEMYCREATURE" } , ["link"] = "FEEDBACKUI_TYPETABLE" },
-							[7] = { ["index"] = FEEDBACKUI_STRFRIENDLYCREATURE, ["summary"] = { ["type"] = "who", ["value"] = "FEEDBACKUI_FRIENDLYCREATURE" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
-							[8] = { ["index"] = FEEDBACKUI_STRWHONA, ["summary"] = { ["type"] = "who", ["value"] = "FEEDBACKUI_WHONA" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
+FEEDBACKUI_WHOTABLE = { [1] = { ["index"] = FEEDBACKUI_STRWHOPLAYER, ["summary"] = { ["type"] = "who", ["value"] = 1, ["text"] = "FEEDBACKUI_WHOPLAYER" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
+							[2] = { ["index"] = FEEDBACKUI_STRPARTYMEMBER, ["summary"] = { ["type"] = "who", ["value"] = 2, ["text"] = "FEEDBACKUI_PARTYMEMBER" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
+							[3] = { ["index"] = FEEDBACKUI_STRRAIDMEMBER, ["summary"] = { ["type"] = "who", ["value"] = 3, ["text"] = "FEEDBACKUI_RAIDMEMBER" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
+							[4] = { ["index"] = FEEDBACKUI_STRENEMYPLAYER, ["summary"] = { ["type"] = "who", ["value"] = 4, ["text"] = "FEEDBACKUI_ENEMYPLAYER" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
+							[5] = { ["index"] = FEEDBACKUI_STRFRIENDLYPLAYER, ["summary"] = { ["type"] = "who", ["value"] = 5, ["text"] = "FEEDBACKUI_FRIENDLYPLAYER" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
+							[6] = { ["index"] = FEEDBACKUI_STRENEMYCREATURE, ["summary"] = { ["type"] = "who", ["value"] = 6, ["text"] = "FEEDBACKUI_ENEMYCREATURE" } , ["link"] = "FEEDBACKUI_TYPETABLE" },
+							[7] = { ["index"] = FEEDBACKUI_STRFRIENDLYCREATURE, ["summary"] = { ["type"] = "who", ["value"] = 7, ["text"] = "FEEDBACKUI_FRIENDLYCREATURE" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
+							[8] = { ["index"] = FEEDBACKUI_STRWHONA, ["summary"] = { ["type"] = "who", ["value"] = 0, ["text"] = "FEEDBACKUI_WHONA" }, ["link"] = "FEEDBACKUI_TYPETABLE" },
 							["header"] = "",
 							["subtext"] = FEEDBACKUI_WHOTABLESUBTEXT }
 						
 ----------------------------------------------------------------------------------------------------                          
 
-FEEDBACKUI_INSTANCESDIFFICULTYTABLE = { [1] = { ["index"] = FEEDBACKUI_DIFFICULTY1, ["summary"] = { ["type"] = "difficulty", ["value"] = "FEEDBACKUI_DIFFICULTY1" }, ["link"] = "FEEDBACKUI_INSTANCESREWARDTABLE" },
-										[2] = { ["index"] = FEEDBACKUI_DIFFICULTY2, ["summary"] = { ["type"] = "difficulty", ["value"] = "FEEDBACKUI_DIFFICULTY2" }, ["link"] = "FEEDBACKUI_INSTANCESREWARDTABLE" },
-										[3] = { ["index"] = FEEDBACKUI_DIFFICULTY3, ["summary"] = { ["type"] = "difficulty", ["value"] = "FEEDBACKUI_DIFFICULTY3" }, ["link"] = "FEEDBACKUI_INSTANCESREWARDTABLE" },
-										[4] = { ["index"] = FEEDBACKUI_DIFFICULTY4, ["summary"] = { ["type"] = "difficulty", ["value"] = "FEEDBACKUI_DIFFICULTY4" }, ["link"] = "FEEDBACKUI_INSTANCESREWARDTABLE" },
-                                        ["header"] = FEEDBACKUI_INSTANCESDIFFICULTYTABLEHEADER, 
-                                        ["subtext"] = FEEDBACKUI_INSTANCESDIFFICULTYTABLESUBTEXT }
+FEEDBACKUI_SURVEYRESPONSETYPES = {  ["Areas"] = { "difficulty", "reward", "fun" }, 
+                                    ["Quests"] = { "clarity", "difficulty", "reward", "fun" },  
+                                    ["Mobs"] = { "difficulty", "reward", "fun", "appearance" },
+                                    ["Items"] = { "difficulty", "utility", "appearance" } };
 
-FEEDBACKUI_INSTANCESREWARDTABLE = { [1] = { ["index"] = FEEDBACKUI_REWARD1, ["summary"] = { ["type"] = "reward", ["value"] = "FEEDBACKUI_REWARD1" }, ["link"] = "FEEDBACKUI_INSTANCESFUNTABLE" },
-                                    [2] = { ["index"] = FEEDBACKUI_REWARD2, ["summary"] = { ["type"] = "reward", ["value"] = "FEEDBACKUI_REWARD2" }, ["link"] = "FEEDBACKUI_INSTANCESFUNTABLE" },
-                                    [3] = { ["index"] = FEEDBACKUI_REWARD3, ["summary"] = { ["type"] = "reward", ["value"] = "FEEDBACKUI_REWARD3" }, ["link"] = "FEEDBACKUI_INSTANCESFUNTABLE" },
-                                    [4] = { ["index"] = FEEDBACKUI_REWARD4, ["summary"] = { ["type"] = "reward", ["value"] = "FEEDBACKUI_REWARD4" }, ["link"] = "FEEDBACKUI_INSTANCESFUNTABLE" },
-                                    ["header"] = FEEDBACKUI_INSTANCESREWARDTABLEHEADER,
-                                    ["subtext"] = FEEDBACKUI_INSTANCESREWARDTABLESUBTEXT }
+FEEDBACKUI_RESPONSELABELS = {   ["clarity"] = FEEDBACKUILBLFRMCLARITY_TEXT, 
+                                ["difficulty"] = FEEDBACKUILBLFRMDIFFICULTY_TEXT, 
+                                ["reward"] = FEEDBACKUILBLFRMREWARD_TEXT, 
+                                ["fun"] = FEEDBACKUILBLFRMFUN_TEXT,
+                                ["appearance"] = FEEDBACKUILBLAPPEARANCE_TEXT,
+                                ["utility"] = FEEDBACKUILBLUTILITY_TEXT }
+                                
+FEEDBACKUI_AREADIFFICULTIES = { DUNGEON_DIFFICULTY1, DUNGEON_DIFFICULTY2, DUNGEON_DIFFICULTY3};
+                                
 
-FEEDBACKUI_INSTANCESFUNTABLE = { [1] = { ["index"] = FEEDBACKUI_FUN1, ["summary"] = { ["type"] = "fun", ["value"] = "FEEDBACKUI_FUN1" }, ["link"] = "edit" },
-                                    [2] = { ["index"] = FEEDBACKUI_FUN2, ["summary"] = { ["type"] = "fun", ["value"] = "FEEDBACKUI_FUN2" }, ["link"] = "edit" },
-                                    [3] = { ["index"] = FEEDBACKUI_FUN3, ["summary"] = { ["type"] = "fun", ["value"] = "FEEDBACKUI_FUN3" }, ["link"] = "edit" },
-                                    [4] = { ["index"] = FEEDBACKUI_FUN4, ["summary"] = { ["type"] = "fun", ["value"] = "FEEDBACKUI_FUN4" }, ["link"] = "edit" },
-                                    ["header"] = FEEDBACKUI_INSTANCESFUNTABLEHEADER,
-                                    ["subtext"] = FEEDBACKUI_INSTANCESFUNTABLESUBTEXT }
+FEEDBACKUI_AREASDIFFICULTYTABLE = { [1] = { ["index"] = FEEDBACKUI_DIFFICULTY1, ["summary"] = { ["type"] = "difficulty", ["value"] = 1, ["text"] = "FEEDBACKUI_DIFFICULTY1" }, ["link"] = "FEEDBACKUI_AREASREWARDTABLE" },
+										[2] = { ["index"] = FEEDBACKUI_DIFFICULTY2, ["summary"] = { ["type"] = "difficulty", ["value"] = 2, ["text"] = "FEEDBACKUI_DIFFICULTY2" }, ["link"] = "FEEDBACKUI_AREASREWARDTABLE" },
+										[3] = { ["index"] = FEEDBACKUI_DIFFICULTY3, ["summary"] = { ["type"] = "difficulty", ["value"] = 3, ["text"] = "FEEDBACKUI_DIFFICULTY3" }, ["link"] = "FEEDBACKUI_AREASREWARDTABLE" },
+										[4] = { ["index"] = FEEDBACKUI_DIFFICULTY4, ["summary"] = { ["type"] = "difficulty", ["value"] = 4, ["text"] = "FEEDBACKUI_DIFFICULTY4" }, ["link"] = "FEEDBACKUI_AREASREWARDTABLE" },
+                                        ["header"] = FEEDBACKUI_AREASDIFFICULTYTABLEHEADER, 
+                                        ["subtext"] = FEEDBACKUI_AREASDIFFICULTYTABLESUBTEXT }
+
+FEEDBACKUI_AREASREWARDTABLE = { [1] = { ["index"] = FEEDBACKUI_REWARD1, ["summary"] = { ["type"] = "reward", ["value"] = 1, ["text"] = "FEEDBACKUI_REWARD1" }, ["link"] = "FEEDBACKUI_AREASFUNTABLE" },
+                                    [2] = { ["index"] = FEEDBACKUI_REWARD2, ["summary"] = { ["type"] = "reward", ["value"] = 2, ["text"] = "FEEDBACKUI_REWARD2" }, ["link"] = "FEEDBACKUI_AREASFUNTABLE" },
+                                    [3] = { ["index"] = FEEDBACKUI_REWARD3, ["summary"] = { ["type"] = "reward", ["value"] = 3, ["text"] = "FEEDBACKUI_REWARD3" }, ["link"] = "FEEDBACKUI_AREASFUNTABLE" },
+                                    [4] = { ["index"] = FEEDBACKUI_REWARD4, ["summary"] = { ["type"] = "reward", ["value"] = 4, ["text"] = "FEEDBACKUI_REWARD4" }, ["link"] = "FEEDBACKUI_AREASFUNTABLE" },
+                                    ["header"] = FEEDBACKUI_AREASREWARDTABLEHEADER,
+                                    ["subtext"] = FEEDBACKUI_AREASREWARDTABLESUBTEXT }
+
+FEEDBACKUI_AREASFUNTABLE = { [1] = { ["index"] = FEEDBACKUI_FUN1, ["summary"] = { ["type"] = "fun", ["value"] = 1, ["text"] = "FEEDBACKUI_FUN1" }, ["link"] = "edit" },
+                                    [2] = { ["index"] = FEEDBACKUI_FUN2, ["summary"] = { ["type"] = "fun", ["value"] = 2, ["text"] = "FEEDBACKUI_FUN2" }, ["link"] = "edit" },
+                                    [3] = { ["index"] = FEEDBACKUI_FUN3, ["summary"] = { ["type"] = "fun", ["value"] = 3, ["text"] = "FEEDBACKUI_FUN3" }, ["link"] = "edit" },
+                                    [4] = { ["index"] = FEEDBACKUI_FUN4, ["summary"] = { ["type"] = "fun", ["value"] = 4, ["text"] = "FEEDBACKUI_FUN4" }, ["link"] = "edit" },
+                                    ["header"] = FEEDBACKUI_AREASFUNTABLEHEADER,
+                                    ["subtext"] = FEEDBACKUI_AREASFUNTABLESUBTEXT }
                                     
-FEEDBACKUI_QUESTSCLARITYTABLE = { [1] = { ["index"] = FEEDBACKUI_STRCLARITY1, ["summary"] = { ["type"] = "clarity", ["value"] = "FEEDBACKUI_CLARITY1" }, ["link"] = "FEEDBACKUI_QUESTSDIFFICULTYTABLE" },
-                                    [2] = { ["index"] = FEEDBACKUI_STRCLARITY2, ["summary"] = { ["type"] = "clarity", ["value"] = "FEEDBACKUI_CLARITY2" }, ["link"] = "FEEDBACKUI_QUESTSDIFFICULTYTABLE" },
-                                    [3] = { ["index"] = FEEDBACKUI_STRCLARITY3, ["summary"] = { ["type"] = "clarity", ["value"] = "FEEDBACKUI_CLARITY3" }, ["link"] = "FEEDBACKUI_QUESTSDIFFICULTYTABLE" },
-                                    [4] = { ["index"] = FEEDBACKUI_STRCLARITY4, ["summary"] = { ["type"] = "clarity", ["value"] = "FEEDBACKUI_CLARITY4" }, ["link"] = "FEEDBACKUI_QUESTSDIFFICULTYTABLE" },
+FEEDBACKUI_QUESTSCLARITYTABLE = { [1] = { ["index"] = FEEDBACKUI_STRCLARITY1, ["summary"] = { ["type"] = "clarity", ["value"] = 1, ["text"] = "FEEDBACKUI_CLARITY1" }, ["link"] = "FEEDBACKUI_QUESTSDIFFICULTYTABLE" },
+                                    [2] = { ["index"] = FEEDBACKUI_STRCLARITY2, ["summary"] = { ["type"] = "clarity", ["value"] = 2, ["text"] = "FEEDBACKUI_CLARITY2" }, ["link"] = "FEEDBACKUI_QUESTSDIFFICULTYTABLE" },
+                                    [3] = { ["index"] = FEEDBACKUI_STRCLARITY3, ["summary"] = { ["type"] = "clarity", ["value"] = 3, ["text"] = "FEEDBACKUI_CLARITY3" }, ["link"] = "FEEDBACKUI_QUESTSDIFFICULTYTABLE" },
+                                    [4] = { ["index"] = FEEDBACKUI_STRCLARITY4, ["summary"] = { ["type"] = "clarity", ["value"] = 4, ["text"] = "FEEDBACKUI_CLARITY4" }, ["link"] = "FEEDBACKUI_QUESTSDIFFICULTYTABLE" },
                                     ["header"] = FEEDBACKUI_QUESTSCLARITYTABLEHEADER,
                                     ["subtext"] = FEEDBACKUI_QUESTSCLARITYTABLESUBTEXT }
                                     
-FEEDBACKUI_QUESTSDIFFICULTYTABLE = { [1] = { ["index"] = FEEDBACKUI_STRDIFFICULTY1, ["summary"] = { ["type"] = "difficulty", ["value"] = "FEEDBACKUI_DIFFICULTY1" }, ["link"] = "FEEDBACKUI_QUESTSREWARDTABLE" },
-                                    [2] = { ["index"] = FEEDBACKUI_STRDIFFICULTY2, ["summary"] = { ["type"] = "difficulty", ["value"] = "FEEDBACKUI_DIFFICULTY2" }, ["link"] = "FEEDBACKUI_QUESTSREWARDTABLE" },
-                                    [3] = { ["index"] = FEEDBACKUI_STRDIFFICULTY3, ["summary"] = { ["type"] = "difficulty", ["value"] = "FEEDBACKUI_DIFFICULTY3" }, ["link"] = "FEEDBACKUI_QUESTSREWARDTABLE" },
-                                    [4] = { ["index"] = FEEDBACKUI_STRDIFFICULTY4, ["summary"] = { ["type"] = "difficulty", ["value"] = "FEEDBACKUI_DIFFICULTY4" }, ["link"] = "FEEDBACKUI_QUESTSREWARDTABLE" },
+FEEDBACKUI_QUESTSDIFFICULTYTABLE = { [1] = { ["index"] = FEEDBACKUI_STRDIFFICULTY1, ["summary"] = { ["type"] = "difficulty", ["value"] = 1, ["text"] = "FEEDBACKUI_DIFFICULTY1" }, ["link"] = "FEEDBACKUI_QUESTSREWARDTABLE" },
+                                    [2] = { ["index"] = FEEDBACKUI_STRDIFFICULTY2, ["summary"] = { ["type"] = "difficulty", ["value"] = 2, ["text"] = "FEEDBACKUI_DIFFICULTY2" }, ["link"] = "FEEDBACKUI_QUESTSREWARDTABLE" },
+                                    [3] = { ["index"] = FEEDBACKUI_STRDIFFICULTY3, ["summary"] = { ["type"] = "difficulty", ["value"] = 3, ["text"] = "FEEDBACKUI_DIFFICULTY3" }, ["link"] = "FEEDBACKUI_QUESTSREWARDTABLE" },
+                                    [4] = { ["index"] = FEEDBACKUI_STRDIFFICULTY4, ["summary"] = { ["type"] = "difficulty", ["value"] = 4, ["text"] = "FEEDBACKUI_DIFFICULTY4" }, ["link"] = "FEEDBACKUI_QUESTSREWARDTABLE" },
                                     ["header"] = FEEDBACKUI_QUESTSDIFFICULTYTABLEHEADER,
                                     ["subtext"] = FEEDBACKUI_QUESTSDIFFICULTYTABLESUBTEXT }
 
-FEEDBACKUI_QUESTSREWARDTABLE = { [1] = { ["index"] = FEEDBACKUI_STRREWARD1, ["summary"] = { ["type"] = "reward", ["value"] = "FEEDBACKUI_REWARD1" }, ["link"] = "FEEDBACKUI_QUESTSFUNTABLE" },
-                                    [2] = { ["index"] = FEEDBACKUI_STRREWARD2, ["summary"] = { ["type"] = "reward", ["value"] = "FEEDBACKUI_REWARD2" }, ["link"] = "FEEDBACKUI_QUESTSFUNTABLE" },
-                                    [3] = { ["index"] = FEEDBACKUI_STRREWARD3, ["summary"] = { ["type"] = "reward", ["value"] = "FEEDBACKUI_REWARD3" }, ["link"] = "FEEDBACKUI_QUESTSFUNTABLE" },
-                                    [4] = { ["index"] = FEEDBACKUI_STRREWARD4, ["summary"] = { ["type"] = "reward", ["value"] = "FEEDBACKUI_REWARD4" }, ["link"] = "FEEDBACKUI_QUESTSFUNTABLE" },
+FEEDBACKUI_QUESTSREWARDTABLE = { [1] = { ["index"] = FEEDBACKUI_STRREWARD1, ["summary"] = { ["type"] = "reward", ["value"] = 1, ["text"] = "FEEDBACKUI_REWARD1" }, ["link"] = "FEEDBACKUI_QUESTSFUNTABLE" },
+                                    [2] = { ["index"] = FEEDBACKUI_STRREWARD2, ["summary"] = { ["type"] = "reward", ["value"] = 2, ["text"] = "FEEDBACKUI_REWARD2" }, ["link"] = "FEEDBACKUI_QUESTSFUNTABLE" },
+                                    [3] = { ["index"] = FEEDBACKUI_STRREWARD3, ["summary"] = { ["type"] = "reward", ["value"] = 3, ["text"] = "FEEDBACKUI_REWARD3" }, ["link"] = "FEEDBACKUI_QUESTSFUNTABLE" },
+                                    [4] = { ["index"] = FEEDBACKUI_STRREWARD4, ["summary"] = { ["type"] = "reward", ["value"] = 4, ["text"] = "FEEDBACKUI_REWARD4" }, ["link"] = "FEEDBACKUI_QUESTSFUNTABLE" },
                                     ["header"] = FEEDBACKUI_QUESTSREWARDTABLEHEADER,
                                     ["subtext"] = FEEDBACKUI_QUESTSREWARDTABLESUBTEXT }
 
-FEEDBACKUI_QUESTSFUNTABLE = { [1] = { ["index"] = FEEDBACKUI_STRFUN1, ["summary"] = { ["type"] = "fun", ["value"] = "FEEDBACKUI_FUN1" }, ["link"] = "edit" },
-                                    [2] = { ["index"] = FEEDBACKUI_STRFUN2, ["summary"] = { ["type"] = "fun", ["value"] = "FEEDBACKUI_FUN2" }, ["link"] = "edit" },
-                                    [3] = { ["index"] = FEEDBACKUI_STRFUN3, ["summary"] = { ["type"] = "fun", ["value"] = "FEEDBACKUI_FUN3" }, ["link"] = "edit" },
-                                    [4] = { ["index"] = FEEDBACKUI_STRFUN4, ["summary"] = { ["type"] = "fun", ["value"] = "FEEDBACKUI_FUN4" }, ["link"] = "edit" },
+FEEDBACKUI_QUESTSFUNTABLE = { [1] = { ["index"] = FEEDBACKUI_STRFUN1, ["summary"] = { ["type"] = "fun", ["value"] = 1, ["text"] = "FEEDBACKUI_FUN1" }, ["link"] = "edit" },
+                                    [2] = { ["index"] = FEEDBACKUI_STRFUN2, ["summary"] = { ["type"] = "fun", ["value"] = 2, ["text"] = "FEEDBACKUI_FUN2" }, ["link"] = "edit" },
+                                    [3] = { ["index"] = FEEDBACKUI_STRFUN3, ["summary"] = { ["type"] = "fun", ["value"] = 3, ["text"] = "FEEDBACKUI_FUN3" }, ["link"] = "edit" },
+                                    [4] = { ["index"] = FEEDBACKUI_STRFUN4, ["summary"] = { ["type"] = "fun", ["value"] = 4, ["text"] = "FEEDBACKUI_FUN4" }, ["link"] = "edit" },
                                     ["header"] = FEEDBACKUI_QUESTSFUNTABLEHEADER,
-                                    ["subtext"] = FEEDBACKUI_QUESTSFUNTABLESUBTEXT }                                    
+                                    ["subtext"] = FEEDBACKUI_QUESTSFUNTABLESUBTEXT }     
+
+FEEDBACKUI_MOBSDIFFICULTYTABLE = { [1] = { ["index"] = FEEDBACKUI_STRDIFFICULTY1, ["summary"] = { ["type"] = "difficulty", ["value"] = 1, ["text"] = "FEEDBACKUI_DIFFICULTY1" }, ["link"] = "FEEDBACKUI_MOBSREWARDTABLE" },
+                                    [2] = { ["index"] = FEEDBACKUI_STRDIFFICULTY2, ["summary"] = { ["type"] = "difficulty", ["value"] = 2, ["text"] = "FEEDBACKUI_DIFFICULTY2" }, ["link"] = "FEEDBACKUI_MOBSREWARDTABLE" },
+                                    [3] = { ["index"] = FEEDBACKUI_STRDIFFICULTY3, ["summary"] = { ["type"] = "difficulty", ["value"] = 3, ["text"] = "FEEDBACKUI_DIFFICULTY3" }, ["link"] = "FEEDBACKUI_MOBSREWARDTABLE" },
+                                    [4] = { ["index"] = FEEDBACKUI_STRDIFFICULTY4, ["summary"] = { ["type"] = "difficulty", ["value"] = 4, ["text"] = "FEEDBACKUI_DIFFICULTY4" }, ["link"] = "FEEDBACKUI_MOBSREWARDTABLE" },
+                                    ["header"] = FEEDBACKUI_MOBSDIFFICULTYTABLEHEADER,
+                                    ["subtext"] = FEEDBACKUI_MOBSDIFFICULTYTABLESUBTEXT }
+                                    
+FEEDBACKUI_MOBSREWARDTABLE = { [1] = { ["index"] = FEEDBACKUI_STRREWARD1, ["summary"] = { ["type"] = "reward", ["value"] = 1, ["text"] = "FEEDBACKUI_REWARD1" }, ["link"] = "FEEDBACKUI_MOBSFUNTABLE" },
+                                    [2] = { ["index"] = FEEDBACKUI_STRREWARD2, ["summary"] = { ["type"] = "reward", ["value"] = 2, ["text"] = "FEEDBACKUI_REWARD2" }, ["link"] = "FEEDBACKUI_MOBSFUNTABLE" },
+                                    [3] = { ["index"] = FEEDBACKUI_STRREWARD3, ["summary"] = { ["type"] = "reward", ["value"] = 3, ["text"] = "FEEDBACKUI_REWARD3" }, ["link"] = "FEEDBACKUI_MOBSFUNTABLE" },
+                                    [4] = { ["index"] = FEEDBACKUI_STRREWARD4, ["summary"] = { ["type"] = "reward", ["value"] = 4, ["text"] = "FEEDBACKUI_REWARD4" }, ["link"] = "FEEDBACKUI_MOBSFUNTABLE" },
+                                    ["header"] = FEEDBACKUI_MOBSREWARDTABLEHEADER,
+                                    ["subtext"] = FEEDBACKUI_MOBSREWARDTABLESUBTEXT }
+
+FEEDBACKUI_MOBSFUNTABLE = { [1] = { ["index"] = FEEDBACKUI_STRFUN1, ["summary"] = { ["type"] = "fun", ["value"] = 1, ["text"] = "FEEDBACKUI_FUN1" }, ["link"] = "FEEDBACKUI_MOBSAPPEARANCETABLE" },
+                                    [2] = { ["index"] = FEEDBACKUI_STRFUN2, ["summary"] = { ["type"] = "fun", ["value"] = 2, ["text"] = "FEEDBACKUI_FUN2" }, ["link"] = "FEEDBACKUI_MOBSAPPEARANCETABLE" },
+                                    [3] = { ["index"] = FEEDBACKUI_STRFUN3, ["summary"] = { ["type"] = "fun", ["value"] = 3, ["text"] = "FEEDBACKUI_FUN3" }, ["link"] = "FEEDBACKUI_MOBSAPPEARANCETABLE" },
+                                    [4] = { ["index"] = FEEDBACKUI_STRFUN4, ["summary"] = { ["type"] = "fun", ["value"] = 4, ["text"] = "FEEDBACKUI_FUN4" }, ["link"] = "FEEDBACKUI_MOBSAPPEARANCETABLE" },
+                                    ["header"] = FEEDBACKUI_MOBSFUNTABLEHEADER,
+                                    ["subtext"] = FEEDBACKUI_MOBSFUNTABLESUBTEXT }     
+
+FEEDBACKUI_MOBSAPPEARANCETABLE = { [1] = { ["index"] = FEEDBACKUI_STRAPPEARANCE1, ["summary"] = { ["type"] = "appearance", ["value"] = 1, ["text"] = "FEEDBACKUI_APPEARANCE1" }, ["link"] = "edit" },
+                                        [2] = { ["index"] = FEEDBACKUI_STRAPPEARANCE2, ["summary"] = { ["type"] = "appearance", ["value"] = 2, ["text"] = "FEEDBACKUI_APPEARANCE2" }, ["link"] = "edit" },
+                                        [3] = { ["index"] = FEEDBACKUI_STRAPPEARANCE3, ["summary"] = { ["type"] = "appearance", ["value"] = 3, ["text"] = "FEEDBACKUI_APPEARANCE3" }, ["link"] = "edit" },
+                                        [4] = { ["index"] = FEEDBACKUI_STRAPPEARANCE4, ["summary"] = { ["type"] = "appearance", ["value"] = 4, ["text"] = "FEEDBACKUI_APPEARANCE4" }, ["link"] = "edit" },
+                                        ["header"] = FEEDBACKUI_MOBSAPPEARANCETABLEHEADER,
+                                        ["subtext"] = FEEDBACKUI_MOBSAPPEARANCETABLESUBTEXT }     
+                                        
+FEEDBACKUI_ITEMSDIFFICULTYTABLE = { [1] = { ["index"] = FEEDBACKUI_STRDIFFICULTY1, ["summary"] = { ["type"] = "difficulty", ["value"] = 1, ["text"] = "FEEDBACKUI_DIFFICULTY1" }, ["link"] = "FEEDBACKUI_ITEMSUTILITYTABLE" },
+                                    [2] = { ["index"] = FEEDBACKUI_STRDIFFICULTY2, ["summary"] = { ["type"] = "difficulty", ["value"] = 2, ["text"] = "FEEDBACKUI_DIFFICULTY2" }, ["link"] = "FEEDBACKUI_ITEMSUTILITYTABLE" },
+                                    [3] = { ["index"] = FEEDBACKUI_STRDIFFICULTY3, ["summary"] = { ["type"] = "difficulty", ["value"] = 3, ["text"] = "FEEDBACKUI_DIFFICULTY3" }, ["link"] = "FEEDBACKUI_ITEMSUTILITYTABLE" },
+                                    [4] = { ["index"] = FEEDBACKUI_STRDIFFICULTY4, ["summary"] = { ["type"] = "difficulty", ["value"] = 4, ["text"] = "FEEDBACKUI_DIFFICULTY4" }, ["link"] = "FEEDBACKUI_ITEMSUTILITYTABLE" },
+                                    ["header"] = FEEDBACKUI_ITEMSDIFFICULTYTABLEHEADER,
+                                    ["subtext"] = FEEDBACKUI_ITEMSDIFFICULTYTABLESUBTEXT }     
+
+FEEDBACKUI_ITEMSUTILITYTABLE = { [1] = { ["index"] = FEEDBACKUI_STRUTILITY1, ["summary"] = { ["type"] = "utility", ["value"] = 1, ["text"] = "FEEDBACKUI_UTILITY1" }, ["link"] = "FEEDBACKUI_ITEMSAPPEARANCETABLE" },
+                                    [2] = { ["index"] = FEEDBACKUI_STRUTILITY2, ["summary"] = { ["type"] = "utility", ["value"] = 2, ["text"] = "FEEDBACKUI_UTILITY2" }, ["link"] = "FEEDBACKUI_ITEMSAPPEARANCETABLE" },
+                                    [3] = { ["index"] = FEEDBACKUI_STRUTILITY3, ["summary"] = { ["type"] = "utility", ["value"] = 3, ["text"] = "FEEDBACKUI_UTILITY3" }, ["link"] = "FEEDBACKUI_ITEMSAPPEARANCETABLE" },
+                                    [4] = { ["index"] = FEEDBACKUI_STRUTILITY4, ["summary"] = { ["type"] = "utility", ["value"] = 4, ["text"] = "FEEDBACKUI_UTILITY4" }, ["link"] = "FEEDBACKUI_ITEMSAPPEARANCETABLE" },
+                                    ["header"] = FEEDBACKUI_ITEMSUTILITYHEADER,
+                                    ["subtext"] = FEEDBACKUI_ITEMSUTILITYSUBTEXT }
+                                    
+FEEDBACKUI_ITEMSAPPEARANCETABLE = { [1] = { ["index"] = FEEDBACKUI_STRAPPEARANCE1, ["summary"] = { ["type"] = "appearance", ["value"] = 1, ["text"] = "FEEDBACKUI_APPEARANCE1" }, ["link"] = "edit" },
+                                        [2] = { ["index"] = FEEDBACKUI_STRAPPEARANCE2, ["summary"] = { ["type"] = "appearance", ["value"] = 2, ["text"] = "FEEDBACKUI_APPEARANCE2" }, ["link"] = "edit" },
+                                        [3] = { ["index"] = FEEDBACKUI_STRAPPEARANCE3, ["summary"] = { ["type"] = "appearance", ["value"] = 3, ["text"] = "FEEDBACKUI_APPEARANCE3" }, ["link"] = "edit" },
+                                        [4] = { ["index"] = FEEDBACKUI_STRAPPEARANCE4, ["summary"] = { ["type"] = "appearance", ["value"] = 4, ["text"] = "FEEDBACKUI_APPEARANCE4" }, ["link"] = "edit" },
+                                        ["header"] = FEEDBACKUI_ITEMSAPPEARANCETABLEHEADER,
+                                        ["subtext"] = FEEDBACKUI_ITEMSAPPEARANCETABLESUBTEXT }  
                                         
 FEEDBACKUI_QUESTHEADER = { ["header"] = true, ["name"] = FEEDBACKUI_QUESTHEADERTEXT }
-FEEDBACKUI_INSTANCEHEADER = { ["header"] = true, ["name"] = FEEDBACKUI_INSTANCEHEADERTEXT }
+FEEDBACKUI_ITEMHEADER = { ["header"] = true, ["name"] = FEEDBACKUI_ITEMHEADERTEXT }
+FEEDBACKUI_MOBHEADER = { ["header"] = true, ["name"] = FEEDBACKUI_MOBHEADERTEXT }
+FEEDBACKUI_AREAHEADER = { ["header"] = true, ["name"] = FEEDBACKUI_AREAHEADERTEXT }
+
+FEEDBACKUI_MOUSEBUTTONS = { { ["value"] = "BUTTON1", ["text"] = FEEDBACKUI_MOUSE1 }, 
+                                { ["value"] = "BUTTON2", ["text"] = FEEDBACKUI_MOUSE2 } }
+
+								
+FEEDBACKUI_MODIFIERKEYS = { { ["value"] = "LALT", ["text"] = FEEDBACKUI_LALT }, 
+                                { ["value"] = "RALT", ["text"] = FEEDBACKUI_RALT },
+								{ ["value"] = "LCTRL", ["text"] = FEEDBACKUI_LCTRL },
+								{ ["value"] = "RCTRL", ["text"] = FEEDBACKUI_RCTRL },
+								{ ["value"] = "LSHIFT", ["text"] = FEEDBACKUI_LSHIFT },
+                                { ["value"] = "RSHIFT", ["text"] = FEEDBACKUI_RSHIFT } }
 
 FEEDBACKUI_SURVEYCATEGORIES = { { ["value"] = "All", ["text"] = FEEDBACKUI_ALLHEADERTEXT }, 
-                                { ["value"] = "Quests", ["text"] = FEEDBACKUI_QUESTHEADERTEXT }, 
-                                { ["value"] = "Instances", ["text"] = FEEDBACKUI_INSTANCEHEADERTEXT } }
+                                { ["value"] = "Areas", ["text"] = FEEDBACKUI_AREAHEADERTEXT },
+                                { ["value"] = "Items", ["text"] = FEEDBACKUI_ITEMHEADERTEXT },
+                                { ["value"] = "Mobs", ["text"] = FEEDBACKUI_MOBHEADERTEXT },
+                                { ["value"] = "Quests", ["text"] = FEEDBACKUI_QUESTHEADERTEXT } }
+                                
+FEEDBACKUI_OPTIONSBUTTONS = { { ["text"] = FEEDBACKUILBLSURVEYALERTSCHECK_TEXT },
+                              { ["text"] = FEEDBACKUISHOWCUES_TEXT } };
+
                                 
 FEEDBACKUI_SURVEYSTATUS = { { ["value"] = "All", ["text"] = FEEDBACKUI_STATUSALLTEXT, ["r"] = 1, ["g"] = 1, ["b"] = 1 }, 
 							{ ["value"] = "Available", ["text"] = FEEDBACKUI_STATUSAVAILABLETEXT, ["r"] = 1, ["g"] = 1, ["b"] = 0 },
 							{ ["value"] = "Skipped", ["text"] = FEEDBACKUI_STATUSSKIPPEDTEXT, ["r"] = .25, ["g"] = .75, ["b"] = .25 },
-							{ ["value"] = "Completed", ["text"] = FEEDBACKUI_STATUSCOMPLETEDTEXT, ["r"] = .5, ["g"] = .5, ["b"] = .5 } }			
+							{ ["value"] = "Completed", ["text"] = FEEDBACKUI_STATUSCOMPLETEDTEXT, ["r"] = .5, ["g"] = .5, ["b"] = .5 } }	
+
+FEEDBACKUI_SURVEYSTATUSES = { ["All"] = 1, ["Available"] = 2, ["Skipped"] = 3, ["Completed"] = 4 }                            
                         
 FEEDBACKUI_SURVEYWELCOMETABLE = { [1] = { ["prompt"] = string.gsub(FEEDBACKUI_WELCOME, "\n", "", 1), ["link"] = "POINTLESS_NONEXISTANTLINK" }, ["header"] = FEEDBACKUI_WELCOMETABLESURVEYHEADER, ["subtext"] = FEEDBACKUI_WELCOMETABLESURVEYSUBTEXT }
 
+FEEDBACKUI_SPAWNSTYPETABLE = {  [1] = { ["index"] = FEEDBACKUI_STRUISPAWNS, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_UISPAWNS", ["value"] = 3 }, ["link"] = "FEEDBACKUI_WHENTABLE" },   
+                                [2] = { ["index"] = FEEDBACKUI_STRGRAPHICSPAWNS, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_GRAPHICSPAWNS", ["value"] = 9 }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+                                [3] = { ["index"] = FEEDBACKUI_STRFUNCSPAWNS, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_FUNCSPAWNS", ["value"] = 14 }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+                                ["header"] = "",
+                                ["subtext"] = FEEDBACKUI_TYPETABLESUBTEXT }
+                                
+FEEDBACKUI_ITEMSTYPETABLE = {   [1] = { ["index"] = FEEDBACKUI_STRUIITEMS, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_UIITEMS", ["value"] = 2 }, ["link"] = "FEEDBACKUI_WHENTABLE" },   
+                                [2] = { ["index"] = FEEDBACKUI_STRGRAPHICITEMS, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_GRAPHICITEMS", ["value"] = 8 }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+                                [3] = { ["index"] = FEEDBACKUI_STRFUNCITEMS, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_FUNCITEMS", ["value"] = 13 }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+                                ["header"] = "",
+                                ["subtext"] = FEEDBACKUI_TYPETABLESUBTEXT }
+                                
+FEEDBACKUI_QUESTSTYPETABLE = {  [1] = { ["index"] = FEEDBACKUI_STRUIQUESTS, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_UIQUESTS", ["value"] = 4 }, ["link"] = "FEEDBACKUI_WHENTABLE" },   
+                                [2] = { ["index"] = FEEDBACKUI_STRFUNCQUESTS, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_FUNCQUESTS", ["value"] = 15 }, ["link"] = "FEEDBACKUI_WHENTABLE" },
+                                ["header"] = "",
+                                ["subtext"] = FEEDBACKUI_TYPETABLESUBTEXT }                                
+                                
+FEEDBACKUI_AREASTYPETABLE = FEEDBACKUI_WHENTABLE;
+
+FEEDBACKUI_VOICECHATTABLE = {   [1] = { ["index"] = FEEDBACKUI_STRUSBHEADSET, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_VOICECHAT", ["value"] = 23 }, ["link"] = "edit" }, 
+                                [2] = { ["index"] = FEEDBACKUI_STRANALOGHEADSET, ["summary"] = { ["type"] = "type", ["text"] = "FEEDBACKUI_VOICECHAT", ["value"] = 24 }, ["link"] = "edit" }, 
+                                ["header"] = "",
+                                ["subtext"] = FEEDBACKUI_HEADSETTYPE }
+
 for _, val in next, FEEDBACKUI_EXCEPTIONZONES do
-    table.insert(FEEDBACKUI_NONINSTANCEZONES, val)
+    FEEDBACKUI_NONINSTANCEZONES[val] = true;
 end
     
