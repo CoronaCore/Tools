@@ -50,6 +50,9 @@
 		<OnLeave>
 			GameTooltip:Hide();
 		</OnLeave>
+        <OnUpdate>
+            FeedbackUI_OnUpdate(arg1)
+        </OnUpdate>
 	</Scripts>
 </Button>
 

@@ -955,7 +955,7 @@
 			this.frame:Show();
 			if ( this.frame.panels ) then
 				for _, panel in pairs(this.frame.panels) do
-					pcall(panel.show, panel);
+					pcall(panel.Show, panel);
 				end
 			end
 		</OnClick>
@@ -1355,7 +1355,7 @@
                 <OnLoad>
                     this:GetParent().tooltip = this;
                     this:SetOwner(this, "ANCHOR_NONE")
-                    this:SetText("Test")
+                    <!--this:SetText("Test")-->
                     this:ClearLines()
                     this:Hide()
                 </OnLoad>

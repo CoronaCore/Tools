@@ -8,12 +8,12 @@ FeedbackUI_SetupPanel{
 	anchors = { { ["point"] = "TOPLEFT", ["relativeto"] = "$parent", ["relativepoint"] = "TOPLEFT", ["x"] = -2, ["y"] = -28 }, 
 				{ ["point"] = "TOPRIGHT", ["relativeto"] = "$parent", ["relativepoint"] = "TOPRIGHT", ["x"] = 2, ["y"] = -28 } },
 	size = { ["y"] = 130 },
-	setup = function(obj)
+	Setup = function(obj)
 				obj.infoLines = {}
 				obj.infoTable = {}
 			end,
 	event = {"ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "ZONE_CHANGED_NEW_AREA", "PLAYER_LEVEL_UP" },
-	handler = function() if ( event == "PLAYER_LEVEL_UP" ) then 
+	Handler = function() if ( event == "PLAYER_LEVEL_UP" ) then 
 							for _, line in next, this.infoLines do
 								if ( line:GetName():match("Char") ) then 
 									local panel = this;
@@ -30,16 +30,16 @@ FeedbackUI_SetupPanel{
 								end
 							end
 						else
-							pcall(this.show, this) end
+							pcall(this.Show, this) end
 						end,	
-	show = 	function(obj) 
+	Show = 	function(obj) 
 				for _, line in next, obj.infoLines do
-					if ( line.update ) then line.update(line) end
+					if ( line.Update ) then line.Update(line) end
 				end	
 			end,
-	load = 	function(obj)
+	Load = 	function(obj)
 				for _, line in next, obj.infoLines do
-					if ( line.load ) then line.load(line) end
+					if ( line.Load ) then line.Load(line) end
 				end
 			end }
 			
@@ -49,7 +49,7 @@ FeedbackUI_AddInfoLine{
 	name="Version",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMVER_TEXT,
-	update = function(line)
+	Update = function(line)
 				local parent = line:GetParent();
 				if ( not parent.infoTable ) then
 					parent.infoTable = {}
@@ -64,7 +64,7 @@ FeedbackUI_AddInfoLine{
 	name="Realm",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMREALM_TEXT,
-	update = function(line)
+	Update = function(line)
 				local parent = line:GetParent();
 				if ( not parent.infoTable ) then
 					parent.infoTable = {}
@@ -79,7 +79,7 @@ FeedbackUI_AddInfoLine{
 	name="Name",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMNAME_TEXT,
-	update = function(line)
+	Update = function(line)
 			local parent = line:GetParent();
 			if ( not parent.infoTable ) then
 				parent.infoTable = {};
@@ -94,7 +94,7 @@ FeedbackUI_AddInfoLine{
 	name="Char",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMCHAR_TEXT,
-	update = function(line)
+	Update = function(line)
 			local parent = line:GetParent();
 			local genderTable = FEEDBACKUI_GENDERTABLE;
 			if ( not parent.infoTable ) then
@@ -114,7 +114,7 @@ FeedbackUI_AddInfoLine{
 	name="Map",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMMAP_TEXT,
-	update = function(line)
+	Update = function(line)
 			local parent = line:GetParent();
 			if ( not parent.infoTable ) then
 				parent.infoTable = {}
@@ -157,7 +157,7 @@ FeedbackUI_AddInfoLine{
 	name="Zone",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMZONE_TEXT,
-	update = function(line)
+	Update = function(line)
 				local parent = line:GetParent();
 				if ( not parent.infoTable ) then
 					parent.infoTable = {}
@@ -172,7 +172,7 @@ FeedbackUI_AddInfoLine{
 	name="Area",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMAREA_TEXT,
-	update = function(line)
+	Update = function(line)
 				local parent = line:GetParent();
 				if ( not parent.infoTable ) then
 					parent.infoTable = {}
@@ -187,7 +187,7 @@ FeedbackUI_AddInfoLine{
 	name="Addons",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMADDONS_TEXT,
-	update = function(line)
+	Update = function(line)
 				local parent = line:GetParent();
 				if ( not parent.infoTable ) then
 					parent.infoTable = {}
@@ -245,7 +245,7 @@ FeedbackUI_AddInfoLine{
 				end
 			end,
 	
-	setup = function(line)				
+	Setup = function(line)				
 				line:SetScript("OnEnter", 
 								function()
 									this:SetScript("OnUpdate", 
@@ -279,16 +279,20 @@ FeedbackUI_SetupPanel{
 	anchors = { { ["point"] = "TOPLEFT", ["relativeto"] = "$parentInfoPanel", ["relativepoint"] = "BOTTOMLEFT", ["x"] = 0, ["y"] = 3 },
 				{ ["point"] = "TOPRIGHT", ["relativeto"] = "$parentInfoPanel", ["relativepoint"] = "TOPRIGHT", ["x"] = 0, ["y"] = 3 } },
 	size = { ["y"] = 70 },
-	setup = function(obj)
+	Setup = function(obj)
 				-- Create the seperator line that follows the Status panel.
+                obj.infoLines = {};
 				obj.seperator = CreateFrame("Frame", obj:GetName() .. "Line", obj, "FeedbackLineTemplate");
 				obj.seperator:SetPoint("TOPLEFT", obj, "BOTTOMLEFT", 0, -5);
 				obj.seperator:SetPoint("TOPRIGHT", obj, "BOTTOMRIGHT", 0, -5);	
 				obj.status = {};
+                
 			end,
-	show = 	function()
-				for _, line in next, this.infoLines do
-					if ( line.update ) then line.update() end
+	Show = 	function(panel)
+				for _, line in next, panel.infoLines do
+					if ( line.Update ) then 
+                        line.Update(line, panel) 
+                    end
 				end	
 			end
 	}
@@ -298,17 +302,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUIBugFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMWHERE_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "where"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}
 			
@@ -317,17 +317,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUIBugFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMWHO_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "who"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}
 
@@ -336,17 +332,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUIBugFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMTYPE_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "type"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}			
 					
@@ -355,17 +347,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUIBugFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMWHEN_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "when"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}	
 	
@@ -375,7 +363,7 @@ FeedbackUI_SetupPanel{
 	inherits = "FeedbackWizardTemplate",
 	anchors = { { ["point"] = "TOPLEFT", ["relativeto"] = "$parentStatusPanel", ["relativepoint"] = "BOTTOMLEFT", ["x"] = 0, ["y"] = -1 },
 				{ ["point"] = "BOTTOMRIGHT", ["relativeto"] = "$parent", ["relativepoint"] = "BOTTOMRIGHT", ["x"] = 2, ["y"] = 19 } },
-	setup = function(panel)
+	Setup = function(panel)
 				panel.maxbuttons = 1
 				panel.scrollResults = {}
 				panel.history = {}
@@ -567,11 +555,12 @@ FeedbackUI_SetupPanel{
 											if ( line.type == element.summary.type ) then
 												maxSummary = num;
 											end
-											if num >= maxSummary then 
+											if ( num >= maxSummary ) then 
 												line.value:SetText("") 
 												panelElement.status[line.type] = nil;
-											elseif num < maxSummary and ( line.value:GetText() == "" or line.value:GetText() == nil )then
-													line.value:SetText("N/A");
+											elseif ( ( num < maxSummary ) and ( line.value:GetText() == "" or line.value:GetText() == nil ) ) then
+                                                panelElement.status[line.type] = "N/A";
+                                                line.value:SetText("N/A");
 											end
 										end
 									end
@@ -580,7 +569,7 @@ FeedbackUI_SetupPanel{
 
 							i = i + 1;
 							panel.scrollResults[ordinal] = element;
-							if element.prompt then
+							if ( element.prompt ) then
 								panel.prompt:Show();
 								panel:GetParent().start:Show();
 								panel.prompt:SetText(element.prompt);
@@ -591,7 +580,7 @@ FeedbackUI_SetupPanel{
 								panel:GetParent().back:Show();
 								panel:GetParent().reset:Show();
 								panel:GetParent().submit:Show();
-								if panel.scroll.buttons[i] then
+								if ( panel.scroll.buttons[i] ) then
 									if ( element.offset ) then
 										panel.scroll.buttons[i].text:ClearAllPoints();
 										panel.scroll.buttons[i].text:SetPoint("TOPLEFT", ( element.offset * FEEDBACKUI_OFFSETPIXELS ), 0);
@@ -775,12 +764,12 @@ FeedbackUI_SetupPanel{
 	anchors = { { ["point"] = "TOPLEFT", ["relativeto"] = "$parent", ["relativepoint"] = "TOPLEFT", ["x"] = -2, ["y"] = -28 }, 
 				{ ["point"] = "TOPRIGHT", ["relativeto"] = "$parent", ["relativepoint"] = "TOPRIGHT", ["x"] = 2, ["y"] = -28 } },
 	size = { ["y"] = 130 },
-	setup = function(obj)
+	Setup = function(obj)
 				obj.infoLines = {}
 				obj.infoTable = {}
 			end,
 	event = {"ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "ZONE_CHANGED_NEW_AREA", "PLAYER_LEVEL_UP" },
-	handler = function() if ( event == "PLAYER_LEVEL_UP" ) then 
+	Handler = function() if ( event == "PLAYER_LEVEL_UP" ) then 
 							for _, line in next, this.infoLines do
 								if ( line:GetName():match("Char") ) then 
 									local parent = this;
@@ -797,16 +786,16 @@ FeedbackUI_SetupPanel{
 								end
 							end
 						else
-							pcall(this.show, this) end
+							pcall(this.Show, this) end
 						end,	 					
-	show = 	function(obj) 
+	Show = 	function(obj) 
 				for _, line in next, obj.infoLines do
-					if ( line.update ) then line.update(line) end
+					if ( line.Update ) then line.Update(line) end
 				end	
 			end,
-	load = 	function(obj)
+	Load = 	function(obj)
 				for _, line in next, obj.infoLines do
-					if ( line.load ) then line.load(line) end
+					if ( line.Load ) then line.Load(line) end
 				end
 			end }
 
@@ -816,7 +805,7 @@ FeedbackUI_AddInfoLine{
 	name="Version",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMVER_TEXT,
-	update = function(line)
+	Update = function(line)
 				local parent = line:GetParent();
 				if ( not parent.infoTable ) then
 					parent.infoTable = {}
@@ -831,7 +820,7 @@ FeedbackUI_AddInfoLine{
 	name="Realm",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMREALM_TEXT,
-	update = function(line)
+	Update = function(line)
 				local parent = line:GetParent();
 				if ( not parent.infoTable ) then
 					parent.infoTable = {}
@@ -846,7 +835,7 @@ FeedbackUI_AddInfoLine{
 	name="Name",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMNAME_TEXT,
-	update = function(line)
+	Update = function(line)
 			local parent = line:GetParent();
 			if ( not parent.infoTable ) then
 				parent.infoTable = {};
@@ -861,7 +850,7 @@ FeedbackUI_AddInfoLine{
 	name="Char",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMCHAR_TEXT,
-	update = function(line)
+	Update = function(line)
 			local parent = line:GetParent();
 			local genderTable = FEEDBACKUI_GENDERTABLE;
 			if ( not parent.infoTable ) then
@@ -881,7 +870,7 @@ FeedbackUI_AddInfoLine{
 	name="Map",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMMAP_TEXT,
-	update = function(line)
+	Update = function(line)
 			local parent = line:GetParent();
 			if ( not parent.infoTable ) then
 				parent.infoTable = {}
@@ -924,7 +913,7 @@ FeedbackUI_AddInfoLine{
 	name="Zone",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMZONE_TEXT,
-	update = function(line)
+	Update = function(line)
 				local parent = line:GetParent();
 				if ( not parent.infoTable ) then
 					parent.infoTable = {}
@@ -939,7 +928,7 @@ FeedbackUI_AddInfoLine{
 	name="Area",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMAREA_TEXT,
-	update = function(line)
+	Update = function(line)
 				local parent = line:GetParent();
 				if ( not parent.infoTable ) then
 					parent.infoTable = {}
@@ -954,7 +943,7 @@ FeedbackUI_AddInfoLine{
 	name="Addons",
 	inherits="InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMADDONS_TEXT,
-	update = function(line)
+	Update = function(line)
 				local parent = line:GetParent();
 				if ( not parent.infoTable ) then
 					parent.infoTable = {}
@@ -1012,7 +1001,7 @@ FeedbackUI_AddInfoLine{
 				end
 			end,
 	
-	setup = function(line)				
+	Setup = function(line)				
 				line:SetScript("OnEnter", 
 								function()
 									this:SetScript("OnUpdate", 
@@ -1046,16 +1035,19 @@ FeedbackUI_SetupPanel{
 	anchors = { { ["point"] = "TOPLEFT", ["relativeto"] = "$parentInfoPanel", ["relativepoint"] = "BOTTOMLEFT", ["x"] = 0, ["y"] = 3 },
 				{ ["point"] = "TOPRIGHT", ["relativeto"] = "$parentInfoPanel", ["relativepoint"] = "TOPRIGHT", ["x"] = 0, ["y"] = 3 } },
 	size = { ["y"] = 70 },
-	setup = function(obj)
+	Setup = function(obj)
 				-- Create the seperator line that follows the Status panel.
 				obj.seperator = CreateFrame("Frame", obj:GetName() .. "Line", obj, "FeedbackLineTemplate");
 				obj.seperator:SetPoint("TOPLEFT", obj, "BOTTOMLEFT", 0, -5);
 				obj.seperator:SetPoint("TOPRIGHT", obj, "BOTTOMRIGHT", 0, -5);
 				obj.status = {};
+                obj.infoLines = {};
 			end,
-	show = 	function()
-				for _, line in next, this.infoLines do
-					if ( line.update ) then line.update() end
+	Show = 	function(panel)
+				for _, line in next, panel.infoLines do
+					if ( line.Update ) then 
+                        line.Update(line, panel)
+                    end
 				end	
 			end
 	
@@ -1066,17 +1058,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUISuggestFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMWHERE_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "where"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}
 			
@@ -1085,17 +1073,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUISuggestFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMWHO_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "who"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}
 
@@ -1104,17 +1088,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUISuggestFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMTYPE_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "type"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}			
 					
@@ -1123,17 +1103,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUISuggestFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMWHEN_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "when"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}	
 				
@@ -1143,7 +1119,7 @@ FeedbackUI_SetupPanel{
 	inherits = "FeedbackWizardTemplate",
 	anchors = { { ["point"] = "TOPLEFT", ["relativeto"] = "$parentStatusPanel", ["relativepoint"] = "BOTTOMLEFT", ["x"] = 0, ["y"] = -1 },
 				{ ["point"] = "BOTTOMRIGHT", ["relativeto"] = "$parent", ["relativepoint"] = "BOTTOMRIGHT", ["x"] = 2, ["y"] = 19 } },
-	setup = function (panel)
+	Setup = function (panel)
 				panel.maxbuttons = 1
 				panel.scrollResults = {}
 				panel.history = {}
@@ -1339,9 +1315,9 @@ FeedbackUI_SetupPanel{
 											if ( num >= maxSummary ) then 
 												line.value:SetText("") 
 												panelElement.status[line.type] = nil;
-											elseif ( ( num < maxSummary ) and 
-                                                      ( line.value:GetText() == "" or line.value:GetText() == nil ) ) then
-													line.value:SetText("N/A");
+											elseif ( ( num < maxSummary ) and ( line.value:GetText() == "" or line.value:GetText() == nil ) ) then
+                                                panelElement.status[line.type] = "N/A";
+                                                line.value:SetText("N/A");
 											end
 										end
 									end
@@ -1545,15 +1521,44 @@ FeedbackUI_SetupPanel{
 	anchors = { { ["point"] = "TOPLEFT", ["relativeto"] = "$parent", ["relativepoint"] = "TOPLEFT", ["x"] = -2, ["y"] = -14 },
 				{ ["point"] = "TOPRIGHT", ["relativeto"] = "$parent", ["relativepoint"] = "TOPRIGHT", ["x"] = 2, ["y"] = -14 } },
 	size = { ["y"] = 185 },
-	event = { "ZONE_CHANGED_NEW_AREA", "QUEST_LOG_UPDATE", "VARIABLES_LOADED", "PLAYER_ENTERING_WORLD" },
-	show = 
+	event = { "ZONE_CHANGED_NEW_AREA", "VARIABLES_LOADED", "PLAYER_ENTERING_WORLD" },
+	Show = 
 		function(panel)		
 			panel.PopulateTable(panel)
             g_FeedbackUI_feedbackVars["sortdir"] = "dated"; 
             panel.SortResults(panel, "date");
 		end,
-    load =
+    Load =
         function(panel)
+
+            if ( not g_FeedbackUI_feedbackVars ) then
+                g_FeedbackUI_feedbackVars = {}
+                g_FeedbackUI_feedbackVars["alerts"] = true;
+            end
+            g_FeedbackUI_feedbackVars["lastZone"] = nil;
+                    
+            if ( not g_FeedbackUI_surveysTable ) then
+                g_FeedbackUI_surveysTable = {}
+            end
+            
+            if ( not g_FeedbackUI_feedbackVars["switchedHash"] ) then
+                g_FeedbackUI_surveysTable["Quests"] = {};
+                g_FeedbackUI_surveysTable["Alerts"] = {};
+                g_FeedbackUI_feedbackVars["switchedHash"] = true;
+            end
+            
+            if ( not g_FeedbackUI_surveysTable["Quests"] ) then
+                g_FeedbackUI_surveysTable["Quests"] = {};
+            end
+            
+            if ( not g_FeedbackUI_surveysTable["Instances"] ) then
+                g_FeedbackUI_surveysTable["Instances"] = {};
+            end
+            
+            if ( not g_FeedbackUI_surveysTable["Alerts"] ) then
+                g_FeedbackUI_surveysTable["Alerts"] = {};
+            end
+            
             if g_FeedbackUI_feedbackVars["alerts"] then
                 panel.alertCheck:SetChecked(true)
             else
@@ -1562,18 +1567,24 @@ FeedbackUI_SetupPanel{
            
             panel.SortResults(panel, "date");
             panel.PopulateTable(panel);
-            panel:UnregisterEvent("QUEST_LOG_UPDATE")
-            for i = GetNumQuestLogEntries(), 1, -1 do ExpandQuestHeader(i) end
-            panel.UpdateQuestSurveys(panel)         
-            panel:RegisterEvent("QUEST_LOG_UPDATE")
             panel.UpdateAlertButtons(panel);
             panel.LoadCategory(panel.ddlCategory);
             UIDropDownMenu_Initialize(panel.ddlCategory, panel.DdlCategory_Initialize);
             panel.LoadStatus(panel.ddlStatus);
             UIDropDownMenu_Initialize(panel.ddlStatus, panel.DdlStatus_Initialize);
+            tinsert(panel.tasks, {
+                                func = 
+                                    function(panel)
+                                        panel:UnregisterEvent("QUEST_LOG_UPDATE")
+                                        panel.UpdateQuestSurveys(panel);
+                                        panel:RegisterEvent("QUEST_LOG_UPDATE")
+                                        panel.PopulateTable(panel)
+                                    end,
+                                args = { panel },
+                                exTime = GetTime() + .5 });  
             
         end,
-	handler = 
+	Handler = 
 			function()
 				local panel = FeedbackUISurveyFrameSurveysPanel;
                 if ( event == "ZONE_CHANGED_NEW_AREA" ) or ( event == "PLAYER_ENTERING_WORLD" ) then                    
@@ -1606,15 +1617,37 @@ FeedbackUI_SetupPanel{
                         g_FeedbackUI_feedbackVars["lastZone"] = currentZone;
                     end                    
 				elseif ( event == "QUEST_LOG_UPDATE" ) then
-                    panel:UnregisterEvent("QUEST_LOG_UPDATE")
-                    panel.UpdateQuestSurveys(panel);
-                    panel:RegisterEvent("QUEST_LOG_UPDATE")
-                    panel.PopulateTable(panel)
+                    tinsert(panel.tasks, {
+                                func = 
+                                    function(panel)
+                                        panel:UnregisterEvent("QUEST_LOG_UPDATE")
+                                        panel.UpdateQuestSurveys(panel);
+                                        panel:RegisterEvent("QUEST_LOG_UPDATE")
+                                        panel.PopulateTable(panel)
+                                    end,
+                                args = { panel },
+                                exTime = GetTime() + .5 });                                
 				end
 			end,
-
-	setup = 
-			function(panel)  
+    OnUpdate = 
+            function(panel, interval)
+                panel.timeSinceLast = panel.timeSinceLast + interval;
+                if panel.timeSinceLast > panel.UPDATEINTERVAL then
+                    
+                    for index, task in next, panel.tasks do
+                        if ( task.exTime ) and ( GetTime() > task.exTime ) then
+                            pcall(task.func, unpack(task.args))
+                            tremove(panel.tasks, index);
+                        else
+                            pcall(task.func, unpack(task.args))
+                            tremove(panel.tasks, index);
+                        end
+                    end
+                    panel.timeSinceLast = 0;
+                end
+            end,
+	Setup = 
+			function(panel)                 
                 if ( not g_FeedbackUI_feedbackVars ) then
                     g_FeedbackUI_feedbackVars = {}
                     g_FeedbackUI_feedbackVars["alerts"] = true;
@@ -1623,6 +1656,12 @@ FeedbackUI_SetupPanel{
                 
                 if ( not g_FeedbackUI_surveysTable ) then
                     g_FeedbackUI_surveysTable = {}
+                end
+            
+                if ( not g_FeedbackUI_feedbackVars["switchedHash"] ) then
+                    g_FeedbackUI_surveysTable["Quests"] = {};
+                    g_FeedbackUI_surveysTable["Alerts"] = {};
+                    g_FeedbackUI_feedbackVars["switchedHash"] = true;
                 end
                 
                 if ( not g_FeedbackUI_surveysTable["Quests"] ) then
@@ -1806,16 +1845,42 @@ FeedbackUI_SetupPanel{
                 
                 panel.UpdateQuestSurveys =
                     function (panel)
+                        -- make sure that this will only fire at most every 1 sec
+                        if ( not g_FeedbackUI_feedbackVars["lastQuestUpdate"] ) then
+                            g_FeedbackUI_feedbackVars["lastQuestUpdate"] = GetTime();
+                        else
+                            local updateDiff = GetTime() - g_FeedbackUI_feedbackVars["lastQuestUpdate"];
+                            
+                            if ( updateDiff < 1 ) then
+                                return;
+                            else
+                                g_FeedbackUI_feedbackVars["lastQuestUpdate"] = GetTime();
+                            end
+                        end
+                        
                         local currentQuests = {};
-                        local headers, quests = GetNumQuestLogEntries();
-                        local questEntries = headers + quests;
-                        for i = 1, questEntries do
+                        local headerStates = {}
+
+                        for i = 1, MAX_QUESTS do
+                            local name, _, _, _, collapsed = GetQuestLogTitle(i)
+                            if ( collapsed == 1 ) then
+                                headerStates[name] = 1;
+                            end
+                        end
+                       
+                        ExpandQuestHeader(0);
+                       
+                        local quests = GetNumQuestLogEntries();
+                        local currentSelected = GetQuestLogSelection();
+                        
+                        for i = 1, quests do
                             local name, _, _, header = GetQuestLogTitle(i)
                             if ( not header ) then
                                 local objectives, objectivesHash
                                 
                                 SelectQuestLogEntry(i)
                                 _, objectives = GetQuestLogQuestText()
+                                objectives = string.gsub(objectives, "%c", "")
                                 objectivesHash = FeedbackUI_HexHash(objectives)
                                 table.insert(currentQuests, objectivesHash)
                                 
@@ -1839,6 +1904,8 @@ FeedbackUI_SetupPanel{
                                 local questFound = false
                                 for _, id in pairs(currentQuests) do
                                     if ( id == quest.id ) then
+                                        questFound = true;                                         
+                                    elseif ( not id ) then
                                         questFound = true;
                                     end
                                 end
@@ -1850,6 +1917,16 @@ FeedbackUI_SetupPanel{
                                 end
                             end
                         end
+                        
+                        SelectQuestLogEntry(currentSelected);
+                        
+                        for i = 1, GetNumQuestLogEntries() do
+                            local name = GetQuestLogTitle(i)
+                            if ( ( name ~= 0 ) and ( headerStates[name] ) )then
+                                CollapseQuestHeader(i)
+                            end
+                        end
+                        
                     end
                     
 				panel.DateSort = 
@@ -2631,16 +2708,18 @@ FeedbackUI_SetupPanel{
 				-- run the setup functions that were defined earlier in panel.setup.
 				-----------------------------------------------------------------------------------
                 
-                panel.categories = { "Instances", "Quests" }
-                panel.category = 1
+                panel.categories = { "Instances", "Quests" };
+                panel.category = 1;
                 panel.maxbuttons = 1;
+                panel.status = 2;
+				panel.surveys = {};
+                panel.tasks = {};
+                panel.timeSinceLast = 0;
+                panel.UPDATEINTERVAL = .5;
+                
                 pcall(panel.Localize, panel);
                 
-				panel.status = 2
-				panel.surveys = {}
-                
-                
-                				               
+
 				panel.CreateButtons(panel);
                 panel.CreateAlertButtons(panel);
                 
@@ -2654,16 +2733,19 @@ FeedbackUI_SetupPanel{
 	anchors = { { ["point"] = "TOPLEFT", ["relativeto"] = "$parentSurveysPanel", ["relativepoint"] = "BOTTOMLEFT", ["x"] = 0, ["y"] = 3 },
 				{ ["point"] = "TOPRIGHT", ["relativeto"] = "$parentSurveysPanel", ["relativepoint"] = "TOPRIGHT", ["x"] = 0, ["y"] = 3 } },
 	size = { ["y"] = 70 },
-	setup = function(obj)
+	Setup = function(obj)
 				-- Create the seperator line that follows the Status panel.
 				obj.seperator = CreateFrame("Frame", obj:GetName() .. "Line", obj, "FeedbackLineTemplate");
 				obj.seperator:SetPoint("TOPLEFT", obj, "BOTTOMLEFT", 0, -5);
 				obj.seperator:SetPoint("TOPRIGHT", obj, "BOTTOMRIGHT", 0, -5);
 				obj.status = {};
+                obj.infoLines = {};
 			end,
-	show = 	function()
-				for _, line in next, this.infoLines do
-					if ( line.update ) then line.update() end
+	Show = 	function(panel)
+				for _, line in next, panel.infoLines do
+					if ( line.Update ) then 
+                        line.Update(line, panel)
+                    end
 				end	
 			end
 	
@@ -2674,17 +2756,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUISurveyFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMCLARITY_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "clarity"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}
 			
@@ -2693,17 +2771,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUISurveyFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMDIFFICULTY_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "difficulty"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}
 
@@ -2712,17 +2786,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUISurveyFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMREWARD_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "reward"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}			
 					
@@ -2731,17 +2801,13 @@ FeedbackUI_AddInfoLine{
 	parent = "FeedbackUISurveyFrameStatusPanel",
 	inherits = "InfoLineTemplate",
 	labelText = FEEDBACKUILBLFRMFUN_TEXT,
-	setup = function(line)
+	Setup = function(line)
 				line.type = "fun"
 			end,
-	update = function(line)
-				local parent = line:GetParent();
-				if parent.status then
-					local value = parent.status[line.type]
-				else
-					value = ""
-				end
-				line.value:SetText(value);
+	Update = function(line, panel)
+				if ( panel.status ) and ( line.type ) then
+					line.value:SetText(panel.status[line.type]);
+				end			
 			end
 			}	
 			
@@ -2751,7 +2817,7 @@ FeedbackUI_SetupPanel{
 	inherits = "FeedbackWizardTemplate",
 	anchors = { { ["point"] = "TOPLEFT", ["relativeto"] = "$parentStatusPanel", ["relativepoint"] = "BOTTOMLEFT", ["x"] = 0, ["y"] = -1 },
 				{ ["point"] = "BOTTOMRIGHT", ["relativeto"] = "$parent", ["relativepoint"] = "BOTTOMRIGHT", ["x"] = 2, ["y"] = 19 } },
-	setup = function(panel)
+	Setup = function(panel)
 				panel.maxbuttons = 1
 				panel.scrollResults = {}
 				panel.history = {}
@@ -2981,10 +3047,6 @@ FeedbackUI_SetupPanel{
 						panel.scroll:Hide();
 						panel.prompt:Hide();
 						panel.edit:Hide();
-						-- panel:GetParent().back:Hide();
-						-- panel:GetParent().skip:Hide()
-						-- panel:GetParent().reset:Hide();
-						-- panel:GetParent().submit:Hide();
 						panel.scroll.thumb:Disable()
 						panel.scrollResults = {};
 						
@@ -3052,11 +3114,12 @@ FeedbackUI_SetupPanel{
 											if ( line.type == element.summary.type ) then
 												maxSummary = num;
 											end
-											if num >= maxSummary then 
+											if ( num >= maxSummary ) then 
 												line.value:SetText("") 
 												panelElement.status[line.type] = nil;
-											elseif num < maxSummary and ( line.value:GetText() == "" or line.value:GetText() == nil )then
-													line.value:SetText("N/A");
+											elseif ( ( num < maxSummary ) and ( line.value:GetText() == "" or line.value:GetText() == nil ) ) then
+                                                panelElement.status[line.type] = "N/A";
+                                                line.value:SetText("N/A");
 											end
 										end
 									end
@@ -3065,7 +3128,7 @@ FeedbackUI_SetupPanel{
 
 							i = i + 1;
 							panel.scrollResults[ordinal] = element;
-							if element.prompt then
+							if ( element.prompt ) then
 								panel.prompt:Show();
 								panel.prompt:SetText(element.prompt);
 								panel.startlink = getglobal(element.link);
