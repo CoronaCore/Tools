@@ -1,0 +1,13 @@
+## Interface: 20000
+## Title: Blizzard_FeedbackUI
+## Version: 2.0
+## Secure: 1
+## Author: Blizzard Entertainment
+## Notes: Submit feedback to Blizzard Entertainment from WoW with a friendly UI.
+## SavedVariablesPerCharacter: g_FeedbackUI_feedbackVars, g_FeedbackUI_surveysTable
+
+Localization.lua
+Blizzard_FeedbackUITemplates.xml
+Blizzard_FeedbackUI.xml
+Blizzard_FeedbackUIPanels.lua
+

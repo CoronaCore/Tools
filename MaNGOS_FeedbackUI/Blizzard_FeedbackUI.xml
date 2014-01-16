@@ -1,0 +1,171 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+
+<Script file="Blizzard_FeedbackUIStrings.lua"/>
+<Script file="Blizzard_FeedbackUI.lua"/>
+
+<Button name="FeedbackUIButton" parent="Minimap" frameStrata="MEDIUM">
+	<Size>
+		<AbsDimension x="21" y="21"/>
+	</Size>
+	<Anchors>
+		<Anchor point="CENTER" relativeTo="Minimap" relativePoint="CENTER">
+			<Offset>
+				<AbsDimension x="74" y="-10"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+	<Layers>
+		<Layer level="OVERLAY">
+			<Texture file="Interface\MINIMAP\MiniMap-TrackingBorder">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-5" y="4"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="26" y="-26"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+		</Layer>
+	</Layers>
+	<NormalTexture file="Interface\Addons\Blizzard_FeedbackUI\Blizzard-Icon-Up.blp"/>
+	<PushedTexture file="Interface\Addons\Blizzard_FeedbackUI\Blizzard-Icon-Pushed.blp"/>
+	<HighlightTexture file="Interface\Addons\Blizzard_FeedbackUI\Blizzard-Icon-Highlight.blp" alphaMode="ADD"/>
+	<Scripts>
+		<OnLoad>
+			this.tooltipText = MicroButtonTooltipText(TEXT(BUG_BUTTON), "TOGGLEBUG");
+			this.newbieText = NEWBIE_TOOLTIP_BUG;
+			this.name="hide";
+		</OnLoad>
+		<OnClick>
+			FeedbackUI_Show();
+		</OnClick>
+		<OnEnter>
+			GameTooltip_AddNewbieTip(this.tooltipText, 1.0, 1.0, 1.0, this.newbieText);
+		</OnEnter>
+		<OnLeave>
+			GameTooltip:Hide();
+		</OnLeave>
+	</Scripts>
+</Button>
+
+<Frame name="FeedbackUI" toplevel="true" frameStrata="HIGH" enableMouse="true" movable="true" inherits="FeedbackUITemplate" parent="UIParent" hidden="true">
+	<Scripts>
+		<OnLoad>
+			this.button = getglobal("FeedbackUIButton");
+			FeedbackUI_OnLoad()
+			this:SetClampedToScreen(1)
+            this:RegisterEvent("ADDON_LOADED");
+		</OnLoad>
+        <OnEvent>
+            FeedbackUI_OnEvent()
+        </OnEvent>
+	</Scripts>
+	<Frames>
+		<Frame name="$parentBugFrame" inherits="FeedbackBugSuggestFrameTemplate">
+			<Frames>
+			</Frames>
+			<Scripts>
+				<OnLoad>
+					tinsert(feedbackFrames, this)
+					this.label = FEEDBACKUIFEEDBACKFRMTITLE_TEXT
+				</OnLoad>
+				<OnShow>
+					getglobal(this:GetParent():GetName() .. "TitleFrmTitleText"):SetText(this.label);
+				</OnShow>
+			</Scripts>
+		</Frame>
+		<Frame name="$parentSuggestFrame" hidden="true" inherits="FeedbackBugSuggestFrameTemplate">
+			<Frames>
+			</Frames>
+			<Scripts>
+				<OnLoad>
+					tinsert(feedbackFrames, this)
+					this.label = FEEDBACKUIFEEDBACKFRMTITLE_TEXT
+				</OnLoad>
+				<OnShow>
+					getglobal(this:GetParent():GetName() .. "TitleFrmTitleText"):SetText(this.label);
+				</OnShow>
+			</Scripts>
+		</Frame>
+		<Frame name="$parentSurveyFrame" hidden="true" inherits="FeedbackSurveyFrameTemplate">
+			<Frames>
+			</Frames>
+			<Scripts>
+				<OnLoad>
+					tinsert(feedbackFrames, this)
+					this.label = FEEDBACKUIFEEDBACKFRMTITLE_TEXT
+				</OnLoad>
+				<OnShow>
+					getglobal(this:GetParent():GetName() .. "TitleFrmTitleText"):SetText(this.label);
+				</OnShow>
+			</Scripts>
+		</Frame>
+		<Frame name="$parentTabs">
+			<Size>
+				<AbsDimension y="40"/>
+			</Size>
+			<Anchors>
+				<Anchor point="BOTTOMLEFT" relativeto="$parent" relativepoint="BOTTOMLEFT">
+					<Offset>
+						<AbsDimension x="5" y="-29"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="RIGHT" relativeto="$parent" relativepoint="CENTER">
+					<Offset>
+						<AbsDimension x="-25"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Frames>
+				<Button name="FeedbackUITab1" inherits="FeedbackFrameTabButtonTemplate" id="1" text="FEEDBACKUITYPEBUG_TEXT">
+					<Anchors>
+						<Anchor point="LEFT" relativeto="$parent" relativepoint="LEFT">
+							<Offset>
+								<AbsDimension x="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							this.frame=getglobal("FeedbackUIBugFrame");
+						</OnLoad>				
+					</Scripts>			
+				</Button>
+				<Button name="FeedbackUITab2" inherits="FeedbackFrameTabButtonTemplate" id="2" text="FEEDBACKUITYPESUGGEST_TEXT">
+					<Anchors>
+						<Anchor point="LEFT" relativeto="FeedbackUITab1" relativepoint="RIGHT">
+							<Offset>
+								<AbsDimension x="-16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							this.frame=getglobal("FeedbackUISuggestFrame");
+						</OnLoad>
+					</Scripts>
+				</Button>
+				<Button name="FeedbackUITab3" inherits="FeedbackFrameTabButtonTemplate" id="3" text="FEEDBACKUITYPESURVEY_TEXT">
+					<Anchors>
+						<Anchor point="LEFT" relativeto="FeedbackUITab2" relativepoint="RIGHT">
+							<Offset>
+								<AbsDimension x="-16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							this.frame=getglobal("FeedbackUISurveyFrame");
+						</OnLoad>
+					</Scripts>
+				</Button>
+			</Frames>
+		</Frame>
+	</Frames>
+</Frame>
+</Ui>

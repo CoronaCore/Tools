@@ -1,0 +1,1586 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+<Frame name="FeedbackUITemplate" hidden="false" virtual="true">
+	<Size>
+		<AbsDimension x="385" y="465"/>
+	</Size>
+	<Anchors>
+		<Anchor point="CENTER" relativeto="$parent" relativepoint="CENTER">
+			<Offset>
+				<AbsDimension x="-10"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+	<Backdrop bgFile="Interface\TutorialFrame\TutorialFrameBackground" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" title="true" frameStrata="BACKGROUND">
+		<BackgroundInsets>
+			<AbsInset left="11" right="12" top="12" bottom="11"/>
+		</BackgroundInsets>
+		<TileSize>
+			<AbsValue val="32"/>
+		</TileSize>
+		<EdgeSize>
+			<AbsValue val="32"/>
+		</EdgeSize>
+	</Backdrop>
+	<Scripts>
+		<OnShow>
+			tinsert(UISpecialFrames,this:GetName())
+			this.button:SetButtonState("PUSHED",1);
+			PlaySound("igCharacterInfoOpen");
+		</OnShow>
+		<OnHide>
+			for entry, name in next, UISpecialFrames do if (name == this:GetName()) then tremove(UISpecialFrames, entry) end end
+			this.button:SetButtonState("NORMAL",0);
+			PlaySound("igCharacterInfoClose");
+		</OnHide>
+		<OnMouseDown>
+			this:StartMoving();
+		</OnMouseDown>
+		<OnMouseUp>
+			this:StopMovingOrSizing();
+		</OnMouseUp>
+	</Scripts>
+	<Frames>
+		<Frame name="$parentTitleFrm">
+			<Size>
+				<AbsDimension x="150" y="25"/>
+			</Size>
+			<Anchors>
+				<Anchor point="CENTER" relativeto="$parent" relativepoint="TOP">
+					<Offset>
+						<AbsDimension y="-4"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Layers>
+				<Layer level="OVERLAY">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="325" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+					<FontString name="$parentTitleText" inherits="GameFontNormal">
+						<Anchors>
+							<Anchor point="CENTER" relativeto="$parent" relativepoint="CENTER">
+								<Offset>
+									<AbsDimension x="0" y="-7"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+				</Layer>
+			</Layers>
+		</Frame>
+		<Button name="$parentBtnClose" visible="true">
+			<Size>
+				<AbsDimension x="30" y="30"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPRIGHT" relativeto="$parent" relativepoint="TOPRIGHT">
+					<Offset>
+						<AbsDimension x="-3" y="-4"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					PlaySound("GAMEGENERICBUTTONPRESS");
+					FeedbackUI_Show();
+				</OnClick>
+			</Scripts>
+			<NormalTexture file="Interface\BUTTONS\UI-Panel-MinimizeButton-Up"/>
+			<PushedTexture file="Interface\BUTTONS\UI-Panel-MinimizeButton-Down"/>
+			<DisabledTexture file="Interface\BUTTONS\UI-Panel-MinimizeButton-Disabled"/>
+			<HighlightTexture file="Interface\BUTTONS\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+		</Button>
+	</Frames>
+</Frame>
+<Frame name="FeedbackFrameTemplate" hidden="false" virtual="true">
+	<Anchors>
+		<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+			<Offset>
+				<AbsDimension x="11" y="-12"/>
+			</Offset>
+		</Anchor>
+		<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+			<Offset>
+				<AbsDimension x="-12" y="11"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+	<Backdrop bgFile="Interface\TutorialFrame\TutorialFrameBackground" frameStrata="BACKGROUND"/>
+	<Scripts>
+	</Scripts>
+</Frame>
+<Frame name="FeedbackBugSuggestFrameTemplate" hidden="false" virtual="true" inherits="FeedbackFrameTemplate">
+	<Frames>
+		<Button name="$parentBack" inherits="OptionsButtonTemplate" hidden="true">
+			<Anchors>
+				<Anchor point="BOTTOMLEFT" relativeto="$parent" relativepoint="BOTTOMLEFT">
+					<Offset>
+						<AbsDimension x="-1" y="1"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:GetParent().back = this;
+					this:SetText(FEEDBACKUIBACK_TEXT)
+					this:Disable();
+				</OnLoad>
+				<OnClick>
+					PlaySound("GAMEGENERICBUTTONPRESS");
+					for index, panel in pairs(this:GetParent().panels) do
+						if ( panel.name == "StepThroughPanel" ) then
+							pcall(this:GetParent().panels[index].Back, this:GetParent().panels[index])
+						end
+					end
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parentSubmit" inherits="OptionsButtonTemplate" enabled="false" hidden="true">
+			<Anchors>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+					<Offset>
+						<AbsDimension x="1" y="1"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:GetParent().submit = this;
+					this:SetText(FEEDBACKUISUBMIT_TEXT);
+					this:Disable();
+				</OnLoad>
+				<OnClick>
+					PlaySound("GAMEGENERICBUTTONPRESS");
+					for index, panel in pairs(this:GetParent().panels) do
+						if ( panel.name == "StepThroughPanel" ) then
+							this:GetParent().panels[index].Submit(this:GetParent().panels[index])
+							<!-- pcall(this:GetParent().panels[index].Submit, this:GetParent().panels[index]) -->
+						end
+					end
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parentReset" inherits="OptionsButtonTemplate" hidden="true">
+			<Anchors>
+				<Anchor point="RIGHT" relativeto="$parentSubmit" relativepoint="LEFT">
+					<Offset>
+						<AbsDimension x="-1"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:GetParent().reset = this;
+					this:SetText(FEEDBACKUIRESET_TEXT);
+				</OnLoad>
+				<OnClick>
+					PlaySound("GAMEGENERICBUTTONPRESS");
+					for index, panel in pairs(this:GetParent().panels) do
+						if ( panel.name == "StepThroughPanel" ) then
+							pcall(this:GetParent().panels[index].Reset, this:GetParent().panels[index])
+						end
+					end
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parentStart" inherits="OptionsButtonTemplate">
+			<Size>
+				<AbsDimension x="80" y="20"/>
+			</Size>
+			<Anchors>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT" hidden="false">
+					<Offset>
+						<AbsDimension x="1" y="1"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:GetParent().start = this;
+					this:SetText(FEEDBACKUISTART_TEXT);
+				</OnLoad>
+				<OnClick>
+					PlaySound("GAMEGENERICBUTTONPRESS");
+					for index, panel in pairs(this:GetParent().panels) do
+						if ( panel.name == "StepThroughPanel" ) then
+							pcall(this:GetParent().panels[index].Start, this:GetParent().panels[index])
+						end
+					end
+				</OnClick>
+			</Scripts>
+		</Button>
+	</Frames>
+</Frame>		
+<Frame name="FeedbackPanelTemplate" hidden="false" virtual="true">
+	<Layers>
+		<Layer level="OVERLAY">
+			<FontString name="$parentLabel" hidden="false" inherits="GameFontNormal">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeto="$parent" relativepoint="TOP">
+						<Offset>
+							<AbsDimension y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1" a="1"/>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Frames>
+		<Frame name="$parentBorder">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+				<EdgeSize>
+					<AbsValue val="16"/>
+				</EdgeSize>
+				<TileSize>
+					<AbsValue val="16"/>
+				</TileSize>
+				<BackgroundInsets>
+					<AbsInset left="-15" right="-15" top="-15" bottom="-15"/>
+				</BackgroundInsets>
+			</Backdrop>			
+		</Frame>
+	</Frames>
+	<Scripts>
+	</Scripts>
+</Frame>
+<Frame name="FeedbackWizardTemplate" inherits="FeedbackPanelTemplate" hidden="false" virtual="true">
+	<Frames>
+		<Frame name="$parentHeader">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+					<Offset>
+						<AbsDimension x="2" y="-2"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="TOPRIGHT">
+					<Offset>
+						<AbsDimension x="-2" y="-45"/>
+					</Offset>
+				</Anchor>
+			</Anchors>							
+			<Layers>
+				<Layer level="OVERLAY">
+					<FontString name="$parentText" justifyh="LEFT" inherits="GameFontNormalLarge" text="This is header text.">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="8" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Color r="1" g="1" b="1" a="1"/>
+					</FontString>
+					<FontString name="$parentSubText" justifyh="LEFT" inherits="GameFontNormal" text="This is some subheader text.">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeto="$parentText" relativepoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-1"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="RIGHT" relativeto="$parent" relativepoint="RIGHT"/>
+						</Anchors>
+					</FontString>
+				</Layer>
+			</Layers>
+			<Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+				<EdgeSize>
+					<AbsValue val="16"/>
+				</EdgeSize>
+				<TileSize>
+					<AbsValue val="16"/>
+				</TileSize>
+				<BackgroundInsets>
+					<AbsInset left="-15" right="-15" top="-15" bottom="-15"/>
+				</BackgroundInsets>
+			</Backdrop>
+			<Scripts>
+				<OnLoad>
+					this:GetParent().header = getglobal(this:GetName() .. "Text")
+					this:GetParent().subtext = getglobal(this:GetName() .. "SubText")
+				</OnLoad>
+			</Scripts>
+		</Frame>
+		<Frame name="$parentScroll" hidden="false" inherits="FeedbackScrollTemplate">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parentHeader" relativepoint="BOTTOMLEFT"/>
+				<Anchor point="BOTTOMRIGHT" relatievto="$parent" relativepoint="BOTTOMRIGHT"/>
+			</Anchors>
+		</Frame>
+		<Frame name="$parentPrompt">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parentHeader" relativepoint="BOTTOMLEFT"/>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT"/>
+			</Anchors>
+			<Layers>
+				<Layer level="OVERLAY">
+					<FontString name="$parentText" justifyv="top" justifyh="left" inherits="GameFontNormalSmall" text="" multiline="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="8"/>
+								</Offset>
+							</Anchor>
+							<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="-8"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Color r="1" g="1" b="1" a="1"/>
+					</FontString>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnLoad>
+					this:GetParent().prompt = getglobal(this:GetName() .. "Text")
+				</OnLoad>
+			</Scripts>
+		</Frame>
+		<Frame name="$parentEdit" hidden="true">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parentHeader" relativepoint="BOTTOMLEFT">
+					<Offset>
+						<AbsDimension y="4"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT" relatievto="$parent" relativepoint="BOTTOMRIGHT">
+					<Offset>
+						<AbsDimension x="-21" y="2"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Backdrop edgefile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+				<EdgeSize><AbsValue val="16"/></EdgeSize>
+				<TileSize><AbsValue val="16"/></TileSize>
+				<BackgroundInsets><AbsInset left="2" right="-5" top="-15" bottom="-15"/></BackgroundInsets>
+			</Backdrop>				
+			<Scripts>
+				<OnLoad>
+					this:GetParent().edit = this
+					this:GetParent().input = getglobal(this:GetName() .. "InputBox")
+				</OnLoad>
+			</Scripts>
+			<Frames>
+				<Button name="$parentFocus" hidden="false" enabled="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-5" y="-5"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="-5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							this:Raise()
+						</OnLoad>
+						<OnClick>
+							this:GetParent():GetParent().input:SetFocus()
+							this:GetParent():GetParent().input:HighlightText(0)
+						</OnClick>
+					</Scripts>
+				</Button>
+				<ScrollFrame name="$parentInput" inherits="UIPanelScrollFrameTemplate" hidden="false" framestrata="DIALOG">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="8" y="-6"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-7" y="4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<ScrollChild>
+						<EditBox name="$parentBox" multiline="true" hidden="false" letters="3000" autoFocus="false">
+							<Size>
+								<AbsDimension x="307" y="71"/>
+							</Size>
+							<Scripts>
+								<OnLoad>
+									this.parentform = this:GetParent():GetParent():GetParent():GetParent();			
+                                    this.blankString = ""
+								</OnLoad>
+								<OnTextChanged>
+									if ( ( this:GetText() ~= this.default ) and ( this:GetText() ~= this.blankString ) ) then
+										this.parentform.submit:Enable();
+									else
+										this.parentform.submit:Disable();
+									end
+									ScrollingEdit_OnTextChanged();
+								</OnTextChanged>
+								<OnCursorChanged>
+									ScrollingEdit_OnCursorChanged(arg1, arg2, arg3, arg4);
+								</OnCursorChanged>
+								<OnUpdate>
+									ScrollingEdit_OnUpdate();
+								</OnUpdate>								
+								<OnEscapePressed>
+									this:ClearFocus();
+									this:HighlightText(-1);
+								</OnEscapePressed>
+								<OnShow>
+									this:SetFocus();
+								</OnShow>
+							</Scripts>
+							<FontString inherits="ChatFontNormal"/>
+						</EditBox>
+					</ScrollChild>
+				</ScrollFrame>	
+			</Frames>					
+		</Frame>		
+	</Frames>
+	<Scripts>
+		<OnShow>
+			this.UpdateButtons(this);
+			this.Render(this, this.table);
+		</OnShow>
+	</Scripts>
+</Frame>
+<Frame name="FeedbackScrollTemplate" virtual="true" hidden="false">
+	<Frames>
+		<Frame name="$parentWheelScroll">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT"/>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.scroll = this:GetParent();
+					this.panel = this.scroll:GetParent();
+				</OnLoad>
+				<OnMouseWheel>
+					if ( this.scroll.thumb:IsEnabled() == 1 ) then this.panel.MoveScroll(this.panel, -arg1); end
+				</OnMouseWheel>
+			</Scripts>
+		</Frame>		
+		<Frame name="$parentButtons">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT"/>
+			</Anchors>
+			<Frames>
+				<Button name="$parentOption1" inherits="ScrollElementTemplate">
+					<Size>
+						<AbsDimension x="1" y="1"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+							<Offset>
+								<AbsDimension y="-4" x="8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							this.scroll = this:GetParent():GetParent();
+							if ( not this.scroll.buttons ) then
+								this.scroll.buttons = {}
+							end
+							table.insert(this.scroll.buttons, this);
+							this.index = table.maxn(this.scroll.buttons);
+							this.name = this:GetName();
+							this.text = getglobal(this.name.."Text");
+							this.rightText = getglobal(this.name.."RightText");
+							this.func = nil;
+							this.text:SetText(this.name);
+							this.highlightColor = { ["r"] = 1, ["g"] = 1, ["b"] = 1, ["a"] = 1 };
+							this.normalColor = { ["r"] = 1, ["g"] = .82, ["b"] = 0, ["a"] = 1 };
+						</OnLoad>
+					</Scripts>
+				</Button>
+			</Frames>
+		</Frame>
+		<Frame name="$parentScroll">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPRIGHT">
+					<Offset>
+						<AbsDimension x="-16" y="-2"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+					<Offset>
+						<AbsDimension x="-6" y="6"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Frames>	
+				<Button name="$parentUpBtn" inherits="UIPanelScrollUpButtonTemplate" hidden="false">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeto="$parent" relativepoint="TOPRIGHT"/>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							this:Raise();
+							this:Disable();
+							this.scroll = this:GetParent():GetParent();
+							this.panel = this.scroll:GetParent();
+							this.scroll.upbtn = this;
+						</OnLoad>
+						<OnClick>
+							this.panel.MoveScroll(this.panel, -1);
+						</OnClick>
+					</Scripts>
+				</Button>
+				<Button name="$parentDownBtn" inherits="UIPanelScrollDownButtonTemplate" hidden="false">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT"/>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							this:Raise();
+							this:Disable();
+							this.scroll = this:GetParent():GetParent();
+							this.panel = this.scroll:GetParent();
+							this.scroll.downbtn = this;
+						</OnLoad>
+						<OnClick>
+							this.panel.MoveScroll(this.panel, 1);				
+						</OnClick>
+					</Scripts>
+				</Button>
+				<Frame name="$parentControls" hidden="false">
+					<Size>
+						<AbsDimension x="23"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeto="$parentUpBtn" relativepoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="2"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT" relativeto="$parentDownBtn" relativepoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							this.scroll=this:GetParent():GetParent()
+							this.scroll.controls = this
+						</OnLoad>
+					</Scripts>
+					<Frames>
+						<Button name="$parentScrollThumb" inherits="UIPanelScrollBarButton" hidden="false" movable="true" enabled="false">
+							<Size>
+								<AbsDimension x="24" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOP" relativeto="$parent" relativepoint="TOP">
+									<Offset>
+										<AbsDimension y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnLoad>
+									this:Raise();
+									this:Disable();
+									this.scroll=this:GetParent():GetParent():GetParent();
+									this.scroll.thumb = this;
+									this.panel = this.scroll:GetParent();
+								</OnLoad>
+								<OnMouseDown>
+									if ( this:IsEnabled() == 1 ) then
+										this.panel.StartScroll(this.panel);
+									end
+								</OnMouseDown>
+								<OnMouseUp>
+									if ( this:IsEnabled() == 1 ) then
+										this.panel.StopScroll(this.panel);
+									end
+								</OnMouseUp> 
+								<OnMouseWheel>
+									if ( this:IsEnabled() == 1 ) then this.panel.MoveScroll(this.panel, -arg1); end
+								</OnMouseWheel>
+							</Scripts>
+							<Layers>
+								<Layer level="OVERLAY">
+							<Texture file="Interface\Buttons\UI-ScrollBar-Knob.blp">											
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+										<Offset>
+											<AbsDimension y="6" x="-3"/>
+										</Offset>
+									</Anchor>
+									<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+										<Offset>
+											<AbsDimension y="-6" x="3"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Texture>
+							</Layer>
+							</Layers>
+						</Button>
+						<Button name="$parentHiddenUpdate" hidden="true" movable="true" enabled="false">
+							<Size>
+								<AbsDimension x="1" y="1"/>
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER" relativeto="ScrollThumb" relativepoint="CENTER"/>
+							</Anchors>
+							<Scripts>
+								<OnLoad>
+									this.scroll=this:GetParent():GetParent():GetParent();
+									this.scroll.update = this;
+									this.panel = this.scroll:GetParent()
+								</OnLoad>
+								<OnUpdate>
+									this.panel.ScrollOnUpdate(this.panel, arg1);
+								</OnUpdate>
+							</Scripts>
+						</Button>
+						<Button name="$parentBGButton" hidden="false" movable="false" enabled="false">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT"/>
+								<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT"/>
+							</Anchors>
+							<Scripts>
+								<OnLoad>
+									this:Lower();
+									this.scroll=this:GetParent():GetParent():GetParent();
+									this.panel=this.scroll:GetParent();
+								</OnLoad>
+								<OnClick>
+									if ( this.scroll.thumb:IsEnabled() == 1 ) then this.panel.ScrollOnUpdate(this.panel, 1); end
+									this:Lower();
+								</OnClick>
+								<OnMouseWheel>
+									if ( this.scroll.thumb:IsEnabled() == 1 ) then this.panel.MoveScroll(this.panel, -arg1); end
+								</OnMouseWheel>
+							</Scripts>
+						</Button>
+					</Frames>
+				</Frame>
+			</Frames>
+		</Frame>		
+	</Frames>
+	<Scripts>
+		<OnLoad>
+			this:GetParent().scroll = this
+		</OnLoad>
+	</Scripts>
+</Frame>
+<Frame name="InfoLineTemplate" hidden="false" virtual="true">
+	<Size>
+		<AbsDimension y="12" x="50"/>
+	</Size>
+	<Layers>
+		<Layer level="OVERLAY">
+			<FontString name="$parentLabel" inherits="GameFontNormal" justifyH="LEFT" hidden="false">
+				<Size>
+					<AbsDimension x="100" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1" a="1"/>
+			</FontString>
+			<FontString name="$parentValue" inherits="GameFontNormal" justifyH="RIGHT" hidden="false">
+				<Anchors>
+                    <Anchor point="TOPLEFT" relativeto="$parentLabel" relativepoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+					
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Scripts>
+		<OnEnter>
+			if ( this.onenter ) then this.onenter(this) end
+		</OnEnter>
+		<OnLeave>
+			if ( this.onleave ) then this.onleave(this) end
+		</OnLeave>
+	</Scripts>
+</Frame>
+<Button name="ScrollElementTemplate" hidden="false" virtual="true">
+    <Size>
+        <AbsDimension x="100" y="10"/>
+    </Size>
+	<Scripts>
+		<OnClick>	
+			if ( this.scroll:GetParent().Click ) then this.scroll:GetParent().Click(this.scroll:GetParent(), this.element, this) end
+			PlaySound("igMainMenuOptionCheckBoxOn");
+		</OnClick>	
+		<OnMouseDown>
+			this.btn:SetButtonState("PUSHED");
+		</OnMouseDown>
+		<OnMouseUp>
+			this.btn:SetButtonState("NORMAL");
+		</OnMouseUp>
+		<OnLoad>
+			this.scroll = this:GetParent();
+			this.name = this:GetName();
+			this.text = getglobal(this.name.."Text");
+			this.rightText = getglobal(this.name.."RightText");
+			this.func = nil;
+			this.text:SetText(this.name);
+			this.highlightColor = { ["r"] = 1, ["g"] = 1, ["b"] = 1, ["a"] = 1 };
+			this.normalColor = { ["r"] = 1, ["g"] = .82, ["b"] = 0, ["a"] = 1 };
+		</OnLoad>
+		<OnEnter>
+			this.btn:LockHighlight();
+			this.text:SetTextColor(this.highlightColor.r, this.highlightColor.g, this.highlightColor.b, this.highlightColor.a);
+			this.rightText:SetTextColor(this.highlightColor.r, this.highlightColor.g, this.highlightColor.b, this.highlightColor.a);
+            if ( this.tooltip ) then
+                this.scroll:GetParent().ShowTooltip(this.scroll:GetParent(), this)
+            end
+		</OnEnter>
+		<OnLeave>
+			this.btn:UnlockHighlight();
+			this.text:SetTextColor(this.normalColor.r, this.normalColor.g, this.normalColor.b, this.normalColor.a);
+			this.rightText:SetTextColor(this.normalColor.r, this.normalColor.g, this.normalColor.b, this.normalColor.a);
+            if ( this.tooltip ) then
+                this.scroll:GetParent().HideTooltip(this.scroll:GetParent())
+            end
+		</OnLeave>
+	</Scripts>
+	<Layers>
+		<Layer level="OVERLAY">
+            <FontString name="$parentRightText" inherits="GameFontNormal" justifyH="LEFT" justifyV="MIDDLE" text="" multiline="false" nonspacewrap="false">
+                <Size>
+                    <AbsDimension x="125" y="10"/>
+                </Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeto="$parent" relativepoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="2"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>
+			</FontString>
+			<FontString name="$parentText" inherits="GameFontNormal" justifyH="LEFT" justifyV="MIDDLE" text="" multiline="true" nonspacewrap="true">                                
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT" relativeto="$parentRightText" relativepoint="BOTTOMLEFT"/>
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Frames>
+		<Button name="$parentBtn" hidden="true" enabled="false">
+			<Size>
+				<AbsDimension x="16" y="16"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="1"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.parent = this:GetParent()
+					this.parent.btn = this;
+					this:SetNormalTexture("Interface\\BUTTONS\\UI-MinusButton-Up.blp");
+					this:SetPushedTexture("Interface\\BUTTONS\\UI-MinusButton-Down.blp");
+					this:SetDisabledTexture("Interface\\BUTTONS\\UI-MinusButton-Disabled.blp");
+				</OnLoad>
+				<OnClick>
+                    this.parent:Click()
+				</OnClick>
+				<OnEnter>
+					local parent = this.parent
+					parent.text:SetTextColor(parent.highlightColor.r, parent.highlightColor.g, parent.highlightColor.b, parent.highlightColor.a);
+					parent.rightText:SetTextColor(parent.highlightColor.r, parent.highlightColor.g, parent.highlightColor.b, parent.highlightColor.a);
+				</OnEnter>
+				<OnLeave>
+					local parent = this.parent
+					parent.text:SetTextColor(parent.normalColor.r, parent.normalColor.g, parent.normalColor.b, parent.normalColor.a);
+					parent.rightText:SetTextColor(parent.normalColor.r, parent.normalColor.g, parent.normalColor.b, parent.normalColor.a);
+				</OnLeave>				
+			</Scripts>
+			<HighlightTexture file="Interface\BUTTONS\UI-PlusButton-Hilight.blp" alphamode="ADD"/>
+		</Button>
+	</Frames>
+</Button>
+<Frame name="FeedbackLineTemplate" virtual="true">
+	<Size>
+		<AbsDimension y="1"/>
+	</Size>
+	<Layers>
+		<Layer level="OVERLAY">
+			<Texture name="$parentTitleBottomLeftTexture" file="Interface\DialogFrame\UI-DialogBox-Header">
+				<Size>
+					<AbsDimension x="35" y="8"/>
+				</Size>
+				<TexCoords left="0" right="0.3" top=".45" bottom=".6"/>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeto="$parent" relativepoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-33"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+			<Texture name="$parentTitleBottomRightTexture" file="Interface\DialogFrame\UI-DialogBox-Header">
+				<Size>
+					<AbsDimension x="35" y="8"/>
+				</Size>
+				<TexCoords left=".7" right="1" top=".45" bottom=".6"/>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="34"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+			<Texture name="$parentTitleBottomCenterTexture" file="Interface\DialogFrame\UI-DialogBox-Header">
+				<TexCoords left=".3" right=".7" top=".45" bottom=".6"/>
+				<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parentTitleBottomLeftTexture" relativepoint="TOPRIGHT"/>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parentTitleBottomRightTexture" relativepoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Texture>
+		</Layer>
+	</Layers>
+</Frame>
+<Button name="FeedbackFrameTabButtonTemplate" virtual="true">
+	<Size>
+		<AbsDimension x="115" y="32"/>
+	</Size>
+	<Layers>
+		<Layer level="BACKGROUND">
+			<Texture name="$parentLeftDisabled" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-ActiveTab">
+				<Size>
+					<AbsDimension x="20" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<TexCoords left="0" right="0.15625" top="0" bottom="1.0"/>
+			</Texture>
+			<Texture name="$parentMiddleDisabled" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-ActiveTab">
+				<Size>
+					<AbsDimension x="88" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentLeftDisabled" relativePoint="RIGHT"/>
+				</Anchors>
+				<TexCoords left="0.15625" right="0.84375" top="0" bottom="1.0"/>
+			</Texture>
+			<Texture name="$parentRightDisabled" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-ActiveTab">
+				<Size>
+					<AbsDimension x="20" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentMiddleDisabled" relativePoint="RIGHT"/>
+				</Anchors>
+				<TexCoords left="0.84375" right="1.0" top="0" bottom="1.0"/>
+			</Texture>
+			<Texture name="$parentLeft" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-InActiveTab">
+				<Size>
+					<AbsDimension x="20" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+				<TexCoords left="0" right="0.15625" top="0" bottom="1.0"/>
+			</Texture>
+			<Texture name="$parentMiddle" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-InActiveTab">
+				<Size>
+					<AbsDimension x="88" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+				</Anchors>
+				<TexCoords left="0.15625" right="0.84375" top="0" bottom="1.0"/>
+			</Texture>
+			<Texture name="$parentRight" file="Interface\AddOns\Blizzard_FeedbackUI\UI-Feedback-InActiveTab">
+				<Size>
+					<AbsDimension x="20" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+				</Anchors>
+				<TexCoords left="0.84375" right="1.0" top="0" bottom="1.0"/>
+			</Texture>
+		</Layer>
+	</Layers>
+	<Scripts>
+		<OnLoad>
+			this:SetFrameLevel(this:GetFrameLevel() + 4);
+		</OnLoad>
+		<OnClick>
+			PanelTemplates_Tab_OnClick(FeedbackUI);
+			PlaySound("igCharacterInfoTab");
+			for _, frame in next, feedbackFrames do
+				frame:Hide();
+			end
+			this.frame:Show();
+			if ( this.frame.panels ) then
+				for _, panel in pairs(this.frame.panels) do
+					pcall(panel.show, panel);
+				end
+			end
+		</OnClick>
+		<OnShow>
+			PanelTemplates_TabResize(0);
+			getglobal(this:GetName().."HighlightTexture"):SetWidth(this:GetTextWidth() + 30);
+		</OnShow>
+	</Scripts>
+	<ButtonText name="$parentText">
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</ButtonText>
+	<NormalFont inherits="GameFontNormalSmall"/>
+	<HighlightFont inherits="GameFontHighlightSmall"/>
+	<DisabledFont inherits="GameFontHighlightSmall"/>
+	<HighlightTexture name="$parentHighlightTexture" file="Interface\PaperDollInfoFrame\UI-Character-Tab-Highlight" alphaMode="ADD">
+		<Anchors>
+			<Anchor point="LEFT">
+				<Offset>
+					<AbsDimension x="10" y="2"/>
+				</Offset>
+			</Anchor>
+			<Anchor point="RIGHT">
+				<Offset>
+					<AbsDimension x="-10" y="2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</HighlightTexture>
+</Button>
+<Frame name="FeedbackDropDownMenuTemplate" virtual="true">
+	<Size>
+		<AbsDimension x="120" y="32"/>
+	</Size>
+	<Layers>
+		<Layer level="ARTWORK">
+			<Texture name="$parentLeft" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+				<Size>
+					<AbsDimension x="25" y="64"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="17"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<TexCoords left="0" right="0.1953125" top="0" bottom="1"/>
+			</Texture>
+			<Texture name="$parentMiddle" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+				<Size>
+					<AbsDimension x="90" y="64"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+				</Anchors>
+				<TexCoords left="0.1953125" right="0.8046875" top="0" bottom="1"/>
+			</Texture>
+			<Texture name="$parentRight" file="Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame">
+				<Size>
+					<AbsDimension x="25" y="64"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+				</Anchors>
+				<TexCoords left="0.8046875" right="1" top="0" bottom="1"/>
+			</Texture>
+			<FontString name="$parentText" inherits="GameFontHighlightSmall" justifyH="RIGHT">
+				<Size>
+					<AbsDimension x="0" y="10"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentRight">
+						<Offset>
+							<AbsDimension x="-43" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Frames>
+		<Button name="$parentButton">
+			<Size>
+				<AbsDimension x="24" y="24"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPRIGHT" relativeTo="$parentRight">
+					<Offset>
+						<AbsDimension x="-16" y="-18"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					ToggleDropDownMenu();
+					PlaySound("igMainMenuOptionCheckBoxOn");
+				</OnClick>
+			</Scripts>
+			<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT"/>
+				</Anchors>
+			</NormalTexture>
+			<PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT"/>
+				</Anchors>
+			</PushedTexture>
+			<DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT"/>
+				</Anchors>
+			</DisabledTexture>
+			<HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT"/>
+				</Anchors>
+			</HighlightTexture>
+		</Button>
+	</Frames>
+	<Scripts>
+		<OnHide>
+			CloseDropDownMenus();
+		</OnHide>
+	</Scripts>
+</Frame>
+<Frame name="FeedbackSurveyPanelTemplate" hidden="false" virtual="true">
+	<Layers>
+		<Layer level="OVERLAY">
+			<FontString name="$parentLabel" hidden="false" inherits="GameFontNormal">
+				<Anchors>
+					<Anchor point="BOTTOM" relativeto="$parent" relativepoint="TOP">
+						<Offset>
+							<AbsDimension y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Color r="1" g="1" b="1" a="1"/>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Frames>
+		<CheckButton name="$parentAlerts" inherits="OptionsCheckButtonTemplate" checked="true" text="Show Alerts">
+			<Size>
+				<AbsDimension x="22" y="22"/>
+			</Size>
+			
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent">
+					<Offset>
+						<AbsDimension x="2" y="-3"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.text = getglobal(this:GetName().."Text");
+					this.text:SetText(" "..FEEDBACKUILBLSURVEYALERTSCHECK_TEXT);
+                    this.panel = this:GetParent();
+                    this.panel.alertCheck = this;
+				</OnLoad>
+                <OnClick>
+                    if ( this:GetChecked() ) then
+                        g_FeedbackUI_feedbackVars["alerts"] = true;
+                    else
+                        g_FeedbackUI_feedbackVars["alerts"] = false;
+                    end
+                    this.panel.UpdateAlertButtons(this.panel);
+                </OnClick>
+			</Scripts>
+		</CheckButton>
+		<Button name="$parentDdlCategory" inherits="FeedbackDropDownMenuTemplate" id="1">
+			<Size>
+				<AbsDimension x="125" y="32"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPRIGHT" relativeTo="$parent" relativepoint="TOPRIGHT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.panel = this:GetParent();
+					this.panel.ddlCategory = this;
+				</OnLoad>
+			</Scripts>
+		</Button>
+		<Button name="$parentDdlStatus" inherits="FeedbackDropDownMenuTemplate" id="1">
+			<Anchors>
+				<Anchor point="RIGHT" relativeTo="$parentDdlCategory" relativepoint="LEFT">
+					<Offset>
+						<AbsDimension x="10" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this.panel = this:GetParent();
+					this.panel.ddlStatus = this;
+				</OnLoad>
+			</Scripts>
+		</Button>
+		<Frame name="$parentBorder">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+					<Offset>
+						<AbsDimension x="0" y="-26"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+				<EdgeSize>
+					<AbsValue val="16"/>
+				</EdgeSize>
+				<TileSize>
+					<AbsValue val="16"/>
+				</TileSize>
+				<BackgroundInsets>
+					<AbsInset left="-15" right="-15" top="-15" bottom="-15"/>
+				</BackgroundInsets>
+			</Backdrop>
+		</Frame>
+		<Frame name="$parentHeaders">
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeto="$parentBorder" relativepoint="TOPLEFT"/>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parentBorder" relativepoint="BOTTOMRIGHT"/>
+			</Anchors>
+			<Frames>
+				<Button name="$parentColumn2" inherits="FeedbackFrameColumnHeaderTemplate" text="FEEDBACKUI_SURVEYCOLUMNMODIFIED">
+					<!-- Since we want this Column (the far right one) to be the fixed width one in case of later resizing, it needs to come first, so that other columns can be sized and positioned relative to it. -->
+					<Size>
+						<AbsDimension x="115" y="29"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeto="$parent" relativepoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-3" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="BACKGROUND">
+							<Texture name="$parentLeft" file="Interface\Tooltips\UI-Tooltip-Border">
+								<Size>
+									<AbsDimension x="5" y="20"/>
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT">
+										<Offset>
+											<AbsDimension x="0" y="-2"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<TexCoords left="0" right="0.078125" top=".45" bottom=".75"/>
+							</Texture>
+						</Layer>
+					</Layers>
+					<ButtonText>
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="8" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</ButtonText>
+					<Scripts>
+						<OnLoad>
+							this.sortType = "date"
+							this.panel = this:GetParent():GetParent();
+						</OnLoad>
+					</Scripts>
+				</Button>
+				<Button name="$parentColumn1" inherits="FeedbackFrameColumnHeaderTemplate" text="FEEDBACKUI_SURVEYCOLUMNNAME">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeto="$parent">
+							<Offset>
+								<AbsDimension x="27" y="-2"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="BOTTOMRIGHT" relativeto="$parentColumn2" relativepoint="BOTTOMLEFT"/>
+					</Anchors>
+					<ButtonText>
+						<Anchors>
+							<Anchor point="LEFT">
+								<Offset>
+									<AbsDimension x="8" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</ButtonText>
+					<Scripts>
+						<OnLoad>
+							this.sortType = "name"
+							this.panel = this:GetParent():GetParent();
+						</OnLoad>
+					</Scripts>
+				</Button>
+				<Frame name="$parentColumnUnderline">
+					<Size>
+						<AbsDimension y="1"/>
+					</Size>				
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeto="$parentColumn1" relativepoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimenxion x="-27" y="0"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="TOPRIGHT" relativeto="$parentColumn2" relativepoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="BACKGROUND">
+							<Texture file="Interface\Tooltips\UI-Tooltip-Border">
+								<Size>
+									<AbsDimension x="1" y="1"/>
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT">
+										<Offset>
+											<AbsDimension x="-22" y="7"/>
+										</Offset>
+									</Anchor>
+									<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+										<Offset>
+											<AbsDimension x="0" y="7"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<TexCoords left=".59" right=".6" top=".15" bottom=".2"/>
+							</Texture>
+						</Layer>
+					</Layers>
+				</Frame>
+			</Frames>
+		</Frame>
+		<Frame name="$parentScroll" hidden="false" inherits="FeedbackScrollTemplate">
+			<Anchors>
+				<Anchor point="TOP" relativeto="$parentHeadersColumnUnderline" relativepoint="BOTTOMLEFT">
+					<Offset>
+						<AbsDimension x="0" y="5"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="LEFT" relativeto="$parent" relativepoint="LEFT"/>
+				<Anchor point="BOTTOMRIGHT" relatievto="$parentBorder" relativepoint="BOTTOMRIGHT"/>
+			</Anchors>
+		</Frame>
+		<Frame name="$parentHighlightFrame" hidden="true">
+			<Size>
+				<AbsDimension x="293" y="16"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT"/>
+			</Anchors>
+			<Layers>
+				<Layer level="ARTWORK">
+					<Texture name="$parentHighlight" file="Interface\Buttons\UI-Listbox-Highlight2"/>
+				</Layer>
+			</Layers>
+			<Scripts>
+				<OnLoad>
+					this:GetParent().highlight = this;
+                    this.texture = getglobal(this:GetName() .. "Highlight");
+				</OnLoad>
+			</Scripts>		
+		</Frame>
+        <GameTooltip name="$parentTooltip" inherits="GameTooltipTemplate" hidden="true">
+            <Scripts>
+                <OnLoad>
+                    this:GetParent().tooltip = this;
+                    this:SetOwner(this, "ANCHOR_NONE")
+                    this:SetText("Test")
+                    this:ClearLines()
+                    this:Hide()
+                </OnLoad>
+            </Scripts>
+        </GameTooltip>
+	</Frames>
+</Frame>
+<Frame name="FeedbackSurveyFrameTemplate" hidden="false" virtual="true" inherits="FeedbackFrameTemplate">
+	<Frames>
+		<Button name="$parentBack" inherits="OptionsButtonTemplate" hidden="false">
+			<Anchors>
+				<Anchor point="BOTTOMLEFT" relativeto="$parent" relativepoint="BOTTOMLEFT">
+					<Offset>
+						<AbsDimension x="-1" y="1"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:GetParent().back = this;
+					this:SetText(FEEDBACKUIBACK_TEXT);
+					this:Disable();
+				</OnLoad>
+				<OnClick>
+					PlaySound("GAMEGENERICBUTTONPRESS");
+					for index, panel in pairs(this:GetParent().panels) do
+						if ( panel.name == "StepThroughPanel" ) then
+							pcall(this:GetParent().panels[index].Back, this:GetParent().panels[index])
+						end
+					end
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parentSkip" inherits="OptionsButtonTemplate" hidden="false">
+			<Anchors>
+				<Anchor point="BOTTOMLEFT" relativeto="$parentBack" relativepoint="BOTTOMRIGHT">
+					<Offset>
+						<AbsDimension x="1" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:GetParent().skip = this;
+					this:SetText(FEEDBACKUISKIP_TEXT);
+					this:Disable();
+				</OnLoad>
+				<OnClick>
+					PlaySound("GAMEGENERICBUTTONPRESS");
+					for index, panel in pairs(this:GetParent().panels) do
+						if ( panel.name == "StepThroughPanel" ) then
+							pcall(this:GetParent().panels[index].Skip, this:GetParent().panels[index])
+						end
+					end
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parentSubmit" inherits="OptionsButtonTemplate" enabled="false" hidden="false">
+			<Anchors>
+				<Anchor point="BOTTOMRIGHT" relativeto="$parent" relativepoint="BOTTOMRIGHT">
+					<Offset>
+						<AbsDimension x="1" y="1"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:GetParent().submit = this;
+					this:SetText(FEEDBACKUISUBMIT_TEXT);
+					this:Disable();
+				</OnLoad>
+				<OnClick>
+					PlaySound("GAMEGENERICBUTTONPRESS");
+					for index, panel in pairs(this:GetParent().panels) do
+						if ( panel.name == "StepThroughPanel" ) then
+							this:GetParent().panels[index].Submit(this:GetParent().panels[index])
+							<!-- pcall(this:GetParent().panels[index].Submit, this:GetParent().panels[index]) -->
+						end
+					end
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parentReset" inherits="OptionsButtonTemplate" hidden="false">
+			<Anchors>
+				<Anchor point="RIGHT" relativeto="$parentSubmit" relativepoint="LEFT">
+					<Offset>
+						<AbsDimension x="-1"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnLoad>
+					this:GetParent().reset = this;
+					this:SetText(FEEDBACKUIRESET_TEXT);
+					this:Disable();
+				</OnLoad>
+				<OnClick>
+					PlaySound("GAMEGENERICBUTTONPRESS");
+					for index, panel in pairs(this:GetParent().panels) do
+						if ( panel.name == "StepThroughPanel" ) then
+							pcall(this:GetParent().panels[index].Reset, this:GetParent().panels[index])
+						end
+					end
+				</OnClick>
+			</Scripts>
+		</Button>
+	</Frames>
+</Frame>
+<Frame name="SurveyAlertFrameTemplate" toplevel="true" hidden="false" virtual="true">
+    <Frames>
+        <Button name="$parentButton1" inherits="SurveyAlertButtonTemplate">
+            <Anchors>
+                <Anchor point="TOPLEFT" relativeto="$parent" relativepoint="TOPLEFT"/>
+            </Anchors>
+            <Scripts>
+                <OnLoad>
+                    this:RegisterForClicks("LeftButtonUp");
+                    this:SetHeight("42");
+                    this:SetWidth("34");
+                    this.alert = this:GetParent();
+                    if ( not this.alert.buttons ) then
+                        this.alert.buttons = {}
+                    end
+                    table.insert(this.alert.buttons, this);
+                    this.index = table.maxn(this.alert.buttons);
+                    this:ClearAllPoints()
+                    this:SetPoint("BOTTOM", "UIParent", "BOTTOM", 0, 130)
+                    this.tooltip = "";
+                    this.lines = {}
+                </OnLoad>
+            </Scripts>
+        </Button>
+    </Frames>
+</Frame>
+<Button name="SurveyAlertButtonTemplate" hidden="true" virtual="true">
+	<Size>
+		<AbsDimension x="34" y="42"/>
+	</Size>
+	<Scripts>
+		<OnLoad>
+			this:RegisterForClicks("LeftButtonUp");
+            this.tooltip = "";
+            this.lines = {}
+		</OnLoad>
+		<OnEnter>
+			GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+            for _, line in ipairs(this.lines) do
+                GameTooltip:AddDoubleLine(line.left, line.right);
+            end
+            GameTooltipTextLeft2:SetFontObject("GameTooltipHeaderText");
+            GameTooltipTextLeft2:SetText(FEEDBACKUI_BLUE .. GameTooltipTextLeft2:GetText())
+            
+            if ( SHOW_NEWBIE_TIPS == "1" ) then
+                GameTooltip:AddLine(FEEDBACKUI_SURVEYNEWBIETEXT, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+            end
+            GameTooltip:Show();
+		</OnEnter>
+		<OnLeave>
+			GameTooltip:Hide();
+		</OnLeave>
+		<OnClick>    
+            UIDropDownMenu_SetSelectedValue(this.alert.panel.ddlCategory, "All")
+            UIDropDownMenu_SetSelectedValue(this.alert.panel.ddlStatus, "Available")
+            this.alert.panel.PopulateTable(this.alert.panel)
+            this.alert.panel.ScrollToAlert(this.alert.panel, this.index)
+            if ( this:IsVisible() ) then
+                GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+                for _, line in ipairs(this.lines) do
+                    GameTooltip:AddDoubleLine(line.left, line.right);
+                end
+                GameTooltipTextLeft2:SetFontObject("GameTooltipHeaderText");
+                GameTooltipTextLeft2:SetText(FEEDBACKUI_BLUE .. GameTooltipTextLeft2:GetText())
+                
+                if ( SHOW_NEWBIE_TIPS == "1" ) then
+                    GameTooltip:AddLine(FEEDBACKUI_SURVEYNEWBIETEXT, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+                end
+                GameTooltip:Show();
+            end
+        </OnClick>
+	</Scripts>
+	<NormalTexture file="Interface\AddOns\Blizzard_FeedbackUI\SurveyFrameAlert">
+		<Size>
+			<AbsDimension x="34" y="42"/>
+		</Size>
+		<TexCoords left="0" right="0.53125" top="0" bottom="0.6875"/>
+	</NormalTexture>
+	<HighlightTexture file="Interface\AddOns\Blizzard_FeedbackUI\SurveyFrameAlert" alphaMode="ADD">
+		<Size>
+			<AbsDimension x="23" y="42"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="-1" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<TexCoords left="0.578125" right="0.9375" top="0" bottom="0.6875"/>
+	</HighlightTexture>
+</Button>
+<Button name="FeedbackFrameColumnHeaderTemplate" virtual="true">
+	<Size>
+		<AbsDimension x="10" y="24"/>
+	</Size>
+	<Scripts>
+		<OnClick>
+			if ( this.sortType ) then
+				this.panel.SortResults(this.panel, this.sortType);
+			end
+			PlaySound("igMainMenuOptionCheckBoxOn");
+		</OnClick>
+	</Scripts>
+	<NormalFont inherits="GameFontHighlightSmall"/>
+	<HighlightTexture name="$parentHighlightTexture" file="Interface\PaperDollInfoFrame\UI-Character-Tab-Highlight" alphaMode="ADD">
+		<Size>
+			<AbsDimension x="80" y="30"/>
+		</Size>	
+		
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="1"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</HighlightTexture>
+</Button>
+</Ui>
