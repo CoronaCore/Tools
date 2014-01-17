@@ -2,7 +2,7 @@
 --
 -- Copyright Blizzard Entertainment 2002-2007
 --
--- MaNGOS_FeedbackUI Version 2.3.3
+-- Blizzard_FeedbackUI Version 2.3.3
 --
 -- Provides WoW players with a user interface for submitting bugs, suggestions, and other feedback.
 ---------------------------------------------------------------------------------------------------
