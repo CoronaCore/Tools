@@ -1,5 +1,5 @@
 ## Interface: 20400
-## Title: MaNGOS_FeedbackUI
+## Title: Blizzard_FeedbackUI
 ## Version: 2.3.3
 ## Secure: 1
 ## Author: Blizzard Entertainment
