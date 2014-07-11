@@ -1,0 +1,1 @@
+QuestHelper_StaticData={  ruRU=QuestHelper_StaticData_ruRU,  frFR=QuestHelper_StaticData_frFR,  koKR=QuestHelper_StaticData_koKR,  esMX=QuestHelper_StaticData_esMX,  enUS=QuestHelper_StaticData_enUS,  zhCN=QuestHelper_StaticData_zhCN,  zhTW=QuestHelper_StaticData_zhTW,  esES=QuestHelper_StaticData_esES,  deDE=QuestHelper_StaticData_deDE,}
