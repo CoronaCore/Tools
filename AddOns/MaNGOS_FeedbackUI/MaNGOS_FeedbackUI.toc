@@ -1,7 +1,6 @@
 ## Interface: 20400
-## Title: Blizzard_FeedbackUI
+## Title: MaNGOS_FeedbackUI
 ## Version: 2.3.3
-## Secure: 1
 ## Author: Blizzard Entertainment
 ## Notes: Submit feedback to Blizzard Entertainment from WoW with a friendly UI.
 ## SavedVariablesPerCharacter: g_FeedbackUI_feedbackVars, g_FeedbackUI_surveysTable, g_FeedbackUI_mouseBinding
