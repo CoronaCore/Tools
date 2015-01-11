@@ -1,0 +1,8 @@
+## Interface: 20400
+## Title: X-Display
+## Title-deDE: X-Display
+## Version: 0.0.1
+## Notes: Fix Item ActionBars Bank Icons.
+## Notes-deDE: Fixt Item ActionBars Bank Icons.
+## Author: Viscosa & Qwertyleiria 
+X-Display.xml
